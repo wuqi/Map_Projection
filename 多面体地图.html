@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>多面体地图介绍和四面体地图 - Map Projection</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="前言.html">前言</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="索引.html">地图投影简介</a></li><li class="chapter-item expanded affix "><li class="part-title">简介</li><li class="chapter-item expanded "><a href="简单的地图背景知识介绍.html"><strong aria-hidden="true">1.</strong> 简单的地图背景知识介绍</a></li><li class="chapter-item expanded "><a href="制图学基础知识和投影选择.html"><strong aria-hidden="true">2.</strong> 基本的定义和概念</a></li><li class="chapter-item expanded affix "><li class="part-title">地图属性</li><li class="chapter-item expanded "><a href="有用的地图属性.html"><strong aria-hidden="true">3.</strong> 有用的地图属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="距离和比例尺.html"><strong aria-hidden="true">3.1.</strong> 距离和比例尺</a></li><li class="chapter-item expanded "><a href="测地线.html"><strong aria-hidden="true">3.2.</strong> 测地线</a></li><li class="chapter-item expanded "><a href="方向.html"><strong aria-hidden="true">3.3.</strong> 方向</a></li><li class="chapter-item expanded "><a href="形状.html"><strong aria-hidden="true">3.4.</strong> 形状</a></li><li class="chapter-item expanded "><a href="面积.html"><strong aria-hidden="true">3.5.</strong> 面积</a></li><li class="chapter-item expanded "><a href="变形椭圆.html"><strong aria-hidden="true">3.6.</strong> 变形椭圆</a></li><li class="chapter-item expanded "><a href="失真模式.html"><strong aria-hidden="true">3.7.</strong> 角度变形</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">制图学中的数学</li><li class="chapter-item expanded "><a href="如何创建投影.html"><strong aria-hidden="true">4.</strong> 如何创建投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="正轴方位投影.html"><strong aria-hidden="true">4.1.</strong> 正轴方位投影</a></li><li class="chapter-item expanded "><a href="正轴圆柱投影.html"><strong aria-hidden="true">4.2.</strong> 正轴圆柱投影</a></li><li class="chapter-item expanded "><a href="Kavrayskiy_s_VII投影.html"><strong aria-hidden="true">4.3.</strong> Kavrayskiy's VII投影</a></li><li class="chapter-item expanded "><a href="等积正弦投影.html"><strong aria-hidden="true">4.4.</strong> 等积正弦投影</a></li><li class="chapter-item expanded "><a href="克拉斯特抛物线投影.html"><strong aria-hidden="true">4.5.</strong> 克拉斯特抛物线投影</a></li><li class="chapter-item expanded "><a href="摩尔维特投影.html"><strong aria-hidden="true">4.6.</strong> 摩尔维特 (Mollweide) 投影</a></li><li class="chapter-item expanded "><a href="极赤道方位等距等面积投影.html"><strong aria-hidden="true">4.7.</strong> 极/赤道方位等距等面积投影</a></li><li class="chapter-item expanded "><a href="等距圆柱投影_Winkel_1_2.html"><strong aria-hidden="true">4.8.</strong> 等距圆柱投影_Winkel I / II</a></li><li class="chapter-item expanded "><a href="埃托夫_汉莫尔_温克尔三重投影.html"><strong aria-hidden="true">4.9.</strong> 埃托夫/汉莫尔/温克尔三重投影</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">主要投影组</li><li class="chapter-item expanded "><a href="方位投影.html"><strong aria-hidden="true">5.</strong> 方位投影</a></li><li class="chapter-item expanded "><a href="圆柱投影.html"><strong aria-hidden="true">6.</strong> 圆柱投影</a></li><li class="chapter-item expanded "><a href="伪圆柱投影.html"><strong aria-hidden="true">7.</strong> 伪圆柱投影</a></li><li class="chapter-item expanded "><a href="圆锥投影.html"><strong aria-hidden="true">8.</strong> 圆锥投影</a></li><li class="chapter-item expanded "><a href="伪圆锥投影.html"><strong aria-hidden="true">9.</strong> 伪圆锥投影</a></li><li class="chapter-item expanded "><a href="修正方位投影.html"><strong aria-hidden="true">10.</strong> 修正方位投影</a></li><li class="chapter-item expanded "><a href="正形投影.html"><strong aria-hidden="true">11.</strong> 正形投影</a></li><li class="chapter-item expanded "><a href="其他有趣的投影.html"><strong aria-hidden="true">12.</strong> 其他有趣的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">应对变形</li><li class="chapter-item expanded "><a href="倾斜和弯曲投影_斜轴投影.html"><strong aria-hidden="true">13.</strong> 倾斜和弯曲投影_斜轴投影</a></li><li class="chapter-item expanded "><a href="撕开地球的皮肤_分瓣投影.html"><strong aria-hidden="true">14.</strong> 撕开地球的皮肤_分瓣投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="星形投影.html"><strong aria-hidden="true">14.1.</strong> 星形投影</a></li><li class="chapter-item expanded "><a href="分瓣和复合圆锥投影.html"><strong aria-hidden="true">14.2.</strong> 分瓣和复合圆锥投影</a></li><li class="chapter-item expanded "><a href="经典分瓣投影.html"><strong aria-hidden="true">14.3.</strong> 经典分瓣投影</a></li><li class="chapter-item expanded "><a href="任意分瓣投影.html"><strong aria-hidden="true">14.4.</strong> 任意分瓣投影</a></li><li class="chapter-item expanded "><a href="分瓣技巧.html"><strong aria-hidden="true">14.5.</strong> 分瓣技巧</a></li></ol></li><li class="chapter-item expanded "><a href="将地球改造成奇异行星.html"><strong aria-hidden="true">15.</strong> 将地球改造成奇异行星</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="多面体地图.html" class="active"><strong aria-hidden="true">15.1.</strong> 多面体地图介绍和四面体地图</a></li><li class="chapter-item expanded "><a href="立方体和八面体地图.html"><strong aria-hidden="true">15.2.</strong> 立方体和八面体地图</a></li><li class="chapter-item expanded "><a href="二十面体_十二面体_其他地图.html"><strong aria-hidden="true">15.3.</strong> 二十面体/十二面体/其他地图</a></li><li class="chapter-item expanded "><a href="用于打印和折叠的地图.html"><strong aria-hidden="true">15.4.</strong> 用于打印和折叠的地图</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">史海钩沉</li><li class="chapter-item expanded "><a href="在现代之前发展的投影.html"><strong aria-hidden="true">16.</strong> 在现代之前发展的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">投影应用</li><li class="chapter-item expanded "><a href="墨卡托投影和等距离方位投影.html"><strong aria-hidden="true">17.</strong> 缩小世界的投影:墨卡托投影和等距离方位投影</a></li><li class="chapter-item expanded "><a href="一些投影应用.html"><strong aria-hidden="true">18.</strong> 一些投影应用</a></li><li class="chapter-item expanded "><a href="Web墨卡托.html"><strong aria-hidden="true">19.</strong> Web墨卡托投影</a></li><li class="chapter-item expanded affix "><li class="part-title">总结</li><li class="chapter-item expanded "><a href="投影摘要和表格.html"><strong aria-hidden="true">20.</strong> 投影摘要和表格</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Map Projection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="多面体地图介绍和四面体地图"><a class="header" href="#多面体地图介绍和四面体地图">多面体地图介绍和四面体地图</a></h1>
+<p>原文链接:: <a href="https://web.archive.org/web/20180629150710/http://progonos.com/furuti/MapProj/Normal/ProjPoly/projPoly.html">Polyhedral Maps</a></p>
+<h2 id="普通多面体和多面体投影"><a class="header" href="#普通多面体和多面体投影">普通多面体和多面体投影</a></h2>
+<p>如果多面体面覆盖，即并列时平铺或镶嵌平面，地图甚至在其展开形式下也是有用的。任何三角形或四边形都像正六边形一样平铺在平面上，但正五边形不这样。</p>
+<p>五个正多面体或柏拉图多面体(其面是相同的正多边形，每个角有相同的角度)是多面体地图的自然候选对象，尽管扭曲在四面体中通常是不可接受的。一些半正的和均匀的(其面是正多边形，顶点是全等的)多面体也被考虑用于投影，最显著的是截顶八面体、立方十面体和截顶二十面体。</p>
+<p>使用立体作为地图的想法至少可以追溯到阿尔布雷特·丢勒，尽管他实际上并没有设计出比空白草图更多的透视图(1525年，1538年修订)。</p>
+<p>多面体面最常用的投影是日晷投影，其次是共形投影。在日晷多面体地图中，以与所有日晷设计相同的方式，像赤道这样的大圆和所有子午线都被转换成直线，除了在面边缘处断开的地方。</p>
+<p>与分瓣设计一样，多面体地图的一个重要问题是选择投影面和排列面，以避免切割地图上的重要要素。最近，作为myriahedral投影算法框架的一部分(2008)，范·韦克获得了所有柏拉图立体的最佳面布局，使大陆切割最小化。</p>
+<table><thead><tr><th>形状</th><th>名称</th><th>面</th></tr></thead><tbody>
+<tr><td><img src="./asserts/image_1625407825224_0.png"/></td><td>正四面体，正三棱锥</td><td>4个正三角形</td></tr>
+<tr><td><img src="./asserts/image_1625407879609_0.png"/></td><td>立方体</td><td>6个正方形</td></tr>
+<tr><td><img src="./asserts/image_1625407919612_0.png"/></td><td>正八面体</td><td>8个正三角形</td></tr>
+<tr><td><img src="./asserts/image_1625407960263_0.png"/></td><td>正十二面体</td><td>12个正五边形</td></tr>
+<tr><td><img src="./asserts/image_1625407989794_0.png"/></td><td>正二十面体</td><td>20个正三角形</td></tr>
+<tr><td><img src="./asserts/image_1625408018448_0.png"/></td><td>截断八面体</td><td>8个六边形,6个正方形</td></tr>
+<tr><td><img src="./asserts/image_1625408069770_0.png"/></td><td>截断二十面体</td><td>12个五边形,20个六边形</td></tr>
+<tr><td><img src="./asserts/image_1625408124554_0.png"/></td><td>立方十面体</td><td>6个正方形,8个三角形</td></tr>
+<tr><td><img src="./asserts/image_1625408167688_0.png"/></td><td>三十二面体</td><td>12个五边形,20个三角形</td></tr>
+<tr><td><img src="./asserts/image_1625408274514_0.png"/></td><td>菱方八面体</td><td>18个正方形,8个三角形</td></tr>
+<tr><td><img src="./asserts/image_1625408363798_0.png"/></td><td>斜方十二面体</td><td>12个菱形</td></tr>
+</tbody></table>
+<p>所选多面体的基本特征；除斜方十二面体外，所有面都是正多边形。八面体、二十面体和立方八面体已被应用于专利或商业地图，就像截断的八面体的不同形式。直观地说，增加面数使多面体更接近球体，同时减少了展开地图的简单性和实用性。</p>
+<h3 id="等面积设计"><a class="header" href="#等面积设计">等面积设计</a></h3>
+<p>A.D.Bradley（1946）的一篇论文描述了一个近似的二十面体上的等面积投影（地图边缘与多面体的面孔不完全匹配）；它还提到了经济学家Irving Fisher的一个等面积设计，它完全覆盖了多面体。费希尔以前曾设计过二十面体上的糯米图并申请了专利。</p>
+<p>Fisher的方法，基于Lambert的方位角等面积投影，被John P. Snyder（1992）概括为所有柏拉图实体，加上近乎精确的截断二十面体。它更容易解释，在不损失一般性的情况下，以一个规则的多边形面为中心的极性方面，半径延伸到每个顶点。兰伯特地图的 &quot;自然 &quot;边界是弯曲的，不是缺少就是超过多边形。因此，经线被调整，直到所有的经线都在边缘结束；这打破了面积等值，所以方位角，即经线间距，被修改以进行补偿。最后，沿每个子午线按比例计算距离，以保持面积不变。</p>
+<p>这种方法的缺点是沿着连接顶点和每个面中心的线引入了尖点--方向的变化，作为光栅尺的断点可见；相对而言，面越大，尖点就越明显。</p>
+<p>其他等面积的解决方案已经被提出，用于特定的立体，如四边形的球面立方体和立方体形式的HEALPix投影。</p>
+<h3 id="四面体分瓣投影"><a class="header" href="#四面体分瓣投影">四面体分瓣投影</a></h3>
+<p>四面体一般被认为不适合绘图，因为它在顶点附近有夸张的变形。Botley使用了gnomonic投影（1949）。Woolgar（1833）以前的设计是基于立体投影的，并不完全是多面体，因为面的边缘有重叠。</p>
+<p>为了回应他所认为的Fisher对（可能是日晷的）四面体地图的过度扭曲的批评，L.P.Lee创造了一个正形设计（1965）；与其他展开的多面体相比，他指出，缝隙的数量少，在适当的安排下，大陆的切割数量减少，而且有可能对平面进行镶嵌。除了四面体顶点（这六个奇异点对应于扁平化形式中的角和边的中间），投影在任何地方都是等角的，这也显示出相当大的面积夸张。李将他的地图投影点放在南极，将所有顶点放在海洋地区。</p>
+<p>贝格豪斯的星形地图的3点变体可以顺便折叠成四面体，尽管其发展与上述任何方法都无关。</p>
+<p>尽管名字很普通，但巴塞洛缪的四面体投影实际上是一种星状的复合体，与多面体无关。</p>
+<p>M.C.埃舍尔在他充满幻想的雕刻作品《双行星》（1949）和《四面体行星》（1954）中使用了真正的四面体假世界的概念。多面体、倾斜、循环、无限和矛盾的数字是这位多产的荷兰艺术家作品中反复出现的主题。四面体 &quot;地球 &quot;为《以赛亚书》11:12（&quot;他要把分散的犹大人从地球的四面八方聚集起来&quot;）提出了新的含义。</p>
+<div align="center"><img src="./asserts/image_1625408677629_0.png"/></div> 
+<center>  当日晷投影应用于四面体时，除每个面的中心外，面积和形状的失真都变得极端。<center>
+<div align="center"><img src="./asserts/image_1625408704709_0.png"/></div> 
+<center>正四面体中李氏共形投影的北极(类星)面，缩放以匹配地精地图的大小。李的原始地图以南极为中心。六个非共形点的面积畸变很大。</center>
+<div align="center"><img src="./asserts/image_1625408735368_0.png"/></div> 
+<center>当应用于四面体时(同样，缩放以匹配地精地图的大小)，费希尔/斯奈德的等面积投影中的尖点沿着每个面的三个辐射线非常明显。</center>
+<div align="center"><img src="./asserts/image_1625408779036_0.png"/></div> 
+<center>在相同的比例因子下四面体的单个极面:日晷(左)，费希尔/斯奈德等面积(中心)，李氏共形投影(右)。</center>
+<div align="center"><img src="./asserts/image_1625408798289_0.png"/></div> 
+<center> 李氏投影在四面体上的平铺。以南极为中心将所有奇点移向海洋。</center>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="将地球改造成奇异行星.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="立方体和八面体地图.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="将地球改造成奇异行星.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="立方体和八面体地图.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lunr.zh.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

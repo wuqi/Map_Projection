@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>在现代之前发展的投影 - Map Projection</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="前言.html">前言</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="索引.html">地图投影简介</a></li><li class="chapter-item expanded affix "><li class="part-title">简介</li><li class="chapter-item expanded "><a href="简单的地图背景知识介绍.html"><strong aria-hidden="true">1.</strong> 简单的地图背景知识介绍</a></li><li class="chapter-item expanded "><a href="制图学基础知识和投影选择.html"><strong aria-hidden="true">2.</strong> 基本的定义和概念</a></li><li class="chapter-item expanded affix "><li class="part-title">地图属性</li><li class="chapter-item expanded "><a href="有用的地图属性.html"><strong aria-hidden="true">3.</strong> 有用的地图属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="距离和比例尺.html"><strong aria-hidden="true">3.1.</strong> 距离和比例尺</a></li><li class="chapter-item expanded "><a href="测地线.html"><strong aria-hidden="true">3.2.</strong> 测地线</a></li><li class="chapter-item expanded "><a href="方向.html"><strong aria-hidden="true">3.3.</strong> 方向</a></li><li class="chapter-item expanded "><a href="形状.html"><strong aria-hidden="true">3.4.</strong> 形状</a></li><li class="chapter-item expanded "><a href="面积.html"><strong aria-hidden="true">3.5.</strong> 面积</a></li><li class="chapter-item expanded "><a href="变形椭圆.html"><strong aria-hidden="true">3.6.</strong> 变形椭圆</a></li><li class="chapter-item expanded "><a href="失真模式.html"><strong aria-hidden="true">3.7.</strong> 角度变形</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">制图学中的数学</li><li class="chapter-item expanded "><a href="如何创建投影.html"><strong aria-hidden="true">4.</strong> 如何创建投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="正轴方位投影.html"><strong aria-hidden="true">4.1.</strong> 正轴方位投影</a></li><li class="chapter-item expanded "><a href="正轴圆柱投影.html"><strong aria-hidden="true">4.2.</strong> 正轴圆柱投影</a></li><li class="chapter-item expanded "><a href="Kavrayskiy_s_VII投影.html"><strong aria-hidden="true">4.3.</strong> Kavrayskiy's VII投影</a></li><li class="chapter-item expanded "><a href="等积正弦投影.html"><strong aria-hidden="true">4.4.</strong> 等积正弦投影</a></li><li class="chapter-item expanded "><a href="克拉斯特抛物线投影.html"><strong aria-hidden="true">4.5.</strong> 克拉斯特抛物线投影</a></li><li class="chapter-item expanded "><a href="摩尔维特投影.html"><strong aria-hidden="true">4.6.</strong> 摩尔维特 (Mollweide) 投影</a></li><li class="chapter-item expanded "><a href="极赤道方位等距等面积投影.html"><strong aria-hidden="true">4.7.</strong> 极/赤道方位等距等面积投影</a></li><li class="chapter-item expanded "><a href="等距圆柱投影_Winkel_1_2.html"><strong aria-hidden="true">4.8.</strong> 等距圆柱投影_Winkel I / II</a></li><li class="chapter-item expanded "><a href="埃托夫_汉莫尔_温克尔三重投影.html"><strong aria-hidden="true">4.9.</strong> 埃托夫/汉莫尔/温克尔三重投影</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">主要投影组</li><li class="chapter-item expanded "><a href="方位投影.html"><strong aria-hidden="true">5.</strong> 方位投影</a></li><li class="chapter-item expanded "><a href="圆柱投影.html"><strong aria-hidden="true">6.</strong> 圆柱投影</a></li><li class="chapter-item expanded "><a href="伪圆柱投影.html"><strong aria-hidden="true">7.</strong> 伪圆柱投影</a></li><li class="chapter-item expanded "><a href="圆锥投影.html"><strong aria-hidden="true">8.</strong> 圆锥投影</a></li><li class="chapter-item expanded "><a href="伪圆锥投影.html"><strong aria-hidden="true">9.</strong> 伪圆锥投影</a></li><li class="chapter-item expanded "><a href="修正方位投影.html"><strong aria-hidden="true">10.</strong> 修正方位投影</a></li><li class="chapter-item expanded "><a href="正形投影.html"><strong aria-hidden="true">11.</strong> 正形投影</a></li><li class="chapter-item expanded "><a href="其他有趣的投影.html"><strong aria-hidden="true">12.</strong> 其他有趣的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">应对变形</li><li class="chapter-item expanded "><a href="倾斜和弯曲投影_斜轴投影.html"><strong aria-hidden="true">13.</strong> 倾斜和弯曲投影_斜轴投影</a></li><li class="chapter-item expanded "><a href="撕开地球的皮肤_分瓣投影.html"><strong aria-hidden="true">14.</strong> 撕开地球的皮肤_分瓣投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="星形投影.html"><strong aria-hidden="true">14.1.</strong> 星形投影</a></li><li class="chapter-item expanded "><a href="分瓣和复合圆锥投影.html"><strong aria-hidden="true">14.2.</strong> 分瓣和复合圆锥投影</a></li><li class="chapter-item expanded "><a href="经典分瓣投影.html"><strong aria-hidden="true">14.3.</strong> 经典分瓣投影</a></li><li class="chapter-item expanded "><a href="任意分瓣投影.html"><strong aria-hidden="true">14.4.</strong> 任意分瓣投影</a></li><li class="chapter-item expanded "><a href="分瓣技巧.html"><strong aria-hidden="true">14.5.</strong> 分瓣技巧</a></li></ol></li><li class="chapter-item expanded "><a href="将地球改造成奇异行星.html"><strong aria-hidden="true">15.</strong> 将地球改造成奇异行星</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="多面体地图.html"><strong aria-hidden="true">15.1.</strong> 多面体地图介绍和四面体地图</a></li><li class="chapter-item expanded "><a href="立方体和八面体地图.html"><strong aria-hidden="true">15.2.</strong> 立方体和八面体地图</a></li><li class="chapter-item expanded "><a href="二十面体_十二面体_其他地图.html"><strong aria-hidden="true">15.3.</strong> 二十面体/十二面体/其他地图</a></li><li class="chapter-item expanded "><a href="用于打印和折叠的地图.html"><strong aria-hidden="true">15.4.</strong> 用于打印和折叠的地图</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">史海钩沉</li><li class="chapter-item expanded "><a href="在现代之前发展的投影.html" class="active"><strong aria-hidden="true">16.</strong> 在现代之前发展的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">投影应用</li><li class="chapter-item expanded "><a href="墨卡托投影和等距离方位投影.html"><strong aria-hidden="true">17.</strong> 缩小世界的投影:墨卡托投影和等距离方位投影</a></li><li class="chapter-item expanded "><a href="一些投影应用.html"><strong aria-hidden="true">18.</strong> 一些投影应用</a></li><li class="chapter-item expanded "><a href="Web墨卡托.html"><strong aria-hidden="true">19.</strong> Web墨卡托投影</a></li><li class="chapter-item expanded affix "><li class="part-title">总结</li><li class="chapter-item expanded "><a href="投影摘要和表格.html"><strong aria-hidden="true">20.</strong> 投影摘要和表格</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Map Projection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="在现代之前发展的投影"><a class="header" href="#在现代之前发展的投影">在现代之前发展的投影</a></h1>
+<p>原文链接:: <a href="https://web.archive.org/web/20180227085810/http://www.progonos.com/furuti/MapProj/Normal/ProjPM/projPM.html">Premodern Projections</a></p>
+<h2 id="介绍"><a class="header" href="#介绍">介绍</a></h2>
+<p>在文艺复兴前或文艺复兴时创作的几种投影中，大多数早已废弃，只有少数具有一些突出特性的预测在今天被人们记住。关于这些投影的许多信息是不确定的。</p>
+<ul>
+<li>有几个经常被不知名的作者重新发明</li>
+<li>大部分零散的、不精确的描述今天仍然存在，有时是间接的参考资料或粗糙的副本</li>
+<li>特别是在中世纪，大多数地图只是为了说明地球的特征，因此缺乏精确的等高线，而且经常缺乏标度线</li>
+<li>由于不准确的复制或原始的绘图技术，许多地图没有准确反映作者的原始设计；经常使用直线或圆线作为更复杂曲线的近似值。</li>
+<li>因此，要确定经纬线的正确含义并不容易。</li>
+<li>如果没有经纬网，由于古代地理知识贫乏，对地物的测量和反向测绘价值有限</li>
+</ul>
+<p>这里提到的投影主要是有历史意义的；有些是在适合某个主要投影组时已经提出的。由于我没有关于其他文化中制图发展的信息，所以明显有强烈的西方偏见。</p>
+<h2 id="等距圆柱和梯形地图"><a class="header" href="#等距圆柱和梯形地图">等距圆柱和梯形地图</a></h2>
+<p>等距圆柱投影在基督教时代之前就非常普遍，这无疑是由于它的结构简单而实用。</p>
+<p>也许同样古老或更古老，梯形投影也有类似的水平、笔直、等距的纬线，但经线会聚，不一定在一个点上。因此，最多两条纬线（在断裂子午线的情况下是四条），只有一条子午线是标准线。它既不是等值的，也不是共形的。</p>
+<p>梯形投影归功于Hipparchus（在星图中），然后归功于Donnus Germanus，他用它来说明托勒密作品的版本。它的俗称Donis，源自Nordenskiöld使用的Donnus的一种形式。</p>
+<p>这种原始的、过时的伪圆柱形投影的大多数地图只显示北半球的一部分；有些地图包括整个地球的对称半球，而其他地图则是真正的梯形，经线在赤道上没有中断。这种投影一直持续到18世纪。根据标准纬线的选择，梯形地图可能类似于Collignon、Eckert的I和II投影。对于不同周长的标准纬线，它也是等距圆柱形的一般情况。</p>
+<div align="center"><img src="./asserts/image_1629638697345_0.png"/></div>
+<center>对称的梯形地图，标准纬线为南北40°和20°。</center>
+<h2 id="方位投影"><a class="header" href="#方位投影">方位投影</a></h2>
+<p>值得注意的是，一些方位投影，即使在今天也很重要，早在两千多年前就被希腊人知道了，也许埃及人也知道。正投影、立体投影和日晷投影都是基于透视和欧几里得几何的立体原理，而方位角等距可追溯到15世纪，并且是任意构造的。
+正射投影是图案意义上最逼真的地图之一，与下文的“球状”投影方法提供了有趣的对比。</p>
+<div align="center"><img src="./asserts/image_1629639151171_0.png"/><img src="./asserts/image_1629639161952_0.png"/></div>
+<center> 赤道方位正交和立体半球，中央子午线70度</center>
+<h2 id="球状投影"><a class="header" href="#球状投影">球状投影</a></h2>
+<p>显然，在西方中世纪的大部分时间里，来自古代的许多丰富的科学遗产被遗忘或忽视了；然而，尽管现代神话广为流传，但球状地球的想法从未因宗教因素而被禁止，并被大多数有识之士所接受。克里斯托弗-哥伦布捍卫的不是一个圆形的，而是更小的地球的想法；这种错误的说法使他提议的事业看起来合理可行。</p>
+<p>所谓的球状地图本质上是简单的描绘一般地理特征的图像装置。他们的主要目的是强调地球的圆形；没有一个球形投影是等面积或共形的。最初，所有的都被限制在一个以圆为界的半球，只考虑赤道面。中央子午线和赤道都是直的垂直线。基本的几何约束，总结如下，定义了所有的历史设计。</p>
+<hr />
+<p><strong>东半球重建的球状图；中央经线70°E</strong></p>
+<table>
+<tr>
+    <td><div align="center"><img src="./asserts/image_1629639448639_0.png"/></div></td>
+    <td><div align="center"><img src="./asserts/image_1629639459535_0.png"/></div> </td>
+    <td><div align="center"><img src="./asserts/image_1629639467494_0.png"/></div> </td>
+</tr>
+<tr>
+  <td><center>Bacon</center></td>
+  <td><center>First Apian</center></td>
+  <td><center>Second Apian</center></td>
+</tr>
+<tr>
+    <td><div align="center"><img src="./asserts/image_1629639520053_0.png"/></div></td>
+    <td><div align="center"><img src="./asserts/image_1629639528068_0.png"/></div> </td>
+    <td><div align="center"><img src="./asserts/image_1629639534060_0.png"/></div> </td>
+</tr>
+<tr>
+  <td><center>Second Fournier</center></td>
+  <td><center>First Fournier</center></td>
+  <td><center>Nicolosi</center></td>
+</tr>
+</table>
+<hr />
+<p>尽管表面上与方位角投影相似，但球状地图并不是按照适当的透视规则绘制的：格点是利用容易绘制的曲线任意放置的。与制图学的惯例一样，没有一种方法是完美的：尽管乔治-福尼尔的第二件作品最符合三维地球仪的视觉效果，但 &quot;Nicolosi &quot;地图的全球形状失真可能最小；后者是最晚被广泛出版的，几乎可以肯定是最早被记录的。</p>
+<p>大哲学家罗杰-培根（Roger Bacon）（约1265年）描述了已知最古老的一个半球的任意投影，由于Monachus（约1527年）和d'Ailly的工作而幸存下来。该设计被彼得-阿皮安（又名佩特鲁斯-阿皮安努斯）在两个提案中进行了修改（1524年），其中一个被特拉梅齐诺（1554年）采用，并被巴蒂斯塔-阿涅斯和亚伯拉罕-奥特留斯扩展。</p>
+<p>富尼耶在1643年对球状风格进行了两次修改，第一次使用圆弧而不是直线作为纬线。Giovanni Nicolosi于1660年推出的投影图使进一步的改变得到了推广，虽然该投影图也是由Philippe de La Hire于1794年设计的，但可能是由杰出的伊斯兰学者al-Biruni（约1000年）首次设计的。现代提到的大多数 &quot;球状 &quot;地图都是指这种 &quot;Nicolosi &quot;设计，即使在19世纪，这种设计仍然广为人知。</p>
+<h3 id="经典球状投影的一般特征"><a class="header" href="#经典球状投影的一般特征">经典球状投影的一般特征</a></h3>
+<p>| 投影名称 | 纬线  |  经线 |  |  |
+| -----| ---- | ---- | ---- | ---- |
+|常用名| 形状| 等距处 |形状| 等距处|
+|Bacon | 直线 | 边界子午线 | 圆弧 | 每条纬线 |
+|Apian 1|	直线|	中央子午线	|圆弧|每条纬线|
+|Apian 2|	直线|	中央子午线	|椭圆|每条纬线|
+|Fournier 1|圆弧|边界和中央子午线|椭圆|赤道|	
+|Fournier 2|直线|边界子午线|椭圆|每条纬线|
+|Nicolosi|圆弧|边界和中央子午线|圆弧|赤道|</p>
+<h2 id="椭圆形和扩展球状图"><a class="header" href="#椭圆形和扩展球状图">椭圆形和扩展球状图</a></h2>
+<p>尽管经典的球状投影都不是为了同时显示一个以上的半球，但都可以扩展为跨越整个世界；除了中央子午线外，中央的圆形半球与原始投影的半球相同。</p>
+<p>椭圆形地图的平行线为直线，经线为简单的曲线。Agnese（约1540年）和Ortelius（1570年）的地图可能源自Apian的第一个设计，外半球使用固定半径的半圆弧。其结果适合2:1的框架，看起来像埃克特的现代投影III和IV，但它当然不是等面积的。它也不是假圆柱形，因为子午线的间距在内半球和外半球并不一致。</p>
+<div align="center"><img src="./asserts/image_1629642102046_0.png"/></div> 
+<center> 奥特留斯地图的重建，是阿皮安第一投影的近似延伸；中央经线0°。</center>
+<p>阿皮安第二投影使用了椭圆经线，而且作为一个现代的好奇心，可以使用反偏心的弧线进行扩展。尽管是伪圆柱形，它与莫尔维德的椭圆地图的相似之处只是表面的。</p>
+<div align="center"><img src="./asserts/image_1629642217914_0.png"/></div> 
+<center>  阿皮安第二投影扩展到整个世界，中央子午线为0°。</center>
+<p>类似的结构应用于Nicolosi的球状地图产生了一个苹果形的框架，与Van der Grinten的IV投影形成了有趣的对比。</p>
+<div align="center"><img src="./asserts/image_1629642288742_0.png"/></div> 
+<center>尼科洛西 "投影扩展到完整的世界地图，中央经线0°。</center>
+<h2 id="八瓣投影"><a class="header" href="#八瓣投影">八瓣投影</a></h2>
+<p>八瓣地图类似于星形投影，曾与早期的椭圆形地图同时短暂使用。它们将地球表面划分为八个形状相同的部分，通常以赤道和四条经线为界。每个球状三角形都被分别投射到一个大致为三角形的八瓣中；如果其边缘是以一个等边三角形的相反顶点为中心的圆弧，则分瓣的形状被称为Reuleaux三角形。</p>
+<p>莱昂纳多-达-芬奇的一幅基于Reuleaux三角形的八瓣世界地图（约1514年）被认为是基于Reuleaux三角形的八瓣世界地图，其孔隙被安排在独立的、类似三叶草的半球中，但省略了标尺；其投影方法只能被推测。Oronce Finé出版了一个部分光栅尺（1551年），同样没有说明细节。很有可能的是，纬线是沿每个八度的子午线边缘和中央子午线等距的非中心圆弧；经线是沿赤道等距的。</p>
+<div align="center"><img src="./asserts/image_1629642385038_0.png"/></div> 
+<center>达芬奇八瓣地图的南半球和北半球的可能重建；边界经线从45°开始。在原始地图中，孔隙的间距略大。</center>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="用于打印和折叠的地图.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="墨卡托投影和等距离方位投影.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="用于打印和折叠的地图.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="墨卡托投影和等距离方位投影.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lunr.zh.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

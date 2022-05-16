@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>极/赤道方位等距等面积投影 - Map Projection</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="前言.html">前言</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="索引.html">地图投影简介</a></li><li class="chapter-item expanded affix "><li class="part-title">简介</li><li class="chapter-item expanded "><a href="简单的地图背景知识介绍.html"><strong aria-hidden="true">1.</strong> 简单的地图背景知识介绍</a></li><li class="chapter-item expanded "><a href="制图学基础知识和投影选择.html"><strong aria-hidden="true">2.</strong> 基本的定义和概念</a></li><li class="chapter-item expanded affix "><li class="part-title">地图属性</li><li class="chapter-item expanded "><a href="有用的地图属性.html"><strong aria-hidden="true">3.</strong> 有用的地图属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="距离和比例尺.html"><strong aria-hidden="true">3.1.</strong> 距离和比例尺</a></li><li class="chapter-item expanded "><a href="测地线.html"><strong aria-hidden="true">3.2.</strong> 测地线</a></li><li class="chapter-item expanded "><a href="方向.html"><strong aria-hidden="true">3.3.</strong> 方向</a></li><li class="chapter-item expanded "><a href="形状.html"><strong aria-hidden="true">3.4.</strong> 形状</a></li><li class="chapter-item expanded "><a href="面积.html"><strong aria-hidden="true">3.5.</strong> 面积</a></li><li class="chapter-item expanded "><a href="变形椭圆.html"><strong aria-hidden="true">3.6.</strong> 变形椭圆</a></li><li class="chapter-item expanded "><a href="失真模式.html"><strong aria-hidden="true">3.7.</strong> 角度变形</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">制图学中的数学</li><li class="chapter-item expanded "><a href="如何创建投影.html"><strong aria-hidden="true">4.</strong> 如何创建投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="正轴方位投影.html"><strong aria-hidden="true">4.1.</strong> 正轴方位投影</a></li><li class="chapter-item expanded "><a href="正轴圆柱投影.html"><strong aria-hidden="true">4.2.</strong> 正轴圆柱投影</a></li><li class="chapter-item expanded "><a href="Kavrayskiy_s_VII投影.html"><strong aria-hidden="true">4.3.</strong> Kavrayskiy's VII投影</a></li><li class="chapter-item expanded "><a href="等积正弦投影.html"><strong aria-hidden="true">4.4.</strong> 等积正弦投影</a></li><li class="chapter-item expanded "><a href="克拉斯特抛物线投影.html"><strong aria-hidden="true">4.5.</strong> 克拉斯特抛物线投影</a></li><li class="chapter-item expanded "><a href="摩尔维特投影.html"><strong aria-hidden="true">4.6.</strong> 摩尔维特 (Mollweide) 投影</a></li><li class="chapter-item expanded "><a href="极赤道方位等距等面积投影.html" class="active"><strong aria-hidden="true">4.7.</strong> 极/赤道方位等距等面积投影</a></li><li class="chapter-item expanded "><a href="等距圆柱投影_Winkel_1_2.html"><strong aria-hidden="true">4.8.</strong> 等距圆柱投影_Winkel I / II</a></li><li class="chapter-item expanded "><a href="埃托夫_汉莫尔_温克尔三重投影.html"><strong aria-hidden="true">4.9.</strong> 埃托夫/汉莫尔/温克尔三重投影</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">主要投影组</li><li class="chapter-item expanded "><a href="方位投影.html"><strong aria-hidden="true">5.</strong> 方位投影</a></li><li class="chapter-item expanded "><a href="圆柱投影.html"><strong aria-hidden="true">6.</strong> 圆柱投影</a></li><li class="chapter-item expanded "><a href="伪圆柱投影.html"><strong aria-hidden="true">7.</strong> 伪圆柱投影</a></li><li class="chapter-item expanded "><a href="圆锥投影.html"><strong aria-hidden="true">8.</strong> 圆锥投影</a></li><li class="chapter-item expanded "><a href="伪圆锥投影.html"><strong aria-hidden="true">9.</strong> 伪圆锥投影</a></li><li class="chapter-item expanded "><a href="修正方位投影.html"><strong aria-hidden="true">10.</strong> 修正方位投影</a></li><li class="chapter-item expanded "><a href="正形投影.html"><strong aria-hidden="true">11.</strong> 正形投影</a></li><li class="chapter-item expanded "><a href="其他有趣的投影.html"><strong aria-hidden="true">12.</strong> 其他有趣的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">应对变形</li><li class="chapter-item expanded "><a href="倾斜和弯曲投影_斜轴投影.html"><strong aria-hidden="true">13.</strong> 倾斜和弯曲投影_斜轴投影</a></li><li class="chapter-item expanded "><a href="撕开地球的皮肤_分瓣投影.html"><strong aria-hidden="true">14.</strong> 撕开地球的皮肤_分瓣投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="星形投影.html"><strong aria-hidden="true">14.1.</strong> 星形投影</a></li><li class="chapter-item expanded "><a href="分瓣和复合圆锥投影.html"><strong aria-hidden="true">14.2.</strong> 分瓣和复合圆锥投影</a></li><li class="chapter-item expanded "><a href="经典分瓣投影.html"><strong aria-hidden="true">14.3.</strong> 经典分瓣投影</a></li><li class="chapter-item expanded "><a href="任意分瓣投影.html"><strong aria-hidden="true">14.4.</strong> 任意分瓣投影</a></li><li class="chapter-item expanded "><a href="分瓣技巧.html"><strong aria-hidden="true">14.5.</strong> 分瓣技巧</a></li></ol></li><li class="chapter-item expanded "><a href="将地球改造成奇异行星.html"><strong aria-hidden="true">15.</strong> 将地球改造成奇异行星</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="多面体地图.html"><strong aria-hidden="true">15.1.</strong> 多面体地图介绍和四面体地图</a></li><li class="chapter-item expanded "><a href="立方体和八面体地图.html"><strong aria-hidden="true">15.2.</strong> 立方体和八面体地图</a></li><li class="chapter-item expanded "><a href="二十面体_十二面体_其他地图.html"><strong aria-hidden="true">15.3.</strong> 二十面体/十二面体/其他地图</a></li><li class="chapter-item expanded "><a href="用于打印和折叠的地图.html"><strong aria-hidden="true">15.4.</strong> 用于打印和折叠的地图</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">史海钩沉</li><li class="chapter-item expanded "><a href="在现代之前发展的投影.html"><strong aria-hidden="true">16.</strong> 在现代之前发展的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">投影应用</li><li class="chapter-item expanded "><a href="墨卡托投影和等距离方位投影.html"><strong aria-hidden="true">17.</strong> 缩小世界的投影:墨卡托投影和等距离方位投影</a></li><li class="chapter-item expanded "><a href="一些投影应用.html"><strong aria-hidden="true">18.</strong> 一些投影应用</a></li><li class="chapter-item expanded "><a href="Web墨卡托.html"><strong aria-hidden="true">19.</strong> Web墨卡托投影</a></li><li class="chapter-item expanded affix "><li class="part-title">总结</li><li class="chapter-item expanded "><a href="投影摘要和表格.html"><strong aria-hidden="true">20.</strong> 投影摘要和表格</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Map Projection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="极赤道方位等距等面积投影"><a class="header" href="#极赤道方位等距等面积投影">极赤道方位等距等面积投影</a></h1>
+<p>原文链接:: <a href="https://web.archive.org/web/20180630041337/http://progonos.com/furuti/MapProj/Normal/CartHow/HowAzEqDA/howAzEqDA.html">Two Aspects for Two Arbitrary Azimuthal Projections</a></p>
+<h2 id="一般的极地方位投影"><a class="header" href="#一般的极地方位投影">一般的极地方位投影</a></h2>
+<div align="center"><img src="./asserts/image_1623590568077_0.png"/><img src="./asserts/image_1623590573515_0.png"/></div>
+一般情况下，方位角投影主要由一个函数来定义，该函数对来自投影中心T的距离进行转换。
+<p>方位正射投影的数学发展纯粹是几何学的。 尽管有几个方位角投影——就像这里解释的两个——不遵循这样的透视过程，但都可以简化为一般模式。</p>
+<p>在一个球体上，两个角度决定了任何点P相对于投影中心T的距离和位置:对于北极方面，μ等于经度λ，而ψ等于余纬度\( \phi \)，或\( \frac{\pi}{2}-\varphi \)。</p>
+<p>在地图上，由于方位属性，</p>
+<p>\[ \theta=\mu \]</p>
+<p>方位投影的基本特征是一个转换到地图中心的距离的函数，因此决定了极面纬线的间距:</p>
+<p>\[ \rho=f(R\psi) \]</p>
+<p>然后</p>
+<p>\[ x=\rho\cos\theta \]
+\[ y=\rho\sin\theta \]</p>
+<p>某些方位投影的定义距离函数</p>
+<div align="center"><img src="./asserts/image_1623594533434_0.png"/></div>
+<h2 id="方位等距投影"><a class="header" href="#方位等距投影">方位等距投影</a></h2>
+<p>方位等距投影是导航应用的重要投影，从地图中心到任何其他点的距离与其到投影中心的真实径向距离成正比。在北极投影面:</p>
+<p>\[ \rho=\Big( \frac{\phi}{2} - \varphi \Big)R \]</p>
+<p>南极投影面也很容易推算:</p>
+<p>\[ \rho=\Big( \frac{\pi}{2}+\varphi\Big)R \]
+\[ \theta=-\lambda \]</p>
+<h2 id="兰伯特方位等面积投影"><a class="header" href="#兰伯特方位等面积投影">兰伯特方位等面积投影</a></h2>
+<p>在兰伯特创建的唯一一个适用于世界地图的方位角投影和等面积投影中，点与地图中心的相对距离逐渐减小，以保持面积相等。公式来源于基本的积分学；首先，我们在地球和地图上定义一个面积元素。</p>
+<div align="center"><img src="./asserts/image_1623594940536_0.png"/></div>
+<p>将一圈很薄的区域作为一个元素,给定余纬度 \( \phi\)</p>
+<p>\[ ds=2\pi R\sin \phi Rd\phi =2\pi R^2 \sin \phi d \phi \]</p>
+<p>极方位地图上对应的元素是一个环，其面积为:</p>
+<p>\[ ds=2\pi\rho d \rho \]</p>
+<div align="center"><img src="./asserts/image_1623594955508_0.png"/></div>
+<p>对于任何给定的余纬度\( \phi_1 \)，我们希望\( \rho_1 \)使得地图上以\( \phi_1 \)为界的球冠和以\( \phi_1 \)为界的圆盘具有相同的面积。这对于面积保存来说已经足够了，因为带和环上沿圆周的尺度虽然不同，但仍然是恒定的，这也是由于方位投影的特性。</p>
+<p>\[ \int_0^{\phi_1}2\pi R^2 \sin \phi d \phi = \int_0^{\rho_1}2\pi\rho d \rho \]
+\[ 2\pi R^2\int_0^{\phi_1}\sin\phi d \phi = 2\pi \int_0^{\rho_1}\rho d \rho  \]
+\[ -R^2\cos\phi \Big| _0^{\phi_1} = \frac{\rho^2}{2} \Big| _0^{\rho_1} \]
+\[ -2R^2(\cos \phi_1 -1)=\rho_1^2 \]
+\[ \rho-1=R\sqrt{2}\sqrt{1-\cos\phi_1}=2R\sqrt{\frac{1-\cos\phi_1}{2}}=2R\sin\frac{\phi_1}{2} \]
+\[ \rho = 2R\sin\frac{\frac{\pi}{2}-\phi}{2} \]</p>
+<p>类似的符号变化也适用于南极投影面。</p>
+<p>组合图显示了在北纬 60°以北的两个投影几乎相同（如图所示：\( \phi \) = 0.534）。 除此之外，平行线在兰伯特的一半中越来越靠近，而在方位角等距部分保持等距。 由此产生的面积差异在南极洲清晰可见。</p>
+<div align="center"><img src="./asserts/image_1623595865579_0.png"/></div>
+<h2 id="一般的赤道投影面的方位投影"><a class="header" href="#一般的赤道投影面的方位投影">一般的赤道投影面的方位投影</a></h2>
+<p>通过引入坐标变换和空间旋转，可以计算方位投影地图的其他投影面。然而，重要的赤道投影面可以通过更直接的方式获得，使用球面上三角形的两个属性。</p>
+<div align="center"><img src="./asserts/image_1623595909307_0.png"/></div>
+<p><strong>球面三角形的正弦和余弦定律</strong></p>
+<ul>
+<li>给定球面三角形顶点上的角 A、B、C，以及连接三角形顶点和球心 O 的边之间的相应角 \( \alpha  ,\beta,\gamma \)</li>
+<li>正弦定律: \( \frac{\sin A}{\alpha}=\frac{\sin B}{\beta}=\frac{\sin C}{\gamma} \)</li>
+<li>余弦定律:\( \cos\gamma=\cos\alpha\cos\beta+\sin\alpha\sin\beta\sin C \)</li>
+</ul>
+<p>在赤道投影面上，投影的中心位于赤道和任意中央子午线的交点上。它是球面三角形的一个顶点；第二个点是投影点，第三个点位于赤道上，与点在同一经度上。球体中心的相应角度是φ、λ和α，我们想要θ，即对应于第一个图中μ的θ角。</p>
+<div align="center"><img src="./asserts/image_1623596663364_0.png"/></div>
+<p>\[ \frac{\sin\theta}{\sin\varphi}=\frac{\sin\frac{\pi}{2}}{\sin\alpha} \]
+\[ \cos\alpha=\cos\varphi\cos\lambda+\sin\varphi\sin\lambda\cos\frac{\pi}{2} \]
+\[ \alpha=\arccos(\cos\varphi\cos\lambda) \]
+\[ \cos\varphi=\cos\alpha\cos\lambda+\sin\alpha\sin\lambda\cos\theta \]
+\[ cos\theta=\frac{\cos\varphi-cos\alpha\cos\lambda}{\sin\alpha\sin\lambda}=\frac{\cos\varphi(1-\cos^2\lambda)}{\sin\alpha\sin\lambda} \]</p>
+<p>\[ \sin\theta=\frac{\sin\varphi}{\sin\alpha} \]
+\[ \cos\theta=\frac{\cos\varphi\sin\lambda}{\sin\alpha} \]</p>
+<h3 id="赤道方位等距投影"><a class="header" href="#赤道方位等距投影">赤道方位等距投影</a></h3>
+<p>只要把\( \cos\theta \)和\( \sin\theta \)的表达式代入，加入限制条件\( \rho=r=\alpha R \)。</p>
+<p>\[ \alpha=\arccos(\cos\varphi\cos\lambda) \]
+\[ x=\frac{\alpha R\cos\varphi\sin\lambda}{\sin\alpha} \]
+\[ y=\frac{\alpha R\sin\varphi}{\sin\alpha} \]</p>
+<p>如果\( \lambda=\varphi=0,\sin\alpha=0 \),但是\( x=y=0 \),即为赤道方位等积投影</p>
+<h3 id="赤道方位等积投影"><a class="header" href="#赤道方位等积投影">赤道方位等积投影</a></h3>
+<p>在兰伯特等面积方位投影方程中，用 \( \alpha \)替换 \( \phi_1 \)：</p>
+<p>\[ x=\rho\cos\theta = \frac{\rho}{\sin\alpha}\cos\varphi\sin\lambda \]
+\[ y=\rho\sin\theta=\frac{\rho}{\sin\alpha}\sin\varphi \]</p>
+<p>现在使用两个三角恒等式，</p>
+<p>\[ \sin(a+b)=\sin a \cos b + \cos a \sin b \]
+\[  \sin 2a = 2\sin a \cos a \]
+\[ \cos(a+b) = \cos a \cos b - \sin a \sin b \]
+\[ \cos 2a = \cos^2 a -\sin^2 a = 2\cos^2 a -1 \]
+\[ \frac{\cos 2a +1}{2}= \cos^2 a \]</p>
+<p>公因数可以扩展:</p>
+<p>\[ \frac{\rho}{\sin\alpha}
+=\frac{2R\sin\frac{\alpha}{2}}{\sin\alpha}
+=\frac{2R\sin\frac{\alpha}{2}}{2\sin\frac{\alpha}{2}\cos\frac{\alpha}{2}}
+=\frac{R}{\cos\frac{\alpha}{2}}
+=\frac{R}{\sqrt{\frac{\cos\alpha+1}{2}}}
+=\frac{R\sqrt{2}}{\sqrt{\cos\varphi\cos\lambda+1}}\]</p>
+<p>最终:</p>
+<p>\[ x = \sqrt{\frac{2}{1+\cos\varphi\cos\lambda}}R\cos\varphi\sin\lambda \]
+\[ y= \sqrt{\frac{2}{1+\cos\varphi\cos\lambda}}R\sin\varphi \]</p>
+<p>同样，两个投影在投影中心附近非常相似:非洲的北部和南部几乎天衣无缝地连接在一起。</p>
+<div align="center"><img src="./asserts/image_1623598580880_0.png"/></div>
+  组合横轴方位等距(顶部)和等面积(底部)图。
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="摩尔维特投影.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="等距圆柱投影_Winkel_1_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="摩尔维特投影.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="等距圆柱投影_Winkel_1_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lunr.zh.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

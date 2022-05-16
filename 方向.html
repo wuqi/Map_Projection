@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>方向 - Map Projection</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="前言.html">前言</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="索引.html">地图投影简介</a></li><li class="chapter-item expanded affix "><li class="part-title">简介</li><li class="chapter-item expanded "><a href="简单的地图背景知识介绍.html"><strong aria-hidden="true">1.</strong> 简单的地图背景知识介绍</a></li><li class="chapter-item expanded "><a href="制图学基础知识和投影选择.html"><strong aria-hidden="true">2.</strong> 基本的定义和概念</a></li><li class="chapter-item expanded affix "><li class="part-title">地图属性</li><li class="chapter-item expanded "><a href="有用的地图属性.html"><strong aria-hidden="true">3.</strong> 有用的地图属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="距离和比例尺.html"><strong aria-hidden="true">3.1.</strong> 距离和比例尺</a></li><li class="chapter-item expanded "><a href="测地线.html"><strong aria-hidden="true">3.2.</strong> 测地线</a></li><li class="chapter-item expanded "><a href="方向.html" class="active"><strong aria-hidden="true">3.3.</strong> 方向</a></li><li class="chapter-item expanded "><a href="形状.html"><strong aria-hidden="true">3.4.</strong> 形状</a></li><li class="chapter-item expanded "><a href="面积.html"><strong aria-hidden="true">3.5.</strong> 面积</a></li><li class="chapter-item expanded "><a href="变形椭圆.html"><strong aria-hidden="true">3.6.</strong> 变形椭圆</a></li><li class="chapter-item expanded "><a href="失真模式.html"><strong aria-hidden="true">3.7.</strong> 角度变形</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">制图学中的数学</li><li class="chapter-item expanded "><a href="如何创建投影.html"><strong aria-hidden="true">4.</strong> 如何创建投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="正轴方位投影.html"><strong aria-hidden="true">4.1.</strong> 正轴方位投影</a></li><li class="chapter-item expanded "><a href="正轴圆柱投影.html"><strong aria-hidden="true">4.2.</strong> 正轴圆柱投影</a></li><li class="chapter-item expanded "><a href="Kavrayskiy_s_VII投影.html"><strong aria-hidden="true">4.3.</strong> Kavrayskiy's VII投影</a></li><li class="chapter-item expanded "><a href="等积正弦投影.html"><strong aria-hidden="true">4.4.</strong> 等积正弦投影</a></li><li class="chapter-item expanded "><a href="克拉斯特抛物线投影.html"><strong aria-hidden="true">4.5.</strong> 克拉斯特抛物线投影</a></li><li class="chapter-item expanded "><a href="摩尔维特投影.html"><strong aria-hidden="true">4.6.</strong> 摩尔维特 (Mollweide) 投影</a></li><li class="chapter-item expanded "><a href="极赤道方位等距等面积投影.html"><strong aria-hidden="true">4.7.</strong> 极/赤道方位等距等面积投影</a></li><li class="chapter-item expanded "><a href="等距圆柱投影_Winkel_1_2.html"><strong aria-hidden="true">4.8.</strong> 等距圆柱投影_Winkel I / II</a></li><li class="chapter-item expanded "><a href="埃托夫_汉莫尔_温克尔三重投影.html"><strong aria-hidden="true">4.9.</strong> 埃托夫/汉莫尔/温克尔三重投影</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">主要投影组</li><li class="chapter-item expanded "><a href="方位投影.html"><strong aria-hidden="true">5.</strong> 方位投影</a></li><li class="chapter-item expanded "><a href="圆柱投影.html"><strong aria-hidden="true">6.</strong> 圆柱投影</a></li><li class="chapter-item expanded "><a href="伪圆柱投影.html"><strong aria-hidden="true">7.</strong> 伪圆柱投影</a></li><li class="chapter-item expanded "><a href="圆锥投影.html"><strong aria-hidden="true">8.</strong> 圆锥投影</a></li><li class="chapter-item expanded "><a href="伪圆锥投影.html"><strong aria-hidden="true">9.</strong> 伪圆锥投影</a></li><li class="chapter-item expanded "><a href="修正方位投影.html"><strong aria-hidden="true">10.</strong> 修正方位投影</a></li><li class="chapter-item expanded "><a href="正形投影.html"><strong aria-hidden="true">11.</strong> 正形投影</a></li><li class="chapter-item expanded "><a href="其他有趣的投影.html"><strong aria-hidden="true">12.</strong> 其他有趣的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">应对变形</li><li class="chapter-item expanded "><a href="倾斜和弯曲投影_斜轴投影.html"><strong aria-hidden="true">13.</strong> 倾斜和弯曲投影_斜轴投影</a></li><li class="chapter-item expanded "><a href="撕开地球的皮肤_分瓣投影.html"><strong aria-hidden="true">14.</strong> 撕开地球的皮肤_分瓣投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="星形投影.html"><strong aria-hidden="true">14.1.</strong> 星形投影</a></li><li class="chapter-item expanded "><a href="分瓣和复合圆锥投影.html"><strong aria-hidden="true">14.2.</strong> 分瓣和复合圆锥投影</a></li><li class="chapter-item expanded "><a href="经典分瓣投影.html"><strong aria-hidden="true">14.3.</strong> 经典分瓣投影</a></li><li class="chapter-item expanded "><a href="任意分瓣投影.html"><strong aria-hidden="true">14.4.</strong> 任意分瓣投影</a></li><li class="chapter-item expanded "><a href="分瓣技巧.html"><strong aria-hidden="true">14.5.</strong> 分瓣技巧</a></li></ol></li><li class="chapter-item expanded "><a href="将地球改造成奇异行星.html"><strong aria-hidden="true">15.</strong> 将地球改造成奇异行星</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="多面体地图.html"><strong aria-hidden="true">15.1.</strong> 多面体地图介绍和四面体地图</a></li><li class="chapter-item expanded "><a href="立方体和八面体地图.html"><strong aria-hidden="true">15.2.</strong> 立方体和八面体地图</a></li><li class="chapter-item expanded "><a href="二十面体_十二面体_其他地图.html"><strong aria-hidden="true">15.3.</strong> 二十面体/十二面体/其他地图</a></li><li class="chapter-item expanded "><a href="用于打印和折叠的地图.html"><strong aria-hidden="true">15.4.</strong> 用于打印和折叠的地图</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">史海钩沉</li><li class="chapter-item expanded "><a href="在现代之前发展的投影.html"><strong aria-hidden="true">16.</strong> 在现代之前发展的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">投影应用</li><li class="chapter-item expanded "><a href="墨卡托投影和等距离方位投影.html"><strong aria-hidden="true">17.</strong> 缩小世界的投影:墨卡托投影和等距离方位投影</a></li><li class="chapter-item expanded "><a href="一些投影应用.html"><strong aria-hidden="true">18.</strong> 一些投影应用</a></li><li class="chapter-item expanded "><a href="Web墨卡托.html"><strong aria-hidden="true">19.</strong> Web墨卡托投影</a></li><li class="chapter-item expanded affix "><li class="part-title">总结</li><li class="chapter-item expanded "><a href="投影摘要和表格.html"><strong aria-hidden="true">20.</strong> 投影摘要和表格</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Map Projection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="方向"><a class="header" href="#方向">方向</a></h1>
+<p>原文链接:: <a href="https://web.archive.org/web/20180322002759/http://www.progonos.com/furuti/MapProj/Normal/CartProp/Rhumb/rhumb.html">Useful Map Properties: Directions</a></p>
+<p>一架飞机在巴西坎皮纳斯上空飞行，它的航向H被解读为与当地子午线M的夹角，即罗盘指针指向的南北向线(曾补偿过磁偏角):这里是292.5°，也称为西北偏西。在没有侧风的情况下，航向与行驶方向或方位一致。</p>
+<div align="center"><img src="./asserts/image_1623383529455_0.png"/></div>
+<h1 id="什么是方向"><a class="header" href="#什么是方向">什么是方向？</a></h1>
+<p>当一个人计划从地球上的一个点移动到另一个远到看不见的地方，或者在海上或云上没有标记路径的地方，就会出现一些非常相关的问题:</p>
+<ul>
+<li>为了建立一条 &quot;直线 &quot;路线，初始航向，即转弯的方向是什么？</li>
+<li>如果不纠正路线，沿途将访问哪些地点？</li>
+</ul>
+<p>地面上的方向是以方位来表示的，也就是说，从一条参考线出发的角度。在地球上，这条线是通过当前位置的子午线，方位通常以度为单位，从0°向北，顺时针增加到360°再向北--在地球上这个角度通常被称为方位角。当前子午线的方向可以从一个普通的罗盘上得到，它的指针总是与南北磁力方向一致，但必须考虑到磁偏角，即磁北与真正的地理北方的偏差。磁偏角在世界各地并不统一，而且随着时间的推移而缓慢变化（在几百万年中，磁 &quot;极 &quot;甚至多次交换半球），因此，海图必须定期更新，并加上偏角的参考校正标记。陀螺罗盘和天文罗盘不受磁偏角影响；但是，陀螺罗盘依赖电源来保持其轮子的旋转，而操作天文罗盘则需要一个精确的时钟和最新的星表。</p>
+<p><strong>等角航线</strong>
+如果它的角度相对于当前的每一条子午线保持不变，那么路径就是一条等角航线或恒向线。这个概念可能是根据葡萄牙学者佩德罗·努內斯(或努涅斯)的建议而发明的。1533年，尽管精确的数学细节直到很久以后才被理解。</p>
+<p>纬线与所有子午线成直角相交，因此所有平行线在东西方向上都是闭合的等角航线。所有经线在南北方向都明显是微不足道的斜交。对于所有其他方向，斜向螺旋是一种开放的(即有两个不同的末端)三维曲线，称为球形螺旋或斜向螺旋:每一端在无数次越来越紧的旋转后到达极点。</p>
+<div align="center"><img src="./asserts/image_1623387455262_0.png"/><img src="./asserts/image_1623387461101_0.png"/></div> 
+<p>经过巴西坎皮纳斯的方位为292.5°的等角航线，在半透明斜轴方位正交投影和两半球极地方位立体投影地图上的展示。</p>
+<div align="center"><img src="./asserts/image_1623387624958_0.png"/><img src="./asserts/image_1623387633790_0.png"/></div> 
+<p>将方位改为275°会使路径变长，但终点是一样的。请注意，在多转了一圈之后，仍然可以到达夏威夷的南裙。</p>
+<p>不在同一纬线或子午线上的两个点可以由无限多条等角航线连接，但我们几乎总是对最短的、“更陡的”点感兴趣，它穿过不到一半的子午线；其他恒向线绕地球做一个或多个额外的旋转</p>
+<p>显然，在一般情况下，等角航线并不是通往两点间的最直接路线。事实上，仅赤道和经线不仅是等角航线，而且是大圆，包含了两点之间最短路径的测地线。另一方面，在没有参考点的情况下，等角航线是最容易遵循的路径：一旦确定了适当的方位，只需保持其正确性--即罗盘的针尖对准同一个方向--就能确保到达目的地。对于水上和空中交通工具来说，现实情况要复杂一些：横风、海浪和水流会导致方位偏离方向，除非得到补偿。</p>
+<div align="center"><img src="./asserts/image_1623387774803_0.png"/></div> 
+<p>292.5°方位的恒向线，如使用摩尔维德等面积投影的赤道地图所示。每个极点附近的螺旋太靠近地图的边界而看不见。</p>
+<div align="center"><img src="./asserts/image_1623387807271_0.png"/></div> 
+<p>赤道等距圆柱投影地图上的同一个恒向线。同样，这条曲线从一极到另一极绕着地球转了几次。将这张地图上恒定的平行间距与下面墨卡托投影的拉伸进行比较，这将使恒向线变直。</p>
+<h2 id="投影和等角航线"><a class="header" href="#投影和等角航线">投影和等角航线</a></h2>
+<p>投影如何决定等角航线在平面地图上的绘制方式？方位正交投影清楚地显示了球形螺旋的形状，但它对于测量方位是无用的，除非起点位于投影的中心。在方位立体地图的极面上，等角航线显示为对数螺线；这是投影一致性的直接结果:对数螺线是一条平面曲线，它以相同的角度与所有半径相交；它也是自相似的，无论放大多少看都是一样的。</p>
+<p>大多数其他投影不太适合呈现或计算等角航线，等角航线被映射到复杂的曲线。唯一的例外是格哈德斯·墨卡托最著名的共形投影:在赤道方面，所有的经线都是垂直线，所有的纬线都是直线。因此，为了确定两个点之间的方位，在赤道墨卡托图上连接它们并从垂直方向测量其角度或斜率就足够了:直尺和量角器就足够了。</p>
+<p>墨卡托的设计和另一种常见的圆柱投影，等距圆柱投影相比如何？在后一种情况下，平行线间隔相等，等角航线向赤道弯曲。墨卡托逐渐将纬线隔开，与纬度的三角割线成比例；当时还没有精确的数学数据，所以墨卡托可能采用了几何近似法。不幸的是，由于割线在极点是无限的，这些位于无穷远处，不能包含在真实的地图中:这样做，同时保持正确的角度将在两点连接子午线，这在圆柱形地图中是不可能的。</p>
+<div align="center"><img src="./asserts/image_1623388286151_0.png"/></div> 
+<p>赤道墨卡托地图中的同一个loxodrome显示为一系列平行的直线。如果地图没有在北纬85度和南纬85度之间任意剪裁，这种理发师柱图案将在上下无限延伸；大多数墨卡托地图的纬度范围要窄得多。</p>
+<div align="center"><img src="./asserts/image_1623388407282_0.png"/></div> 
+<p>横轴墨卡托图可以显示两极，但相反，必须从远离中央子午线的地方截取。完全相同的等角航线保留其与每个子午线的角度；然而，由于经纬网是弯曲的，地图不适合直接评估方向。</p>
+<p>事实上，在更高的纬度上，平行间距被夸大了，以至于赤道墨卡托地图经常被裁剪成南北70-80度。这与航海并不太相关(在极地附近，磁偏角无论如何都太重要了，所以在这些相对较小的区域，使用了其他工具)，墨卡托的投影忠实地为路线规划者服务了几个世纪。</p>
+<p>另一个值得注意的投影，即由K.Siemon和W.Tobler独立设计的Loximuthal 投影，将所有相交于中央子午线上一个特殊点的等角航线显示为比例尺和方向不变的直线。遗憾的是，与方位等距不同，与通用赤道墨卡托不同，Loximuthal 投影地图必须为每个兴趣点量身定做。</p>
+<div align="center"><img src="./asserts/image_1623388444876_0.png"/><img src="./asserts/image_1623388451358_0.png"/></div> 
+<p>两张洛Loximuthal 地图，中央子午线在坎皮纳斯(上)和挪威特罗姆瑟(下)附近与参考平行线相交。相同的292.5 等角航线连接这两个位置，但仅在通过交叉点的部分是直的，用红色圆圈表示均匀的比例，间隔10度。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="测地线.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="形状.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="测地线.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="形状.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lunr.zh.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
