@@ -4,10 +4,12 @@ language = "zh"
 multilingual = true
 src = "src"
 title = "Map Projection"
-
-[output.html]
-mathjax-support = true
-
 [preprocessor.index]
 
 [preprocessor.links]
+[output.html]
+mathjax-support = true
+
+[output.html.search]
+enable = true            # enables the search feature
+limit-results = 30       # maximum number of search results
