@@ -1,0 +1,13 @@
+[book]
+authors = ["wuqi"]
+language = "zh"
+multilingual = true
+src = "src"
+title = "Map Projection"
+
+[output.html]
+mathjax-support = true
+
+[preprocessor.index]
+
+[preprocessor.links]
