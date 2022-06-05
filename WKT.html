@@ -1,0 +1,826 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>WKT&amp;WKB简介 - Map Projection</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="前言.html">前言</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">简介</li><li class="chapter-item expanded "><a href="索引.html"><strong aria-hidden="true">1.</strong> 地图投影简介</a></li><li class="chapter-item expanded "><a href="简单的地图背景知识介绍.html"><strong aria-hidden="true">2.</strong> 简单的地图背景知识介绍</a></li><li class="chapter-item expanded "><a href="制图学基础知识和投影选择.html"><strong aria-hidden="true">3.</strong> 基本的定义和概念</a></li><li class="chapter-item expanded affix "><li class="part-title">地图属性</li><li class="chapter-item expanded "><a href="有用的地图属性.html"><strong aria-hidden="true">4.</strong> 有用的地图属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="距离和比例尺.html"><strong aria-hidden="true">4.1.</strong> 距离和比例尺</a></li><li class="chapter-item expanded "><a href="测地线.html"><strong aria-hidden="true">4.2.</strong> 测地线</a></li><li class="chapter-item expanded "><a href="方向.html"><strong aria-hidden="true">4.3.</strong> 方向</a></li><li class="chapter-item expanded "><a href="形状.html"><strong aria-hidden="true">4.4.</strong> 形状</a></li><li class="chapter-item expanded "><a href="面积.html"><strong aria-hidden="true">4.5.</strong> 面积</a></li><li class="chapter-item expanded "><a href="变形椭圆.html"><strong aria-hidden="true">4.6.</strong> 变形椭圆</a></li><li class="chapter-item expanded "><a href="失真模式.html"><strong aria-hidden="true">4.7.</strong> 角度变形</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">制图学中的数学</li><li class="chapter-item expanded "><a href="如何创建投影.html"><strong aria-hidden="true">5.</strong> 如何创建投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="正轴方位投影.html"><strong aria-hidden="true">5.1.</strong> 正轴方位投影</a></li><li class="chapter-item expanded "><a href="正轴圆柱投影.html"><strong aria-hidden="true">5.2.</strong> 正轴圆柱投影</a></li><li class="chapter-item expanded "><a href="Kavrayskiy_s_VII投影.html"><strong aria-hidden="true">5.3.</strong> Kavrayskiy's VII投影</a></li><li class="chapter-item expanded "><a href="等积正弦投影.html"><strong aria-hidden="true">5.4.</strong> 等积正弦投影</a></li><li class="chapter-item expanded "><a href="克拉斯特抛物线投影.html"><strong aria-hidden="true">5.5.</strong> 克拉斯特抛物线投影</a></li><li class="chapter-item expanded "><a href="摩尔维特投影.html"><strong aria-hidden="true">5.6.</strong> 摩尔维特 (Mollweide) 投影</a></li><li class="chapter-item expanded "><a href="极赤道方位等距等面积投影.html"><strong aria-hidden="true">5.7.</strong> 极/赤道方位等距等面积投影</a></li><li class="chapter-item expanded "><a href="等距圆柱投影_Winkel_1_2.html"><strong aria-hidden="true">5.8.</strong> 等距圆柱投影_Winkel I / II</a></li><li class="chapter-item expanded "><a href="埃托夫_汉莫尔_温克尔三重投影.html"><strong aria-hidden="true">5.9.</strong> 埃托夫/汉莫尔/温克尔三重投影</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">主要投影组</li><li class="chapter-item expanded "><a href="方位投影.html"><strong aria-hidden="true">6.</strong> 方位投影</a></li><li class="chapter-item expanded "><a href="圆柱投影.html"><strong aria-hidden="true">7.</strong> 圆柱投影</a></li><li class="chapter-item expanded "><a href="伪圆柱投影.html"><strong aria-hidden="true">8.</strong> 伪圆柱投影</a></li><li class="chapter-item expanded "><a href="圆锥投影.html"><strong aria-hidden="true">9.</strong> 圆锥投影</a></li><li class="chapter-item expanded "><a href="伪圆锥投影.html"><strong aria-hidden="true">10.</strong> 伪圆锥投影</a></li><li class="chapter-item expanded "><a href="修正方位投影.html"><strong aria-hidden="true">11.</strong> 修正方位投影</a></li><li class="chapter-item expanded "><a href="正形投影.html"><strong aria-hidden="true">12.</strong> 正形投影</a></li><li class="chapter-item expanded "><a href="其他有趣的投影.html"><strong aria-hidden="true">13.</strong> 其他有趣的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">应对变形</li><li class="chapter-item expanded "><a href="倾斜和弯曲投影_斜轴投影.html"><strong aria-hidden="true">14.</strong> 倾斜和弯曲投影_斜轴投影</a></li><li class="chapter-item expanded "><a href="撕开地球的皮肤_分瓣投影.html"><strong aria-hidden="true">15.</strong> 撕开地球的皮肤_分瓣投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="星形投影.html"><strong aria-hidden="true">15.1.</strong> 星形投影</a></li><li class="chapter-item expanded "><a href="分瓣和复合圆锥投影.html"><strong aria-hidden="true">15.2.</strong> 分瓣和复合圆锥投影</a></li><li class="chapter-item expanded "><a href="经典分瓣投影.html"><strong aria-hidden="true">15.3.</strong> 经典分瓣投影</a></li><li class="chapter-item expanded "><a href="任意分瓣投影.html"><strong aria-hidden="true">15.4.</strong> 任意分瓣投影</a></li><li class="chapter-item expanded "><a href="分瓣技巧.html"><strong aria-hidden="true">15.5.</strong> 分瓣技巧</a></li></ol></li><li class="chapter-item expanded "><a href="将地球改造成奇异行星.html"><strong aria-hidden="true">16.</strong> 将地球改造成奇异行星</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="多面体地图.html"><strong aria-hidden="true">16.1.</strong> 多面体地图介绍和四面体地图</a></li><li class="chapter-item expanded "><a href="立方体和八面体地图.html"><strong aria-hidden="true">16.2.</strong> 立方体和八面体地图</a></li><li class="chapter-item expanded "><a href="二十面体_十二面体_其他地图.html"><strong aria-hidden="true">16.3.</strong> 二十面体/十二面体/其他地图</a></li><li class="chapter-item expanded "><a href="用于打印和折叠的地图.html"><strong aria-hidden="true">16.4.</strong> 用于打印和折叠的地图</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">史海钩沉</li><li class="chapter-item expanded "><a href="在现代之前发展的投影.html"><strong aria-hidden="true">17.</strong> 在现代之前发展的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">投影应用</li><li class="chapter-item expanded "><a href="墨卡托投影和等距离方位投影.html"><strong aria-hidden="true">18.</strong> 缩小世界的投影:墨卡托投影和等距离方位投影</a></li><li class="chapter-item expanded "><a href="一些投影应用.html"><strong aria-hidden="true">19.</strong> 一些投影应用</a></li><li class="chapter-item expanded "><a href="Web墨卡托.html"><strong aria-hidden="true">20.</strong> Web墨卡托投影</a></li><li class="chapter-item expanded affix "><li class="part-title">总结</li><li class="chapter-item expanded "><a href="投影摘要和表格.html"><strong aria-hidden="true">21.</strong> 投影摘要和表格</a></li><li class="chapter-item expanded affix "><li class="part-title">附录</li><li class="chapter-item expanded "><a href="附录.html"><strong aria-hidden="true">22.</strong> 附录</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="WKT.html" class="active"><strong aria-hidden="true">22.1.</strong> WKT&WKB简介</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Map Projection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="well-known-text格式"><a class="header" href="#well-known-text格式">Well-Known Text格式</a></h1>
+<h1 id="wkt投影"><a class="header" href="#wkt投影">WKT投影</a></h1>
+<p>原文链接::<a href="https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html">WKT</a></p>
+<p>这个是个简化过的版本,详细版本请参照 <a href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">Geographic information — Well-known text representation of coordinate reference systems (opengeospatial.org)</a></p>
+<p>本规范中,所有的实体都能以WKT形式展示,便于将对象持久化存储到数据库中,方便在程序之间互相传输。每个实体都以大写关键字表示（例如，<a href="./wkt.html#unit"><code>UNIT</code></a>），后跟括号中以逗号分隔的对象定义参数。有些实体是由其他实体组成，形成一个嵌套的结构。实现中，可以用标准括号( )或者方括号[ ]。WKT使用扩展的巴科斯-诺尔范式表示（EBNF）。数学变化的WKT可用于工程坐标系中，因此我们首先展示：</p>
+<h2 id="math-transform-wkt"><a class="header" href="#math-transform-wkt">Math Transform WKT</a></h2>
+<pre><code>&lt;math transform&gt; = &lt;param mt&gt; | &lt;concat mt&gt; | &lt;inv mt&gt; | &lt;passthrough mt&gt;
+&lt;param mt&gt;       = PARAM_MT[&quot;&lt;classification name&gt;&quot; {,&lt;parameter&gt;}* ]
+&lt;parameter&gt;      = PARAMETER[&quot;&lt;name&gt;&quot;, &lt;value&gt;]
+&lt;value&gt;          = &lt;number&gt;
+&lt;concat mt&gt;      = CONCAT_MT[&lt;math transform&gt; {,&lt;math transform&gt;}* ]
+&lt;inv mt&gt;         = INVERSE_MT[&lt;math transform&gt;]
+&lt;passthrough mt&gt; = PASSTHROUGH_MT[&lt;integer&gt;, &lt;math transform&gt;]
+</code></pre>
+<h2 id="coordinate-system-wkt"><a class="header" href="#coordinate-system-wkt">Coordinate System WKT</a></h2>
+<pre><code>&lt;coordinate system&gt;  = &lt;horz cs&gt; | &lt;geocentric cs&gt; | &lt;vert cs&gt; | &lt;compd cs&gt; | &lt;fitted cs&gt; | &lt;local cs&gt;
+&lt;horz cs&gt;            = &lt;geographic cs&gt; | &lt;projected cs&gt;
+&lt;projected cs&gt;       = PROJCS[&quot;&lt;name&gt;&quot;, &lt;geographic cs&gt;, &lt;projection&gt;, {&lt;parameter&gt;,}* &lt;linear unit&gt; {,&lt;twin axes&gt;}{,&lt;authority&gt;}]
+&lt;projection&gt;         = PROJECTION[&quot;&lt;name&gt;&quot; {,&lt;authority&gt;}]
+&lt;geographic cs&gt;      = GEOGCS[&quot;&lt;name&gt;&quot;, &lt;datum&gt;, &lt;prime meridian&gt;, &lt;angular unit&gt; {,&lt;twin axes&gt;} {,&lt;authority&gt;}]
+&lt;datum&gt;              = DATUM[&quot;&lt;name&gt;&quot;, &lt;spheroid&gt; {,&lt;to wgs84&gt;} {,&lt;authority&gt;}]
+&lt;spheroid&gt;           = SPHEROID[&quot;&lt;name&gt;&quot;, &lt;semi-major axis&gt;, &lt;inverse flattening&gt; {,&lt;authority&gt;}]
+&lt;semi-major axis&gt;    = &lt;number&gt;
+&lt;inverse flattening&gt; = &lt;number&gt;
+&lt;prime meridian&gt;     = PRIMEM[&quot;&lt;name&gt;&quot;, &lt;longitude&gt; {,&lt;authority&gt;}]
+&lt;longitude&gt;          = &lt;number&gt;
+&lt;angular unit&gt;       = &lt;unit&gt;
+&lt;linear unit&gt;        = &lt;unit&gt;
+&lt;unit&gt;               = UNIT[&quot;&lt;name&gt;&quot;, &lt;conversion factor&gt; {,&lt;authority&gt;}]
+&lt;conversion factor&gt;  = &lt;number&gt;
+&lt;geocentric cs&gt;      = GEOCCS[&quot;&lt;name&gt;&quot;, &lt;datum&gt;, &lt;prime meridian&gt;, &lt;linear unit&gt; {,&lt;axis&gt;, &lt;axis&gt;, &lt;axis&gt;} {,&lt;authority&gt;}]
+&lt;authority&gt;          = AUTHORITY[&quot;&lt;name&gt;&quot;, &quot;&lt;code&gt;&quot;]
+&lt;vert cs&gt;            = VERT_CS[&quot;&lt;name&gt;&quot;, &lt;vert datum&gt;, &lt;linear unit&gt;, {&lt;axis&gt;,} {,&lt;authority&gt;}]
+&lt;vert datum&gt;         = VERT_DATUM[&quot;&lt;name&gt;&quot;, &lt;datum type&gt; {,&lt;authority&gt;}]
+&lt;datum type&gt;         = &lt;number&gt;
+&lt;compd cs&gt;           = COMPD_CS[&quot;&lt;name&gt;&quot;, &lt;head cs&gt;, &lt;tail cs&gt; {,&lt;authority&gt;}]
+&lt;head cs&gt;            = &lt;coordinate system&gt;
+&lt;tail cs&gt;            = &lt;coordinate system&gt;
+&lt;twin axes&gt;          = &lt;axis&gt;, &lt;axis&gt;
+&lt;axis&gt;               = AXIS[&quot;&lt;name&gt;&quot;, NORTH | SOUTH | EAST | WEST | UP | DOWN | OTHER]
+&lt;to wgs84s&gt;          = TOWGS84[&lt;seven param&gt;]
+&lt;seven param&gt;        = &lt;dx&gt;, &lt;dy&gt;, &lt;dz&gt;, &lt;ex&gt;, &lt;ey&gt;, &lt;ez&gt;, &lt;ppm&gt;
+&lt;dx&gt;                 = &lt;number&gt;
+&lt;dy&gt;                 = &lt;number&gt;
+&lt;dz&gt;                 = &lt;number&gt;
+&lt;ex&gt;                 = &lt;number&gt;
+&lt;ey&gt;                 = &lt;number&gt;
+&lt;ez&gt;                 = &lt;number&gt;
+&lt;ppm&gt;                = &lt;number&gt;
+&lt;fitted cs&gt;          = FITTED_CS[&quot;&lt;name&gt;&quot;, &lt;to base&gt;, &lt;base cs&gt;]
+&lt;to base&gt;            = &lt;math transform&gt;
+&lt;base cs&gt;            = &lt;coordinate system&gt;
+&lt;local cs&gt;           = LOCAL_CS[&quot;&lt;name&gt;&quot;, &lt;local datum&gt;, &lt;unit&gt;, &lt;axis&gt;, {,&lt;axis&gt;}* {,&lt;authority&gt;}]
+&lt;local datum&gt;        = LOCAL_DATUM[&quot;&lt;name&gt;&quot;, &lt;datum type&gt; {,&lt;authority&gt;}]
+</code></pre>
+<h2 id="关键字描述"><a class="header" href="#关键字描述">关键字描述:</a></h2>
+<h3 id="authority"><a class="header" href="#authority">AUTHORITY</a></h3>
+<p>可选子句，允许外部机构管理实体的定义。</p>
+<h3 id="axis"><a class="header" href="#axis">AXIS</a></h3>
+<p>轴的名称是人为定义的，接下来的枚举值允许软件正确地覆盖不同的坐标系。如果可选的“轴”不存在，则采用默认值。它们是:</p>
+<table><thead><tr><th>坐标系名称</th><th>轴</th></tr></thead><tbody>
+<tr><td>地理坐标系:</td><td><code>AXIS[&quot;Lon&quot;,EAST],AXIS[&quot;Lat&quot;,NORTH]</code></td></tr>
+<tr><td>投影坐标系:</td><td><code>AXIS[&quot;X&quot;,EAST],AXIS[&quot;Y&quot;,NORTH]</code></td></tr>
+<tr><td>地心坐标系:</td><td><code>AXIS[&quot;X&quot;,OTHER],AXIS[&quot;Y&quot;,EAST],AXIS[&quot;Z&quot;,NORTH]</code></td></tr>
+</tbody></table>
+<p>然而，如果这些术语存在，并且具有非缺省值，那么在试图覆盖图形之前，必须实现几何对象坐标的变换和反算。</p>
+<h3 id="compd_cs"><a class="header" href="#compd_cs">COMPD_CS</a></h3>
+<p>这表示一个复合坐标系，它结合了另外两个坐标系的坐标。例如，复合3D坐标系可以由水平坐标系和垂直坐标系组成。 </p>
+<h3 id="concat_mt"><a class="header" href="#concat_mt">CONCAT_MT</a></h3>
+<p>由子变换的串联定义的变换。第一个变换的输出空间的维度必须与第二个变换(如果定义了)的输入空间的维度相匹配，其余的子变换也是如此。 .</p>
+<h3 id="datum"><a class="header" href="#datum">DATUM</a></h3>
+<p>这表示水平基准面，用于测量地球表面位置。 </p>
+<h3 id="fitted_cs"><a class="header" href="#fitted_cs">FITTED_CS</a></h3>
+<p>这表示拟合坐标系。数学变换被用来构建一个从拟合坐标系到基准坐标系的映射。该变换通常是仿射映射。数学变换从拟合的坐标系到基准坐标系，因此拟合的坐标系可以有一个比基准坐标系更小的维度。这通常是相当有用的。例如，一个拟合的坐标系可以是一个与地球近似相切的二维平面，但基于WGS84地心三维坐标系。</p>
+<h3 id="geoccs"><a class="header" href="#geoccs">GEOCCS</a></h3>
+<p>地心坐标系(Geocentric Coordinate Systems)，原点位于地球中心的三维坐标系。X轴指向本初子午线。Y轴指向东或西。Z轴指向北或南。默认情况下，Z轴将指向北方，Y轴将指向东方（例如右手系统），但您应该检查轴的非默认值。</p>
+<h3 id="geogcs"><a class="header" href="#geogcs">GEOGCS</a></h3>
+<p>地理坐标系（Geographic Coordinate Systems）基于纬度和经度的坐标系。有些地理坐标系是纬度/经度，有些是经度/纬度。你可以通过检查坐标轴来找出这是哪一个。您还应该检查角度单位，因为并非所有地理坐标系都使用度。 </p>
+<h3 id="inverse_mt"><a class="header" href="#inverse_mt">INVERSE_MT</a></h3>
+<p>一个数学变换,被定义为另一个变换的逆运算。</p>
+<h3 id="local_datum"><a class="header" href="#local_datum">LOCAL_DATUM</a></h3>
+<p>这表示当地的基准面。</p>
+<h3 id="local_cs"><a class="header" href="#local_cs">LOCAL_CS</a></h3>
+<p>这表示一个局部的、没有地理参考的坐标系。这种坐标系通常用于CAD系统中。它们也可用于本地调查，在这种情况下，调查地点与世界其他地方的关系并不重要。<a href="./wkt.html#axis"><code>AXIS</code></a>子句的数量表示局部坐标系的维度。 </p>
+<h3 id="parameter"><a class="header" href="#parameter">PARAMETER</a></h3>
+<p>命名的投影参数值。参数的单位必须从其上下文中推断出来。如果参数在<a href="./wkt.html#projcs"><code>PROJCS</code></a>内，则它的单位将与<a href="./wkt.html#projcs"><code>PROJCS</code></a>的单位匹配。如果参数位于 <a href="./wkt.html#param_mt"><code>PARAM_MT</code></a>中，则长度和角度的单位分别为米和度。 </p>
+<h3 id="param_mt"><a class="header" href="#param_mt">PARAM_MT</a></h3>
+<p>一个参数化的数学变换。所有长度参数以米表示，所有角度参数以度表示。其他参数应尽可能使用国际单位制。(例如，用千克表示质量，用秒表示时间。) </p>
+<p>&lt;classification name&gt;是一个编码值，用于指定数学转换所使用的公式。参见参数化变换的合法值以及相应的参数。</p>
+<h3 id="passthrough_mt"><a class="header" href="#passthrough_mt">PASSTHROUGH_MT</a></h3>
+<p>这是一个数学变换，它将一个坐标子集传递给另一个变换。这允许变换在纵坐标的子集上操作。例如，如果您有(Lat，Lon，Height)坐标，那么您可能希望在不影响(Lat，Lon)值的情况下将高度值从米转换为英尺。如果您想影响(Lat，Lon)值，而不去管高度值，那么您必须将纵坐标换成(Height，Lat，Lon)。你可以用仿射映射做到这一点。</p>
+<p>&lt;integer&gt; 参数是第一个受影响的纵坐标的索引。&lt;math transform&gt; 参数是要传递坐标的转换。 </p>
+<h3 id="primem"><a class="header" href="#primem">PRIMEM</a></h3>
+<p>这定义了用于测量经度的子午线。&lt;longitude&gt; 的单位必须从上下文中推断出来。如果<code>PRIMEM</code>子句出现在<a href="./wkt.html#geogcs"><code>GEOGCS</code></a>中，那么经度单位将与地理坐标系统的单位一致。如果<code>PRIMEM</code>子句出现在<a href="./wkt.html#geoccs"><code>GEOCCS</code></a>内，那么单位将是度。</p>
+<p>经度值定义了本初子午线相对于格林威治子午线的角度。正值表示本初子午线在格林威治以东，负值表示本初子午线在格林威治以西。</p>
+<h3 id="projcs"><a class="header" href="#projcs">PROJCS</a></h3>
+<p>这表示一个投影坐标系统。<a href="./wkt.html#projection"><code>PROJECTION</code></a>子句包含了<code>MathTransformFactory</code>使用的分类名称，而<a href="./wkt.html#parameter"><code>PARAMETER</code></a>子句指定了参数。然而，<code>MathTransformFactory</code>使用的单位总是米和度，而<a href="./wkt.html#parameter"><code>PARAMETER</code></a>子句中的单位分别是<a href="./wkt.html#projcs"><code>PROJCS</code></a>/<a href="./wkt.html#geogcs"><code>GEOGCS</code></a>的长度/角度单位。因此，如果你写代码来读或写WKT，那么你必须做单位转换--要小心！</p>
+<p>(注意，这种单位处理方式与EPSG 4数据库的工作方式略有不同。在EPSG 4数据库中，每个转换参数值都定义了自己的单位。然而，99%的EPSG投影参数单位与相应的投影坐标系的单位相同）。</p>
+<h3 id="projection"><a class="header" href="#projection">PROJECTION</a></h3>
+<p>这描述了从地理坐标到投影坐标的投影。它在 <a href="./wkt.html#projcs"><code>PROJCS</code></a>中用于定义投影变换的参数。 </p>
+<h3 id="spheroid"><a class="header" href="#spheroid">SPHEROID</a></h3>
+<p>这描述了一个球体，它是地球表面被压扁的近似球体。在本文件中，&quot;spheroid&quot;和 &quot;ellipsoid&quot;是同义词。术语  &quot;<code>SPHEROID</code>&quot; 在WKT中使用是为了与Simple Features兼容。然而，在本规范的其他地方，术语 &quot;ellipsoid&quot;是首选。</p>
+<h3 id="towgs84"><a class="header" href="#towgs84">TOWGS84</a></h3>
+<p>这表示多达7个Bursa Wolf转化参数的列表。这些参数可用于近似从水平基准面到WGS84基准面的转换。然而，必须记住，这种变换只是一种近似。对于给定的水平基准面，可以使用不同的Bursa Wolf变换来最小化不同区域上的误差。</p>
+<p>如果<a href="./wkt.html#datum"><code>DATUM</code></a>子句包含一个 <code>TOWGS84</code>子句，那么这应该是它的“首选”变换，它通常是对整个感兴趣区域(例如，包含地理坐标系统中的感兴趣区域)给出广泛近似的变换。有时，只定义了前三个或六个参数。在这种情况下，剩余的参数必须为零。如果只定义了三个参数，那么它们仍然可以插入到Bursa Wolf公式中，或者您可以走捷径。Bursa Wolf变换适用于地心坐标，因此您不能将其直接应用于地理坐标。如果只有三个参数，那么您可以使用Molodenski 公式或简化的Molodenski 公式。</p>
+<p>在以下情况中, <a href="./wkt.html#datum"><code>DATUM</code></a> 子句可能不包含 <code>TOWGS84</code> :</p>
+<ul>
+<li>编写的应用程序使用Simple Features规范，该规范没有指定<code>TOWGS84</code>为有效的关键词。</li>
+<li>编写的应用程序没有可用的转换。</li>
+<li>转换无法实现。例如，水平基准面可以是一个相对于地球表面旋转的表面</li>
+</ul>
+<p>特别地，如果<a href="./wkt.html#datum"><code>DATUM</code></a>确实包含 <code>TOWGS84</code> 子句，并且参数值为零，则接收应用程序可以假定编写应用程序认为该基准面近似等于WGS84。</p>
+<h3 id="unit"><a class="header" href="#unit">UNIT</a></h3>
+<p>这描述了用于父WKT子句中其他地方的值的单位（有时包括父子句的后代）。单位的物理尺寸（即类型）由上下文决定。例如，在一个<a href="./wkt.html#geogcs"><code>GEOGCS</code></a>中，单位的类型是角度。在<a href="./wkt.html#vert_cs"><code>VERT_CS</code></a>中，单位的类型是长度。在一个<code>UNIT</code>子句中，单位的描述是通过将它们与该类型的基本单位用一个转换系数联系起来。对于长度单位，转换系数是将描述的单位转换为米的标量值。对于角度单位，转换系数是将描述的单位转换为弧度的标量值。</p>
+<h3 id="vert_datum"><a class="header" href="#vert_datum">VERT_DATUM</a></h3>
+<p>这表示垂直基准面，或用于垂直测量的方法。 </p>
+<h3 id="vert_cs"><a class="header" href="#vert_cs">VERT_CS</a></h3>
+<p>这表示一个垂直坐标系。</p>
+<h2 id="wkt-样例"><a class="header" href="#wkt-样例">WKT 样例</a></h2>
+<p>下面的例子显示了一个三维复合坐标系，它是由一个投影坐标系和一个垂直坐标系组合而成。这与XML示例中使用的坐标系相同。</p>
+<pre><code>COMPD_CS[&quot;OSGB36 / British National Grid + ODN&quot;,
+    PROJCS[&quot;OSGB 1936 / British National Grid&quot;,
+        GEOGCS[&quot;OSGB 1936&quot;,
+            DATUM[&quot;OSGB_1936&quot;,
+                SPHEROID[&quot;Airy 1830&quot;,6377563.396,299.3249646,AUTHORITY[&quot;EPSG&quot;,&quot;7001&quot;]],
+                TOWGS84[375,-111,431,0,0,0,0],
+                AUTHORITY[&quot;EPSG&quot;,&quot;6277&quot;]],
+            PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+            UNIT[&quot;DMSH&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9108&quot;]],
+            AXIS[&quot;Lat&quot;,NORTH],
+            AXIS[&quot;Long&quot;,EAST],
+            AUTHORITY[&quot;EPSG&quot;,&quot;4277&quot;]],
+        PROJECTION[&quot;Transverse_Mercator&quot;],
+        PARAMETER[&quot;latitude_of_origin&quot;,49],
+        PARAMETER[&quot;central_meridian&quot;,-2],
+        PARAMETER[&quot;scale_factor&quot;,0.999601272],
+        PARAMETER[&quot;false_easting&quot;,400000],
+        PARAMETER[&quot;false_northing&quot;,-100000],
+        UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],
+        AXIS[&quot;E&quot;,EAST],
+        AXIS[&quot;N&quot;,NORTH],
+        AUTHORITY[&quot;EPSG&quot;,&quot;27700&quot;]],
+    VERT_CS[&quot;Newlyn&quot;,
+        VERT_DATUM[&quot;Ordnance Datum Newlyn&quot;,2005,AUTHORITY[&quot;EPSG&quot;,&quot;5101&quot;]],
+        UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],
+        AXIS[&quot;Up&quot;,UP],
+        AUTHORITY[&quot;EPSG&quot;,&quot;5701&quot;]],
+    AUTHORITY[&quot;EPSG&quot;,&quot;7405&quot;]]
+</code></pre>
+<h1 id="wkt要素"><a class="header" href="#wkt要素">WKT要素</a></h1>
+<p>open GIS “Consortium Simple Features for SQL”规范定义了WKT格式，以ASCII格式交换几何数据。<a href="https://portal.ogc.org/files/?artifact_id=25355">ISO“SQL/MM Part:3 Spatial”</a>标准也引用了这种格式。</p>
+<p>以下示例中,没有带z或者m坐标,实际上可以加上Z,M坐标,形成三维或者四维的数据</p>
+<p>WKT的几何图形文本格式定义如下:</p>
+<table><thead><tr><th style="text-align: left">几何类型</th><th style="text-align: left"><div style="width:100px">图形</div></th><th style="text-align: left">示例</th></tr></thead><tbody>
+<tr><td style="text-align: left">Point</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-point.png" alt="Point" /></td><td style="text-align: left">POINT(-122.349 47.651)</td></tr>
+<tr><td style="text-align: left">LineString</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-linestring.png" alt="LineString" /></td><td style="text-align: left">LINESTRING(-122.360 47.656, -122.343 47.656)</td></tr>
+<tr><td style="text-align: left">Polygon</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-polygon.png" alt="Polygon" /></td><td style="text-align: left">POLYGON((-122.358 47.653, -122.348 47.649, -122.348 47.658, -122.358 47.658, -122.358 47.653))</td></tr>
+<tr><td style="text-align: left">MultiPoint</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-multipoint.png" alt="Multipoint" /></td><td style="text-align: left">MULTIPOINT(-122.360 47.656, -122.343 47.656)</td></tr>
+<tr><td style="text-align: left">MultiLineString</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-multilinestring.png" alt="MultiLine String" /></td><td style="text-align: left">MULTILINESTRING ((-122.358 47.653, -122.348 47.649, -122.348 47.658), (-122.357 47.654, -122.357 47.657, -122.349 47.657, -122.349 47.650))</td></tr>
+<tr><td style="text-align: left">MultiPolygon</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-multipolygon.png" alt="MultiPolygon" /></td><td style="text-align: left">MULTIPOLYGON(((-122.358 47.653, -122.348 47.649, -122.358 47.658, -122.358 47.653)), ((-122.341 47.656, -122.341 47.661, -122.351 47.661, -122.341 47.656)))</td></tr>
+<tr><td style="text-align: left">GeometryCollection</td><td style="text-align: left"><img src="asserts/bmv8-wellknowntextmodule-geometrycollection.png" alt="GemoetryCollection" /></td><td style="text-align: left">GEOMETRYCOLLECTION ( POINT(-122.34900 47.65100), LINESTRING(-122.360 47.656, -122.343 47.656))</td></tr>
+<tr><td style="text-align: left">EMPTY</td><td style="text-align: left"></td><td style="text-align: left">POINT EMPTY <br/> MULTIPOINT EMPTY<br/>LINESTRING EMPTY<br/>MULTILINESTRING EMPTY<br/>MULTILINESTRING(EMPTY)<br/>POLYGON EMPTY<br/>POLYGON(EMPTY)<br/>MULTIPOLYGON EMPTY<br/>MULTIPOLYGON(EMPTY)</td></tr>
+</tbody></table>
+<h1 id="wkb要素"><a class="header" href="#wkb要素">WKB要素</a></h1>
+<p>本节描述了WKB格式如何表述几何要素</p>
+<p>OpenGIS协会“Simple Features for SQL”规范定义了well-known binary格式。国际标准化组织(ISO)“SQL/MM Part:3 Spatial”标准也定义了这种格式。</p>
+<p>WKB格式的基本构造块是点的字节流，它由两个双精度值组成。其他几何图形的字节流是使用已经定义的几何图形的字节流构建的。 </p>
+<p>Well-known binary (WKB) 一般用<a href="http://en.wikipedia.org/wiki/Hexadecimal">十六进制</a>字符串表示.</p>
+<p>第一个字节表示数据的字节序</p>
+<ul>
+<li><code>00</code> : 大端</li>
+<li><code>01</code> : 小端</li>
+</ul>
+<p>后面的四个字节(一个integer)用于表示几何类型:</p>
+<table><thead><tr><th>Type</th><th>2D</th><th>Z</th><th>M</th><th>ZM</th></tr></thead><tbody>
+<tr><td>Geometry</td><td><code>0000</code></td><td><code>1000</code></td><td><code>2000</code></td><td><code>3000</code></td></tr>
+<tr><td>Point</td><td><code>0001</code></td><td><code>1001</code></td><td><code>2001</code></td><td><code>3001</code></td></tr>
+<tr><td>LineString</td><td><code>0002</code></td><td><code>1002</code></td><td><code>2002</code></td><td><code>3002</code></td></tr>
+<tr><td>Polygon</td><td><code>0003</code></td><td><code>1003</code></td><td><code>2003</code></td><td><code>3003</code></td></tr>
+<tr><td>MultiPoint</td><td><code>0004</code></td><td><code>1004</code></td><td><code>2004</code></td><td><code>3004</code></td></tr>
+<tr><td>MultiLineString</td><td><code>0005</code></td><td><code>1005</code></td><td><code>2005</code></td><td><code>3005</code></td></tr>
+<tr><td>MultiPolygon</td><td><code>0006</code></td><td><code>1006</code></td><td><code>2006</code></td><td><code>3006</code></td></tr>
+<tr><td>GeometryCollection</td><td><code>0007</code></td><td><code>1007</code></td><td><code>2007</code></td><td><code>3007</code></td></tr>
+<tr><td>CircularString</td><td><code>0008</code></td><td><code>1008</code></td><td><code>2008</code></td><td><code>3008</code></td></tr>
+<tr><td>CompoundCurve</td><td><code>0009</code></td><td><code>1009</code></td><td><code>2009</code></td><td><code>3009</code></td></tr>
+<tr><td>CurvePolygon</td><td><code>0010</code></td><td><code>1010</code></td><td><code>2010</code></td><td><code>3010</code></td></tr>
+<tr><td>MultiCurve</td><td><code>0011</code></td><td><code>1011</code></td><td><code>2011</code></td><td><code>3011</code></td></tr>
+<tr><td>MultiSurface</td><td><code>0012</code></td><td><code>1012</code></td><td><code>2012</code></td><td><code>3012</code></td></tr>
+<tr><td>Curve</td><td><code>0013</code></td><td><code>1013</code></td><td><code>2013</code></td><td><code>3013</code></td></tr>
+<tr><td>Surface</td><td><code>0014</code></td><td><code>1014</code></td><td><code>2014</code></td><td><code>3014</code></td></tr>
+<tr><td>PolyhedralSurface</td><td><code>0015</code></td><td><code>1015</code></td><td><code>2015</code></td><td><code>3015</code></td></tr>
+<tr><td>TIN</td><td><code>0016</code></td><td><code>1016</code></td><td><code>2016</code></td><td><code>3016</code></td></tr>
+<tr><td>Triangle</td><td><code>0017</code></td><td><code>1017</code></td><td><code>2017</code></td><td><code>3017</code></td></tr>
+</tbody></table>
+<p>每种几何类型有特定的数据结构,例如点数量或者多边形的环数量,后面的坐标用双精度浮点型数据表示(double)</p>
+<p>举个例子, 点 <code>POINT(2.0 4.0)</code> 被表示为: <code>000000000140000000000000004010000000000000</code>:</p>
+<ul>
+<li>1-byte integer <code>00</code>: 大端</li>
+<li>4-byte integer <code>00000001</code> : POINT (2D)</li>
+<li>8-byte float <code>4000000000000000</code> : <em>x</em>-坐标</li>
+<li>8-byte float <code>4010000000000000</code> : <em>y</em>-坐标</li>
+</ul>
+<p>下图是一个Polygon要素,有一个内环和一个外环:</p>
+<p><img src="asserts/image-20220604234304567.png" alt="image-20220604234304567" /></p>
+<p>WKB详细的定义如下:</p>
+<pre><code class="language-c++">// Basic Type definitions
+// byte : 1 byte
+// uint32 : 32 bit unsigned integer (4 bytes)
+// double : double precision number (8 bytes)
+// Building Blocks : Coordinate, LinearRing
+Point
+{
+    double x;
+    double y;
+}
+PointZ
+{
+    double x;
+    double y;
+    double z;
+}
+PointM
+{
+    double x;
+    double y;
+    double m;
+}
+PointZM
+{
+    double x;
+    double y;
+    double z;
+    double m;
+}
+LinearRing
+{
+    uint32 numPoints;
+    Point points[numPoints];
+}
+LinearRingZ
+{
+    uint32 numPoints;
+    PointZ points[numPoints];
+}
+LinearRingM
+{
+    uint32 numPoints;
+    PointM points[numPoints];
+}
+LinearRingZM
+{
+    uint32 numPoints;
+    PointZM points[numPoints];
+}
+enum WKBByteOrder
+{
+    wkbXDR = 0, // Big Endian
+    wkbNDR = 1; // Little Endian
+}
+enum WKBGeometryType
+{
+    wkbPoint = 1,
+    wkbLineString = 2,
+    wkbPolygon = 3,
+    wkbTriangle = 17,
+    wkbMultiPoint = 4,
+    wkbMultiLineString = 5,
+    wkbMultiPolygon = 6,
+    wkbGeometryCollection = 7,
+    wkbPolyhedralSurface = 15,
+    wkbTIN = 16,
+    wkbPointZ = 1001,
+    wkbLineStringZ = 1002,
+    wkbPolygonZ = 1003,
+    wkbTrianglez = 1017,
+    wkbMultiPointZ = 1004,
+    wkbMultiLineStringZ = 1005,
+    wkbMultiPolygonZ = 1006,
+    wkbGeometryCollectionZ = 1007,
+    wkbPolyhedralSurfaceZ = 1015,
+    wkbTINZ = 1016,
+    wkbPointM = 2001,
+    wkbLineStringM = 2002,
+    wkbPolygonM = 2003,
+    wkbTriangleM = 2017,
+    wkbMultiPointM = 2004,
+    wkbMultiLineStringM = 2005,
+    wkbMultiPolygonM = 2006,
+    wkbGeometryCollectionM = 2007,
+    wkbPolyhedralSurfaceM = 2015,
+    wkbTINM = 2016,
+    wkbPointZM = 3001,
+    wkbLineStringZM = 3002,
+    wkbPolygonZM = 3003,
+    wkbTriangleZM = 3017,
+    wkbMultiPointZM = 3004,
+    wkbMultiLineStringZM = 3005,
+    wkbMultiPolygonZM = 3006,
+    wkbGeometryCollectionZM = 3007,
+    wkbPolyhedralSurfaceZM = 3015,
+    wkbTinZM = 3016,
+    ;
+}
+WKBPoint
+{
+    byte byteOrder;
+    static uint32 wkbType = 1;
+    Point point;;
+}
+WKBPointZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1001;
+    PointZ point;;
+}
+WKBPointM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2001;
+    PointM point;;
+}
+WKBPointZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3001;
+    PointZM point;;
+}
+WKBLineString
+{
+    byte byteOrder;
+    static uint32 wkbType = 2;
+    uint32 numPoints;
+    Point points[numPoints];;
+}
+WKBLineStringZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1002;
+    uint32 numPoints;
+    PointZ points[numPoints];;
+}
+WKBLineStringM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2002;
+    uint32 numPoints;
+    PointM points[numPoints];;
+}
+WKBLineStringZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3002;
+    uint32 numPoints;
+    PointZM points[numPoints];
+}
+WKBPolygon
+{
+    byte byteOrder;
+    static uint32 wkbType = 3;
+    uint32 numRings;
+    LinearRing rings[numRings];
+}
+WKBPolygonZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1003;
+    uint32 numRings;
+    LinearRingZ rings[numRings];
+}
+WKBPolygonM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2003;
+    uint32 numRings;
+    LinearRingM rings[numRings];
+}
+WKBPolygonZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3003;
+    uint32 numRings;
+    LinearRingZM rings[numRings];
+}
+WKBTriangle
+{
+    byte byteOrder;
+    static uint32 wkbType = 17;
+    uint32 numRings;
+    LinearRing rings[numRings];
+}
+WKBTriangleZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 10 17;
+    uint32 numRings;
+    LinearRingZ rings[numRings];
+}
+WKBTriangleM
+{
+    byte byteOrder;
+    static uint32 wkbType = 20 17;
+    uint32 numRings;
+    LinearRingM rings[numRings];
+}
+WKBTriangleZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 30 17;
+    uint32 numRings;
+    LinearRingZM rings[numRings];
+}
+WKBPolyhedralSurface
+{
+    byte byteOrder;
+    static uint32 wkbType = 15;
+    uint32 numPolygons;
+    WKBPolygon polygons[numPolygons];
+}
+WKBPolyhedralSurfaceZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1015;
+    uint32 numPolygons;
+    WKBPolygonZ polygons[numPolygons];
+}
+WKBPolyhedralSurfaceM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2015;
+    uint32 numPolygons;
+    WKBPolygonM polygons[numPolygons];
+}
+WKBPolyhedralSurfaceZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3015;
+    uint32 numPolygons;
+    WKBPolygonZM polygons[numPolygons];
+}
+WKBTIN
+{
+    byte byteOrder;
+    static uint32 wkbType = 16;
+    uint32 numPolygons;
+    WKBPolygon polygons[numPolygons];
+}
+WKBTINZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1016;
+    uint32 numPolygons;
+    WKBPolygonZ polygons[numPolygons];
+}
+WKBTINM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2016;
+    uint32 numPolygons;
+    WKBPolygonM polygons[numPolygons];
+}
+WKBTINZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3016;
+    uint32 numPolygons;
+    WKBPolygonZM polygons[numPolygons];
+}
+WKBMultiPoint
+{
+    byte byteOrder;
+    static uint32 wkbType = 4;
+    uint32 numPoints;
+    WKBPoint points[numPoints];
+}
+WKBMultiPointZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1004;
+    uint32 numPoints;
+    WKBPointZ points[numPoints];
+}
+WKBMultiPointM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2004;
+    uint32 numPoints;
+    WKBPointM points[numPoints];
+}
+WKBMultiPointZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3004;
+    uint32 numPoints;
+    WKBPointZM points[numPoints];
+}
+WKBMultiLineString
+{
+    byte byteOrder;
+    static uint32 wkbType = 5;
+    uint32 numLineStrings;
+    WKBLineString lineStrings[numLineStrings];
+}
+WKBMultiLineStringZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1005;
+    uint32 numLineStrings;
+    WKBLineStringZ lineStrings[numLineStrings];
+}
+WKBMultiLineStringM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2005;
+    uint32 numLineStrings;
+    WKBLineStringM lineStrings[numLineStrings];
+}
+WKBMultiLineStringZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3005;
+    uint32 numLineStrings;
+    WKBLineStringZM lineStrings[numLineStrings];
+}
+WKBMultiPolygon
+{
+    byte byteOrder;
+    static uint32 wkbType = 6;
+    uint32 numPolygons;
+    WKBPolygon polygons[numPolygons];
+}
+WKBMultiPolygonZ
+{
+    byte byteOrder;
+    static uint32 wkbType = 1006;
+    uint32 numPolygons;
+    WKBPolygonZ polygons[numPolygons];
+}
+WKBMultiPolygonM
+{
+    byte byteOrder;
+    static uint32 wkbType = 2006;
+    uint32 numPolygons;
+    WKBPolygonM polygons[numPolygons];
+}
+WKBMultiPolygonZM
+{
+    byte byteOrder;
+    static uint32 wkbType = 3006;
+    uint32 numPolygons;
+    WKBPolygonZM polygons[numPolygons];
+}
+WKBGeometryCollection
+{
+    byte byte_order;
+    static uint32 wkbType = 7;
+    uint32 numGeometries;
+    WKBGeometry geometries[numGeometries];
+}
+WKBGeometryCollectionZ
+{
+    byte byte_order;
+    static uint32 wkbType = 1007;
+    uint32 numGeometries;
+    WKBGeometryZ geometries[numGeometries];
+}
+WKBGeometryCollectionM
+{
+    byte byte_order;
+    static uint32 wkbType = 2007;
+    uint32 numGeometries;
+    WKBGeometryM geometries[numGeometries];
+}
+WKBGeometryCollectionZM
+{
+    byte byte_order;
+    static uint32 wkbType = 3007;
+    uint32 numGeometries;
+    WKBGeometryZM geometries[numGeometries];
+}
+WKBGeometry {
+    union {
+        WKBPoint point;
+        WKBLineString linestring;
+        WKBPolygon polygon;
+        WKBTriangle triangle
+        WKBPolyhedralSurface polyhedralsurface
+        WKBTIN tin
+        WKBMultiPoint mpoint;
+        WKBMultiLineString mlinestring;
+        WKBMultiPolygon mpolygon;
+        WKBGeometryCollection collection;
+    };
+};
+WKBGeometryZ
+{
+    union {
+        WKBPointZ pointz;
+        WKBLineStringZ linestringz;
+        WKBPolygonZ polygonz;
+        WKBTriangleZ trianglez
+        WKBPolyhedralSurfaceZ Polyhedralsurfacez;
+        WKBTinZ tinz
+        WKBMultiPointZ mpointz;
+        WKBMultiLineStringZ mlinestringz;
+        WKBMultiPolygonZ mpolygonz;
+        WKBGeometryCollectionZ collectionz;
+    };
+};
+WKBGeometryM {
+    union {
+        WKBPointM pointm;
+        WKBLineStringM linestringm;
+        WKBPolygonM polygonm;
+        WKBTriangleM trianglem
+        WKBPolyhedralSurfaceM Polyhedralsurfacem;
+        WKBTinM tinm
+        WKBMultiPointM mpointm;
+        WKBMultiLineStringM mlinestringm;
+        WKBMultiPolygonM mpolygonm;
+        WKBGeometryCollectionM collectionm;
+    };
+};
+WKBGeometryZM {
+    union {
+        WKBPointZM pointzm;
+        WKBLineStringZM linestringzm;
+        WKBPolygonZM polygonzm;
+        WKBTriangleZM trianglezm
+        WKBPolyhedralSurfaceM Polyhedralsurfacezm;
+        WKBTinZM tinzm
+        WKBMultiPointZM mpointzm;
+        WKBMultiLineStringZM mlinestringzm;
+        WKBMultiPolygonZ mpolygonzm;
+        WKBGeometryCollectionZM collectionzm;
+    };
+};
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="附录.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="附录.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="lunr.zh.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
