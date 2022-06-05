@@ -6,7 +6,7 @@
 
 这个是个简化过的版本,详细版本请参照 [Geographic information — Well-known text representation of coordinate reference systems (opengeospatial.org)](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html)
 
-本规范中,所有的实体都能以WKT形式展示,便于将对象持久化存储到数据库中,方便在程序之间互相传输。每个实体都以大写关键字表示（例如，[` DATUM `](https://docs . geo tools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # DATUM)或[` UNIT `](https://docs . geo tools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # UNIT)），后跟括号中以逗号分隔的对象定义参数。有些实体是由其他实体组成，形成一个嵌套的结构。实现中，可以用标准括号( )或者方括号[ ]。WKT使用扩展的巴科斯-诺尔范式表示（EBNF）。数学变化的WKT可用于工程坐标系中，因此我们首先展示：
+本规范中,所有的实体都能以WKT形式展示,便于将对象持久化存储到数据库中,方便在程序之间互相传输。每个实体都以大写关键字表示（例如，[`UNIT`](./wkt.md#unit)），后跟括号中以逗号分隔的对象定义参数。有些实体是由其他实体组成，形成一个嵌套的结构。实现中，可以用标准括号( )或者方括号[ ]。WKT使用扩展的巴科斯-诺尔范式表示（EBNF）。数学变化的WKT可用于工程坐标系中，因此我们首先展示：
 
 ## Math Transform WKT
 
@@ -74,8 +74,9 @@
 
 轴的名称是人为定义的，接下来的枚举值允许软件正确地覆盖不同的坐标系。如果可选的“轴”不存在，则采用默认值。它们是:
 
-| 地理坐标系: | `AXIS["Lon",EAST],AXIS["Lat",NORTH]`             |
+| 坐标系名称 | 轴             |
 | ----------- | ------------------------------------------------ |
+| 地理坐标系: | `AXIS["Lon",EAST],AXIS["Lat",NORTH]`             |
 | 投影坐标系: | `AXIS["X",EAST],AXIS["Y",NORTH]`                 |
 | 地心坐标系: | `AXIS["X",OTHER],AXIS["Y",EAST],AXIS["Z",NORTH]` |
 
@@ -115,39 +116,39 @@
 
 ### LOCAL_CS
 
-这表示一个局部的、没有地理参考的坐标系。这种坐标系通常用于CAD系统中。它们也可用于本地调查，在这种情况下，调查地点与世界其他地方的关系并不重要。[` AXIS `](https://docs . geotools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # AXIS)子句的数量表示局部坐标系的维度。 
+这表示一个局部的、没有地理参考的坐标系。这种坐标系通常用于CAD系统中。它们也可用于本地调查，在这种情况下，调查地点与世界其他地方的关系并不重要。[`AXIS`](./wkt.md#axis)子句的数量表示局部坐标系的维度。 
 
 ### PARAMETER
 
-命名的投影参数值。参数的单位必须从其上下文中推断出来。如果参数在[` PROJCS `](https://docs . geotools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # PROJCS)内，则它的单位将与[` PROJCS `](https://docs . geotools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # PROJCS)的单位匹配。如果参数位于 [`PARAM_MT`](https://docs . geotools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # PARAM _ MT)中，则长度和角度的单位分别为米和度。 
+命名的投影参数值。参数的单位必须从其上下文中推断出来。如果参数在[`PROJCS`](./wkt.md#projcs)内，则它的单位将与[`PROJCS`](./wkt.md#projcs)的单位匹配。如果参数位于 [`PARAM_MT`](./wkt.md#param_mt)中，则长度和角度的单位分别为米和度。 
 
 ### PARAM_MT
 
 一个参数化的数学变换。所有长度参数以米表示，所有角度参数以度表示。其他参数应尽可能使用国际单位制。(例如，用千克表示质量，用秒表示时间。) 
 
-<classification name>是一个编码值，用于指定数学转换所使用的公式。参见参数化变换的合法值以及相应的参数。
+\<classification name\>是一个编码值，用于指定数学转换所使用的公式。参见参数化变换的合法值以及相应的参数。
 
 ### PASSTHROUGH_MT
 
 这是一个数学变换，它将一个坐标子集传递给另一个变换。这允许变换在纵坐标的子集上操作。例如，如果您有(Lat，Lon，Height)坐标，那么您可能希望在不影响(Lat，Lon)值的情况下将高度值从米转换为英尺。如果您想影响(Lat，Lon)值，而不去管高度值，那么您必须将纵坐标换成(Height，Lat，Lon)。你可以用仿射映射做到这一点。
 
- <integer> 参数是第一个受影响的纵坐标的索引。<math transform>参数是要传递坐标的转换。 
+ \<integer\> 参数是第一个受影响的纵坐标的索引。\<math transform\> 参数是要传递坐标的转换。 
 
 ### PRIMEM
 
-这定义了用于测量经度的子午线。<longitude> 的单位必须从上下文中推断出来。如果`PRIMEM`子句出现在[`GEOGCS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#GEOGCS)中，那么经度单位将与地理坐标系统的单位一致。如果`PRIMEM`子句出现在[`GEOCCS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#GEOCCS)内，那么单位将是度。
+这定义了用于测量经度的子午线。\<longitude\> 的单位必须从上下文中推断出来。如果`PRIMEM`子句出现在[`GEOGCS`](./wkt.md#geogcs)中，那么经度单位将与地理坐标系统的单位一致。如果`PRIMEM`子句出现在[`GEOCCS`](./wkt.md#geoccs)内，那么单位将是度。
 
 经度值定义了本初子午线相对于格林威治子午线的角度。正值表示本初子午线在格林威治以东，负值表示本初子午线在格林威治以西。
 
 ### PROJCS
 
-这表示一个投影坐标系统。[`PROJECTION`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#PROJECTION)子句包含了`MathTransformFactory`使用的分类名称，而[`PARAMETER`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#PARAMETER)子句指定了参数。然而，`MathTransformFactory`使用的单位总是米和度，而[`PARAMETER`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#PARAMETER)子句中的单位分别是[`PROJCS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#PROJCS)/[`GEOGCS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#GEOGCS)的长度/角度单位。因此，如果你写代码来读或写WKT，那么你必须做单位转换--要小心！
+这表示一个投影坐标系统。[`PROJECTION`](./wkt.md#projection)子句包含了`MathTransformFactory`使用的分类名称，而[`PARAMETER`](./wkt.md#parameter)子句指定了参数。然而，`MathTransformFactory`使用的单位总是米和度，而[`PARAMETER`](./wkt.md#parameter)子句中的单位分别是[`PROJCS`](./wkt.md#projcs)/[`GEOGCS`](./wkt.md#geogcs)的长度/角度单位。因此，如果你写代码来读或写WKT，那么你必须做单位转换--要小心！
 
 (注意，这种单位处理方式与EPSG 4数据库的工作方式略有不同。在EPSG 4数据库中，每个转换参数值都定义了自己的单位。然而，99%的EPSG投影参数单位与相应的投影坐标系的单位相同）。
 
 ### PROJECTION
 
-这描述了从地理坐标到投影坐标的投影。它在 [`PROJCS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#PROJCS)中用于定义投影变换的参数。 
+这描述了从地理坐标到投影坐标的投影。它在 [`PROJCS`](./wkt.md#projcs)中用于定义投影变换的参数。 
 
 ### SPHEROID
 
@@ -157,19 +158,19 @@
 
 这表示多达7个Bursa Wolf转化参数的列表。这些参数可用于近似从水平基准面到WGS84基准面的转换。然而，必须记住，这种变换只是一种近似。对于给定的水平基准面，可以使用不同的Bursa Wolf变换来最小化不同区域上的误差。
 
-如果[` DATUM `](https://docs . geotools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # DATUM)子句包含一个 `TOWGS84`子句，那么这应该是它的“首选”变换，它通常是对整个感兴趣区域(例如，包含地理坐标系统中的感兴趣区域)给出广泛近似的变换。有时，只定义了前三个或六个参数。在这种情况下，剩余的参数必须为零。如果只定义了三个参数，那么它们仍然可以插入到Bursa Wolf公式中，或者您可以走捷径。Bursa Wolf变换适用于地心坐标，因此您不能将其直接应用于地理坐标。如果只有三个参数，那么您可以使用Molodenski 公式或简化的Molodenski 公式。
+如果[` DATUM `](./wkt.md#datum)子句包含一个 `TOWGS84`子句，那么这应该是它的“首选”变换，它通常是对整个感兴趣区域(例如，包含地理坐标系统中的感兴趣区域)给出广泛近似的变换。有时，只定义了前三个或六个参数。在这种情况下，剩余的参数必须为零。如果只定义了三个参数，那么它们仍然可以插入到Bursa Wolf公式中，或者您可以走捷径。Bursa Wolf变换适用于地心坐标，因此您不能将其直接应用于地理坐标。如果只有三个参数，那么您可以使用Molodenski 公式或简化的Molodenski 公式。
 
-在以下情况中, [`DATUM`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#DATUM) 子句可能不包含 `TOWGS84` :
+在以下情况中, [`DATUM`](./wkt.md#datum) 子句可能不包含 `TOWGS84` :
 
 *  编写的应用程序使用Simple Features规范，该规范没有指定`TOWGS84`为有效的关键词。
 * 编写的应用程序没有可用的转换。
 * 转换无法实现。例如，水平基准面可以是一个相对于地球表面旋转的表面
 
-特别地，如果[` DATUM `](https://docs . geotools . org/stable/javadocs/org/open GIS/referencing/doc-files/wkt . html # DATUM)确实包含 `TOWGS84` 子句，并且参数值为零，则接收应用程序可以假定编写应用程序认为该基准面近似等于WGS84。
+特别地，如果[` DATUM `](./wkt.md#datum)确实包含 `TOWGS84` 子句，并且参数值为零，则接收应用程序可以假定编写应用程序认为该基准面近似等于WGS84。
 
 ### UNIT
 
-这描述了用于父WKT子句中其他地方的值的单位（有时包括父子句的后代）。单位的物理尺寸（即类型）由上下文决定。例如，在一个[`GEOGCS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#GEOGCS)中，单位的类型是角度。在[`VERT_CS`](https://docs.geotools.org/stable/javadocs/org/opengis/referencing/doc-files/WKT.html#VERT_CS)中，单位的类型是长度。在一个`UNIT`子句中，单位的描述是通过将它们与该类型的基本单位用一个转换系数联系起来。对于长度单位，转换系数是将描述的单位转换为米的标量值。对于角度单位，转换系数是将描述的单位转换为弧度的标量值。
+这描述了用于父WKT子句中其他地方的值的单位（有时包括父子句的后代）。单位的物理尺寸（即类型）由上下文决定。例如，在一个[`GEOGCS`](./wkt.md#geogcs)中，单位的类型是角度。在[`VERT_CS`](./wkt.md#vert_cs)中，单位的类型是长度。在一个`UNIT`子句中，单位的描述是通过将它们与该类型的基本单位用一个转换系数联系起来。对于长度单位，转换系数是将描述的单位转换为米的标量值。对于角度单位，转换系数是将描述的单位转换为弧度的标量值。
 
 ### VERT_DATUM
 
@@ -222,7 +223,7 @@ open GIS “Consortium Simple Features for SQL”规范定义了WKT格式，以A
 
 WKT的几何图形文本格式定义如下:
 
-| 几何类型           | 图形                                                         | 示例                                                         |
+| 几何类型           |  <div style="width:100px">图形</div>                         | 示例                                                         |
 | :----------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | Point              | ![Point](asserts/bmv8-wellknowntextmodule-point.png)         | POINT(-122.349 47.651)                                       |
 | LineString         | ![LineString](asserts/bmv8-wellknowntextmodule-linestring.png) | LINESTRING(-122.360 47.656, -122.343 47.656)                 |
