@@ -1,208 +1,51 @@
-<!DOCTYPE HTML>
-<html lang="zh" class="sidebar-visible no-js light">
-    <head>
-        <!-- Book generated using mdBook -->
-        <meta charset="UTF-8">
-        <title>前言 - Map Projection</title>
-        <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Map Projection</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="description" content="Description">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+	</head>
+	<body>
+		<div id="app"></div>
+		<script>
+			window.$docsify = {
+				// 项目名称
+				name: 'Projection-Guide',
+				// 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
+				loadSidebar: true,
+				// 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
+				auto2top: true,
+				repo: 'https://github.com/wuqi/Map_Projection',
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
-        <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
-        <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+			}
+		</script>
+		<script>
+			window.$docsify = {
+				search: {
+					maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+					paths: auto, // 注意：仅适用于 paths: 'auto' 模式
+					placeholder: '搜索',
+					// 支持本地化
+					placeholder: {
+						'/zh-cn/': '搜索',
+						'/': 'Type to search'
+					},
+					noData: '找不到结果',
+					depth: 4,
+					hideOtherSidebarContent: false
+				}
+			}
+		</script>
+		<!-- Docsify v4 -->
+		<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+		<!-- CDN files for docsify-katex -->
+		<script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+		<!-- or <script src="//cdn.jsdelivr.net/gh/upupming/docsify-katex@latest/dist/docsify-katex.js"></script> -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+	</body>
 
-        <!-- Custom theme stylesheets -->
-        <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    </head>
-    <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
-        <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
-            try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
-
-                if (theme.startsWith('"') && theme.endsWith('"')) {
-                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-                }
-
-                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
-                }
-            } catch (e) { }
-        </script>
-
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
-            html.classList.remove('light')
-            html.classList.add(theme);
-            html.classList.add('js');
-        </script>
-
-        <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
-            if (document.body.clientWidth >= 1080) {
-                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
-                sidebar = sidebar || 'visible';
-            }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script>
-
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="前言.html">前言</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">简介</li><li class="chapter-item expanded "><a href="索引.html"><strong aria-hidden="true">1.</strong> 地图投影简介</a></li><li class="chapter-item expanded "><a href="简单的地图背景知识介绍.html"><strong aria-hidden="true">2.</strong> 简单的地图背景知识介绍</a></li><li class="chapter-item expanded "><a href="制图学基础知识和投影选择.html"><strong aria-hidden="true">3.</strong> 基本的定义和概念</a></li><li class="chapter-item expanded affix "><li class="part-title">地图属性</li><li class="chapter-item expanded "><a href="有用的地图属性.html"><strong aria-hidden="true">4.</strong> 有用的地图属性</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="距离和比例尺.html"><strong aria-hidden="true">4.1.</strong> 距离和比例尺</a></li><li class="chapter-item expanded "><a href="测地线.html"><strong aria-hidden="true">4.2.</strong> 测地线</a></li><li class="chapter-item expanded "><a href="方向.html"><strong aria-hidden="true">4.3.</strong> 方向</a></li><li class="chapter-item expanded "><a href="形状.html"><strong aria-hidden="true">4.4.</strong> 形状</a></li><li class="chapter-item expanded "><a href="面积.html"><strong aria-hidden="true">4.5.</strong> 面积</a></li><li class="chapter-item expanded "><a href="变形椭圆.html"><strong aria-hidden="true">4.6.</strong> 变形椭圆</a></li><li class="chapter-item expanded "><a href="失真模式.html"><strong aria-hidden="true">4.7.</strong> 角度变形</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">制图学中的数学</li><li class="chapter-item expanded "><a href="如何创建投影.html"><strong aria-hidden="true">5.</strong> 如何创建投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="正轴方位投影.html"><strong aria-hidden="true">5.1.</strong> 正轴方位投影</a></li><li class="chapter-item expanded "><a href="正轴圆柱投影.html"><strong aria-hidden="true">5.2.</strong> 正轴圆柱投影</a></li><li class="chapter-item expanded "><a href="Kavrayskiy_s_VII投影.html"><strong aria-hidden="true">5.3.</strong> Kavrayskiy's VII投影</a></li><li class="chapter-item expanded "><a href="等积正弦投影.html"><strong aria-hidden="true">5.4.</strong> 等积正弦投影</a></li><li class="chapter-item expanded "><a href="克拉斯特抛物线投影.html"><strong aria-hidden="true">5.5.</strong> 克拉斯特抛物线投影</a></li><li class="chapter-item expanded "><a href="摩尔维特投影.html"><strong aria-hidden="true">5.6.</strong> 摩尔维特 (Mollweide) 投影</a></li><li class="chapter-item expanded "><a href="极赤道方位等距等面积投影.html"><strong aria-hidden="true">5.7.</strong> 极/赤道方位等距等面积投影</a></li><li class="chapter-item expanded "><a href="等距圆柱投影_Winkel_1_2.html"><strong aria-hidden="true">5.8.</strong> 等距圆柱投影_Winkel I / II</a></li><li class="chapter-item expanded "><a href="埃托夫_汉莫尔_温克尔三重投影.html"><strong aria-hidden="true">5.9.</strong> 埃托夫/汉莫尔/温克尔三重投影</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">主要投影组</li><li class="chapter-item expanded "><a href="方位投影.html"><strong aria-hidden="true">6.</strong> 方位投影</a></li><li class="chapter-item expanded "><a href="圆柱投影.html"><strong aria-hidden="true">7.</strong> 圆柱投影</a></li><li class="chapter-item expanded "><a href="伪圆柱投影.html"><strong aria-hidden="true">8.</strong> 伪圆柱投影</a></li><li class="chapter-item expanded "><a href="圆锥投影.html"><strong aria-hidden="true">9.</strong> 圆锥投影</a></li><li class="chapter-item expanded "><a href="伪圆锥投影.html"><strong aria-hidden="true">10.</strong> 伪圆锥投影</a></li><li class="chapter-item expanded "><a href="修正方位投影.html"><strong aria-hidden="true">11.</strong> 修正方位投影</a></li><li class="chapter-item expanded "><a href="正形投影.html"><strong aria-hidden="true">12.</strong> 正形投影</a></li><li class="chapter-item expanded "><a href="其他有趣的投影.html"><strong aria-hidden="true">13.</strong> 其他有趣的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">应对变形</li><li class="chapter-item expanded "><a href="倾斜和弯曲投影_斜轴投影.html"><strong aria-hidden="true">14.</strong> 倾斜和弯曲投影_斜轴投影</a></li><li class="chapter-item expanded "><a href="撕开地球的皮肤_分瓣投影.html"><strong aria-hidden="true">15.</strong> 撕开地球的皮肤_分瓣投影</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="星形投影.html"><strong aria-hidden="true">15.1.</strong> 星形投影</a></li><li class="chapter-item expanded "><a href="分瓣和复合圆锥投影.html"><strong aria-hidden="true">15.2.</strong> 分瓣和复合圆锥投影</a></li><li class="chapter-item expanded "><a href="经典分瓣投影.html"><strong aria-hidden="true">15.3.</strong> 经典分瓣投影</a></li><li class="chapter-item expanded "><a href="任意分瓣投影.html"><strong aria-hidden="true">15.4.</strong> 任意分瓣投影</a></li><li class="chapter-item expanded "><a href="分瓣技巧.html"><strong aria-hidden="true">15.5.</strong> 分瓣技巧</a></li></ol></li><li class="chapter-item expanded "><a href="将地球改造成奇异行星.html"><strong aria-hidden="true">16.</strong> 将地球改造成奇异行星</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="多面体地图.html"><strong aria-hidden="true">16.1.</strong> 多面体地图介绍和四面体地图</a></li><li class="chapter-item expanded "><a href="立方体和八面体地图.html"><strong aria-hidden="true">16.2.</strong> 立方体和八面体地图</a></li><li class="chapter-item expanded "><a href="二十面体_十二面体_其他地图.html"><strong aria-hidden="true">16.3.</strong> 二十面体/十二面体/其他地图</a></li><li class="chapter-item expanded "><a href="用于打印和折叠的地图.html"><strong aria-hidden="true">16.4.</strong> 用于打印和折叠的地图</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">史海钩沉</li><li class="chapter-item expanded "><a href="在现代之前发展的投影.html"><strong aria-hidden="true">17.</strong> 在现代之前发展的投影</a></li><li class="chapter-item expanded affix "><li class="part-title">投影应用</li><li class="chapter-item expanded "><a href="墨卡托投影和等距离方位投影.html"><strong aria-hidden="true">18.</strong> 缩小世界的投影:墨卡托投影和等距离方位投影</a></li><li class="chapter-item expanded "><a href="一些投影应用.html"><strong aria-hidden="true">19.</strong> 一些投影应用</a></li><li class="chapter-item expanded "><a href="Web墨卡托.html"><strong aria-hidden="true">20.</strong> Web墨卡托投影</a></li><li class="chapter-item expanded affix "><li class="part-title">总结</li><li class="chapter-item expanded "><a href="投影摘要和表格.html"><strong aria-hidden="true">21.</strong> 投影摘要和表格</a></li><li class="chapter-item expanded affix "><li class="part-title">附录</li><li class="chapter-item expanded "><a href="附录.html"><strong aria-hidden="true">22.</strong> 附录</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="WKT.html"><strong aria-hidden="true">22.1.</strong> WKT&WKB简介</a></li></ol></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
-        </nav>
-
-        <div id="page-wrapper" class="page-wrapper">
-
-            <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
-                    <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                        </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-
-                    <h1 class="menu-title">Map Projection</h1>
-
-                    <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
-                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
-                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script>
-
-                <div id="content" class="content">
-                    <main>
-                        <h1 id="前言"><a class="header" href="#前言">前言</a></h1>
-<p>地图投影是个很复杂的东西, 网上和书本上能讲清楚的不多, 这块涉及到很多数学原理和制图相关知识, 枯燥而且繁复. 以前网络上有一个很好的教程, 即 <a href="http://www.progonos.com/furuti/index.html">MapProjection</a>, 作者是 Carlos A. Furuti, 图文并茂, 特别详细, 但是从 19 年开始网站没有维护, 已经无法访问了, 我最近从 archive.org 上把老版本的介绍下载了下来, 准备进行翻译和整理, 实际也就是先机翻在改改, 肯定会有部分偏差和翻译错误, 全文是第一人称, 翻译中没有做修改 , 翻译在 <a href="%E5%9C%B0%E5%9B%BE%E6%8A%95%E5%BD%B1%E4%BB%8B%E7%BB%8D.html">地图投影介绍</a> 中。</p>
-<p>虽然这套地图投影教程的内容比较混杂, 但是示例图多, 显示的清楚, 毕竟一图胜千言，里面包括了投影的基础知识，投影推导方式，大部分投影组的历史，很多有趣的地图。</p>
-<p>机翻用 DeepL 和搜狗, 虽然 DeepL 吹的很厉害, 但是大部分时候搜狗翻译的更通顺些, 可能是专有名词多吧</p>
-<p>本篇中主要还是介绍地图投影的整体知识： 椭球, 水准面, 参心坐标系, 地心坐标系, 黄道赤道, 时间标准等, 其他内容可能抽时间慢慢补充, 这段教程主要是以兴趣为主, 与实际运用相关的内容比较少。</p>
-<p>如果懒得看字, 想看看视频的话, B站的 <a href="https://www.bilibili.com/video/BV1C64y1M7j3?zw">这篇</a> 也还行, 讲的比较清楚, 作为实际运用和学习的话比这篇以兴趣为主的教程更适合一些。</p>
-<h2 id="翻译中的增补"><a class="header" href="#翻译中的增补">翻译中的增补</a></h2>
-<p>在进行翻译之前准备添加 <a href="WKT.html">WKT</a> 的投影说明和要素说明, 为了方便平常的查阅和使用, 毕竟日常使用主要是用的 WKT 格式的投影, 有时间的话会加上一些说明, 也加强一些自己的理解, wkt/wkb 日常坑人。</p>
-<p>因为本文写的比较早, 部分技术更新导致部分内容过时 (实际作者也在更新, 但是 18 年网站没了), 会加上部分译注。</p>
-<p>文章中有部分提到历史插图会添加插图说明, 不一定全是原文中的图片, 会有增删, 因为网站已经无法访问, 原文中有部分缺失图片, 如果有时间我会想办法加上。</p>
-<p>翻译不是特别准, 毕竟是机翻改的, 而且投影这块有些专业词汇我也很久没用了, 不是特别熟悉，如果有什么翻译建议可以在 issue 里提出。</p>
-<h2 id="关于软件选择"><a class="header" href="#关于软件选择">关于软件选择</a></h2>
-<p>本来还是准备 Sphinx 那套弄,<a href="https://headfirst-gdal.readthedocs.io/">GDAL 文档</a>就是这样写的, 优点是排版好看, 而且可以导出 pdf 方便阅读, 但是这套里的图片太多, 跳转链接也多, shpinx 手写插入图片和链接实在太麻烦了, 也考虑过用 dokuwiki 来写, 用 wiki 的话跟原有的混在一起不太好区分原作者, 后来尝试了logseq编写，自己看还行，排版出来实在是有点过意不去，现在尝试用mdbook重新弄一下。</p>
-<p>Logseq其实是笔记软件，如果作为笔记还行，但是作为正经的教程，排版不太好看，而且基本没有管除了Chrome之外的浏览器，很不友好。Logseq 开发很快, 早期很不稳定, 如果要用, 一定要记得随时提交, 或者直接在网站上连 github 的库, 随时提交, 丢过两次数据, 出现过一次乱码, 不过有提交记录问题不大。现在的logseq已经比较稳定了，但是排版的问题还是没有解决。现在有时间了，准备用Typora+mdbook重新整理下。</p>
-<p>试着折腾了下 TriliumNote，本机是好东西，也稳定，但是导出来太难看了，懒得自己折腾 css，就算了，如果能导出 pdf 和它自己内部链接的话就好了，就当本地笔记了，数据库，还比较好操作，也确实比 logseq 多很多东西，除了图片没这么方便，其他真的都更好用。</p>
-<p>Typora实际是markdown写作软件，并非笔记或者其他软件，非必要的话不需要买收费版，还挺好用,所见即所得模式的编辑器特别适合专心写东西。这样出来的页面没有花里胡哨的双链了，但是可以页面搜索，效果也不错，重要的是排版舒服。</p>
-<h3 id="mdbook"><a class="header" href="#mdbook">mdbook</a></h3>
-<p>Gitbook本来是很好,但是因为长期没有维护,基本是没法用的。Mdbook替代Gitbook基本可以满足我现在的需求了，中文搜索可以自己编译一下补丁，渲染效果比Logseq自带的导出效果要好的多，毕竟直接生成静态网页，而logseq导出的是作为单页应用，页面太大，载入太慢。其实还有一些静态博客生成，应该也能处理，但是一样，需要自己折腾，还是Mdbook比较简单点,顺便学点Rust看看。</p>
-<p>Logseq存储的直接是markdown格式的文本文件,效果虽然有点惨但是还比较好改,工作量没有那么大,主要是公式部分要注意,MdBook的公式写法和普通markdown渲染的写法不一致,然后图片排版,我就直接用html排了,麻烦的直接上table,效果比原来发布到网上的要好的多。</p>
-
-                    </main>
-
-                    <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Mobile navigation buttons -->
-                            <a rel="next" href="索引.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        <div style="clear: both"></div>
-                    </nav>
-                </div>
-            </div>
-
-            <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="索引.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-            </nav>
-
-        </div>
-
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        <script type="text/javascript">
-            window.playground_copyable = true;
-        </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="lunr.zh.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
-
-        <!-- Custom JS scripts -->
-    </body>
 </html>
