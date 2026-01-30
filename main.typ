@@ -1,39 +1,36 @@
 #import "template.typ": *
 
-#show: project.with(
-  title: "地图投影理论与实践",
-  author: "Carlos A. Furuti",
-  translator: "wuqi"
-)
+#show: project.with(title: "地图投影理论与实践", author: "Carlos A. Furuti")
 
-
-// 1. 封面
+// 1. 封面 (不计页码)
+#set page(numbering: none)
 #include "cover.typ"
 
-// 2. 目录：必须先跳转到下一张纸的正面
-#pagebreak(to: "odd") 
+// 2. 目录 (罗马数字)
+#pagebreak(to: "odd")
 #set page(numbering: "i")
-#counter(page).update(1) // 现在的 i 就是物理意义上的新一页
+#counter(page).update(1)
 #outline(indent: auto, depth: 3)
 
-// 3. 译序：同理，强制右手开页
+// 3. 译序 (切换为阿拉伯数字 1)
 #pagebreak(to: "odd")
 #set page(numbering: "1")
-#counter(page).update(1) // 译序作为正文第 1 页
+#counter(page).update(1)
 #include "chapters/preface.typ"
 
-// 4. 第一部分
+// 4. 正文 - 第一部分
 #part_divider("第一部分：理论基础")
 #set heading(numbering: "1.1")
+
 #include "chapters/part1/ch01.typ"
 #include "chapters/part1/ch02.typ"
 #include "chapters/part1/ch03.typ"
+#include "chapters/part1/ch04.typ"
 
-
-// 第二部分：应用实践
+// 5. 正文 - 第二部分
 #part_divider("第二部分：应用实践")
-#for i in range(1, 11) {
-  let ch_num = if i < 10 { "0" + str(i) } else { str(i) }
-  //include "chapters/part2/ch" + ch_num + ".typ"
-}
+//#include "chapters/part2/ch01.typ"
+// ... 后续 include
 
+// 6. 封底
+//#include "back.typ"
