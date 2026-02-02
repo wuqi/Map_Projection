@@ -1,3 +1,5 @@
+#show math.equation.where(block: true): set align(left)
+#show math.equation.where(block: true): it => pad(left: 4em, it)
 = 投影的工作原理
 
 == 投影的实质
@@ -289,6 +291,322 @@ $ y = (R (k + cos phi_0) sin phi) / (k + cos phi) $
   ]
 )
 
+== 卡夫拉伊斯基 VII 型投影推导
+
+#strong[定义解析]
+
+考量卡夫拉伊斯基（Kavrayskiy/Kavraisky）VII 型投影。在赤道方位下，该投影可描述为：#strong[伪圆柱投影、极线长度为赤道之半、纬线等距、120° 经线位于地图中心的圆周上]。其具体涵义如下：
+
+- #strong[1. 伪圆柱投影特性]
+  - 在赤道方位中，所有纬线呈现为水平直线，经线则为任意曲线。
+
+- #strong[2. 极线长度设定]
+  - 根据定义，伪圆柱投影的极点可为点或直线（“极线”）。相较于“尖极”投影，“平极”设计通常能减少高纬度区域的形状变形。多数平极投影采用简单的极线/赤道长度比例，如 1/2 或 1/3。
+
+- #strong[3. 等距纬线特性]
+  - 除个别特例外，等积伪圆柱投影的纬线间距通常可变；而非等积的卡夫拉伊斯基 VII 型投影采用恒定纬线间距。需注意，这并不意味着沿经线方向的比例尺恒定或均匀。若无额外约束，设定 $y = phi R$ 将使中央经线成为唯一的标准线。
+
+- #strong[4. 120° 经线的圆周约束]
+  - 在任何伪圆柱投影中，沿同一纬线的比例尺恒定。因此，除中央经线（此处定义为 $0^degree$）保持笔直外，所有经线形态相似且形状受经度影响。在本投影中，若 120° 经线（即 $2 pi / 3$）为圆弧，则其余经线（除中央经线外）均为椭圆弧——其曲率向中央经线方向渐趋扁平，向地图边界方向逐渐伸长。
+
+// 延续您的 project 模板环境
+
+=== 公式推导过程
+
+#show math.equation.where(block: true): set align(left)
+#show math.equation.where(block: true): it => pad(left: 4em, it)
+
+#grid(
+  columns: (1fr, 1fr), // 左侧文字占剩余空间，右侧图片固定宽度
+  column-gutter: 1em,
+  [
+    #v(1em)
+    现考虑卡夫拉伊斯基 VII 型投影的东北象限。令 $W$ 为极线长度的一半，$H$ 为极线至赤道的距离；根据等距特性，$H = R pi / 2$。对于给定纬度 $lambda$，令 $x_c$ 为圆形 120° 经线的横坐标，$x_b$ 为 180° 经线（即基本边界经线）的横坐标。
+
+    由于在伪圆柱投影中，各纬线上真实距离与横坐标成线性关系，因此 $x_b$ 及任意纬度下的通用横坐标 $x$ 均与 $x_c$ 成比例：
+
+      $ x_b = 180 / 120 x_c = 3  / 2 x_c $
+      $ x =  lambda / pi x_b $
+  ],
+  [
+    #set align(center)
+    #figure(
+      image("../../img/image_1623491472605_0.png", width: 100%),
+      caption: [卡夫拉伊斯基 VII 型投影地图（东北象限）],
+    )
+  ]
+)
+
+
+
+
+参考圆的半径 $4W/3$ 由此直接得出。根据勾股定理：
+
+  $ H^2 + ((2W)/3)^2 = ((4W)/3)^2 $ 
+
+  $ H^2 = (16W^2 - 4W^2) / 9 $ 
+
+  $ H = sqrt(4/3) W  $
+
+
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 20pt,
+  [
+    赤道长度的一半为：
+
+      $ 2W =  sqrt(3) H = R pi sqrt(3) / 2 $
+    再次应用勾股定理：
+
+      $ x_c^2 + y^2 = 16W^2 / 9 = pi^2 R^2 / 3 $
+      $ y = phi R $
+      $ x_c = R sqrt(pi^2 / 3 - phi^2) $
+  ],
+    figure(
+    image("../../img/image_1623493188016_0.png", width: 100%),
+    caption: [卡夫拉伊斯基 VII 型投影全图]
+  ),
+)
+
+
+最终得到映射方程：
+
+  $ x = 3 lambda R sqrt(pi^2 / 3 - phi^2) / (2 pi) $ 
+  $ y = phi R $
+
+=== 投影特征总结
+
+卡夫拉伊斯基 VII 型投影结构简明、易于计算。该投影不具备特殊的数学属性——既不保持形状也不保持面积，其优势在于整体形态均衡协调。对于许多非精密测量用途而言，这种平衡性已能满足实际需要。
+
+== 桑逊-弗兰斯蒂德（正弦）投影的推导
+
+#grid(
+  columns: (1fr, 1fr), // 右侧固定宽度给图片
+  column-gutter: 1em,
+  align: horizon,
+  [考虑一种赤道方位的投影，其具备与卡夫拉伊斯基 VII 型投影相似但约束更为严格的特性：
+  
+  - 伪圆柱投影
+  - 所有纬线均为标准线
+  - 中央经线为直线标准线
+
+  #h(2em)设地球表面一点 $P$。该点至赤道的距离为 $m = phi R$（此简洁表达式展现了以弧度表示角度坐标的优势），该距离即为投影点的纵坐标。通过点 $P$ 的纬线半径为 $r = R cos phi$，其周长为 $p = 2 pi r$。根据伪圆柱投影的特性，该点的横坐标与此周长的一半成正比，比例系数为 $lambda / pi$。因此，
+
+  $ x = R lambda cos phi $
+  $ y = R phi $
+
+  
+  ],
+  [#figure(image("../../img/image_1623493435626_0.png", width: 100%), caption: "与正弦投影几何相关的球面维度参数")]
+)
+
+
+
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 1.5em,
+  align: horizon,
+  [
+    #h(2em)由此得到一种经典的投影，历史上其发明常被归于多位学者，尤以墨卡托、桑逊与弗兰斯蒂德最为著称。如今，因其经线呈现 $x = k sin(y + pi / 2)$ 的形式（其中 $-1 <= k <= 1$），该投影更普遍地被称为*正弦投影*。
+
+    尽管该投影历史悠久，但其*等积性质*似乎长期未被认识或受到忽略。此现象颇为令人意外，因为正弦投影与球面之间的面积对应关系，可通过卡瓦列里原理或类比于一系列等距圆柱投影地图获得直观理解。以下提供一个基于微积分的非形式化证明。],
+  [
+    #figure(
+      image("../../img/image_1623493860040_0.png", width: 100%),
+      caption: [赤道方位的正弦投影地图]
+    )
+  ]
+)
+
+#h(2em)定义球面上一个位于纬度 $phi$ 处的薄环带作为面积微元。已知该环带半径为 $R cos phi$；其厚度（同样因角度采用弧度制表示）为 $R d phi$，故其面积为 $2 pi R^2 cos phi d phi$。令 $S_s$ 表示赤道与纬线 $Phi$ 之间的区域面积：
+
+#block(
+  fill: luma(248),
+  stroke: 0.5pt + gray,
+  inset: 15pt,
+  radius: 4pt,
+  width: 100%,
+  [
+    #grid(
+      columns: (1fr, 2fr),
+      column-gutter: 1.5em,
+      // 左侧：第一张图 + 它的描述
+      [
+        #set align(center)
+        #image("../../img/image_1623495007758_0.png", width: 100%)
+        #v(0.5em)
+        #text(size: 0.85em)[球面与正弦投影地图上沿纬线的对应无穷小面积微元]
+      ],
+      // 右侧：第二张图
+      [
+        #set align(center)
+        #image("../../img/image_1623495070008_0.png", width: 100%)
+      ]
+    )
+  ]
+)
+
+
+$ S_s &= integral_0^Phi 2 pi R^2 cos phi d phi \
+     &= 2 pi R^2 sin phi |_0^Phi \
+     &= 2 pi R^2 sin Phi $
+
+
+
+#h(2em)在地图上，对应的面积微元为一个水平条带，其宽度由 $lambda = pi$ 确定为：$2 R pi cos(phi)$。其高度为 $d y = R d phi$，其面积为 $2 R^2 pi cos phi d phi$。地图上赤道与纬线 $Phi$ 之间的区域面积 $S_m$ 为：
+
+$ S_m = integral_0^Phi 2 R^2 pi cos phi d phi = 2 pi R^2 sin Phi = S_s $
+
+#h(2em)任意两条纬线所界定“条带”的面积，仅需改变积分限即可计算，且在地球与地图上保持相同。此外，对于给定的条带，其在任意两条经线之间的面积，由于沿所有纬线的比例尺恒定，在地球与地图上也保持相等。因此，由任意两对纬线与经线所界定的对应“网格单元”面积相等。最终，通过组合可知，地球与地图上任何对应区域的面积均保持相等。
+
+== 克拉斯特抛物线投影的推导
+
+假设存在一种赤道方位的尖极等积伪圆柱投影，其边界经线为以赤道为轴的抛物线弧，且赤道长度为中央经线的两倍。
+
+
+
+#grid(
+  columns: (1.5fr, 1fr),
+  column-gutter: 2em,
+  align: top,
+  [
+
+    由于该投影属于伪圆柱投影，故有：
+    $ (partial y) / (partial lambda) = 0 $
+
+    #h(2em)换言之：
+    $ y = f(phi) $
+
+    根据对称性，不失一般性地仅考虑东北象限，其中 $0 <= phi <= pi/2, 0 <= lambda <= pi$。对于 $H > 0$，存在以下约束：
+    $ 0 <= x' = k y^2 <= 2H $
+    $ 0 <= y <= H $
+    $ x_b = 2H - x' $
+  ],
+  figure(
+    image("../../img/image_1623499957228_0.png", width: 100%),
+    // caption 会自动在下方生成：图 1: 克拉斯特...
+    caption: [克拉斯特抛物线投影的图解推导示意图],
+    supplement: [图], // 如果你希望显示“图 1”而不是默认的“Figure 1”
+  )
+)
+
+当 $x_b = 0$ 时，$y = H$，因此 $k = 2/H$，边界经线由下式定义：
+$ x_b = 2H - (2y^2) / H $
+
+如正弦投影推导所示，赤道与纬线 $phi$ 之间地球表面面积的一半为 $pi R^2 sin phi$。但此处我们将该等积特性作为约束条件以计算纵坐标 $y$。地图上赤道与任一给定纵坐标 $Y$ 之间区域的一半面积为：
+
+$ S(Y) = integral_0^Y x_b d y = integral_0^Y 2H - (2y^2)/H d y = (2H y - (2y^3)/(3H)) |_0^Y = 2 H Y - (2Y^3) / (3H) $
+
+当 $phi = pi/2$ 时，$Y = H$，且：
+$ S = pi R^2 = 2H^2 - (2H^2)/3 = (4H^2)/3 $
+
+因此：$H = (sqrt(3 pi) / 2) R$ 且：
+$ x_b = sqrt(3 pi) R - (4 y^2) / (sqrt(3 pi) R) $
+
+故：
+$ S(y) = -4 / (3 sqrt(3 pi) R) y^3 + sqrt(3 pi) R y $
+
+求解三次方程 $S(y) - pi R^2 sin phi = 0$：
+$ a = -4 / (3 sqrt(3 pi) R) , quad b = 0 , quad c = sqrt(3 pi) R , quad d = -pi R^2 sin phi $
+
+$ Delta &= 18 a b c d - 4 b^3 d + b^2 c^2 - 3 a c^3 - 27 a^2 d^2 \
+  &= (16(3 pi)^(3/2) R^3) / (3 sqrt(3 pi) R) - (27 * 16 pi^2 R^4 sin^2 phi) / (9 * 3 pi R^2) \
+  &= 16 pi R^2 (1 - sin^2 phi) \
+  &= 16 pi R^2 cos^2 phi $
+
+由于 $Delta >= 0$，存在三个实根；然而，因：
+$ -27a^2 Delta = -256 cos^2 phi <= 0 $
+
+根式涉及复数表达式。通过代换化为简化三次方程：
+$ p = (3a c - b^2) / (3a^2) = (-9 pi R^2) / 4 $
+$ q = (2b^3 - 9a b c + 27a^2 d) / (27a^3) = (R^3 sin phi (3 pi)^(3/2)) / 4 $
+
+
+并应用韦达方法，对于 $k = 0, 1, 2$，根为：
+
+$ t_k = 2 sqrt((-p)/3) cos( (arccos( (3q)/(2p) sqrt(-3/p) ))/3 - (2k pi)/3 ) $
+
+因为：
+$ p < 0 $
+$ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
+
+
+
+#grid(
+  columns: (2fr, 1fr),
+  column-gutter: 2em,
+  [
+    三个根均为实数，且 $t_2 <= t_1 <= t_0$。
+
+    通过分析 $S(y)$ 的函数图像可知，所需的最小正根为中间根 $t_1$：
+
+    $ t_1 &= 2 sqrt((-p)/3) cos( 1/3 arccos( (3q)/(2p) sqrt((-3)/p) ) - (2 pi)/3 ) \
+        &= sqrt(3 pi) |R| cos( 1/3 arccos( (-sin phi |R|) / R ) - (2 pi)/3 ) \
+        &= sqrt(3 pi) R cos( 1/3 arccos(-sin phi) - (2 pi)/3 ) $
+  ],
+  figure(
+    image("../../img/image_1623508055073_0.png", width: 100%),
+    caption: [函数 $S(y)$ 的图像],
+  )
+)
+
+
+
+对于 $-pi/2 <= alpha <= pi/2$，有 $arccos(-sin alpha) = alpha + pi/2$，因此：
+
+$ t_1 &= sqrt(3 pi) R cos( (phi + pi/2)/3 - (2 pi)/3 ) \
+     &= sqrt(3 pi) R cos( phi/3 - pi/2 ) \
+     &= sqrt(3 pi) R sin (phi / 3) = y $
+
+$ x_b &= sqrt(3 pi) R - (4y^2)/(sqrt(3 pi) R) \
+      &= sqrt(3 pi) R - 4 sqrt(3 pi) R sin^2 (phi / 3) \
+      &= sqrt(3 pi) R ( 1 - 4 sin^2 (phi / 3) ) $
+
+$ x &= lambda / pi x_b \
+    &= sqrt(3 / pi) R lambda ( 1 - 4 sin^2 (phi / 3) ) $
+
+
+
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 2em,
+  [ 
+    利用恒等式 $sin^2 alpha = (1 - cos 2 alpha) / 2$，得最终方程：
+    $ x = sqrt(3 / pi) R lambda ( 2 cos (2 phi / 3) - 1 ) \
+      y = sqrt(3 pi) R sin (phi / 3) $
+
+    以上即为克拉斯特所提出的投影中最广为人知的一种。 
+    ],
+
+  figure(
+    image("../../img/image_1623509472340_0.png", width: 100%),
+    caption: [J.E.E.克拉斯特抛物线投影],
+  )
+)
+
+=== 与正弦投影的对比
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 2em,
+  [
+    正弦投影与抛物线投影的整体形状易于混淆，但存在以下差异：
+    - 在相同比例尺下，正弦投影更高且更宽。
+    - 抛物线投影的中央经线不是标准线。
+    - 在高纬度区域，抛物线投影的变形区域略小。
+  ],
+  figure(
+
+        grid(
+          columns: 1,
+          row-gutter: 1em,
+          image("../../img/image_1623509544326_0.png", width: 100%),
+          image("../../img/image_1623424424876_0.png", width: 100%),
+        ),
+        caption: [克拉斯特抛物线投影（左上及右下象限）与正弦投影的变形模式对比],
+        supplement: [图],
+      )
+)
 
 #pagebreak(weak: true)
 
