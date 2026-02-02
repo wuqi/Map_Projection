@@ -472,13 +472,13 @@ $ S_m = integral_0^Phi 2 R^2 pi cos phi d phi = 2 pi R^2 sin Phi = S_s $
   align: top,
   [
 
-    由于该投影属于伪圆柱投影，故有：
+    #h(2em)由于该投影属于伪圆柱投影，故有：
     $ (partial y) / (partial lambda) = 0 $
 
     #h(2em)换言之：
     $ y = f(phi) $
 
-    根据对称性，不失一般性地仅考虑东北象限，其中 $0 <= phi <= pi/2, 0 <= lambda <= pi$。对于 $H > 0$，存在以下约束：
+    #h(2em)根据对称性，不失一般性地仅考虑东北象限，其中 $0 <= phi <= pi/2, 0 <= lambda <= pi$。对于 $H > 0$，存在以下约束：
     $ 0 <= x' = k y^2 <= 2H $
     $ 0 <= y <= H $
     $ x_b = 2H - x' $
@@ -491,23 +491,23 @@ $ S_m = integral_0^Phi 2 R^2 pi cos phi d phi = 2 pi R^2 sin Phi = S_s $
   )
 )
 
-当 $x_b = 0$ 时，$y = H$，因此 $k = 2/H$，边界经线由下式定义：
+#h(2em)当 $x_b = 0$ 时，$y = H$，因此 $k = 2/H$，边界经线由下式定义：
 $ x_b = 2H - (2y^2) / H $
 
-如正弦投影推导所示，赤道与纬线 $phi$ 之间地球表面面积的一半为 $pi R^2 sin phi$。但此处我们将该等积特性作为约束条件以计算纵坐标 $y$。地图上赤道与任一给定纵坐标 $Y$ 之间区域的一半面积为：
+#h(2em)如正弦投影推导所示，赤道与纬线 $phi$ 之间地球表面面积的一半为 $pi R^2 sin phi$。但此处我们将该等积特性作为约束条件以计算纵坐标 $y$。地图上赤道与任一给定纵坐标 $Y$ 之间区域的一半面积为：
 
 $ S(Y) = integral_0^Y x_b d y = integral_0^Y 2H - (2y^2)/H d y = (2H y - (2y^3)/(3H)) |_0^Y = 2 H Y - (2Y^3) / (3H) $
 
-当 $phi = pi/2$ 时，$Y = H$，且：
+#h(2em)当 $phi = pi/2$ 时，$Y = H$，且：
 $ S = pi R^2 = 2H^2 - (2H^2)/3 = (4H^2)/3 $
 
-因此：$H = (sqrt(3 pi) / 2) R$ 且：
+#h(2em)因此：$H = (sqrt(3 pi) / 2) R$ 且：
 $ x_b = sqrt(3 pi) R - (4 y^2) / (sqrt(3 pi) R) $
 
-故：
+#h(2em)故：
 $ S(y) = -4 / (3 sqrt(3 pi) R) y^3 + sqrt(3 pi) R y $
 
-求解三次方程 $S(y) - pi R^2 sin phi = 0$：
+#h(2em)求解三次方程 $S(y) - pi R^2 sin phi = 0$：
 $ a = -4 / (3 sqrt(3 pi) R) , quad b = 0 , quad c = sqrt(3 pi) R , quad d = -pi R^2 sin phi $
 
 $ Delta &= 18 a b c d - 4 b^3 d + b^2 c^2 - 3 a c^3 - 27 a^2 d^2 \
@@ -515,19 +515,19 @@ $ Delta &= 18 a b c d - 4 b^3 d + b^2 c^2 - 3 a c^3 - 27 a^2 d^2 \
   &= 16 pi R^2 (1 - sin^2 phi) \
   &= 16 pi R^2 cos^2 phi $
 
-由于 $Delta >= 0$，存在三个实根；然而，因：
+#h(2em)由于 $Delta >= 0$，存在三个实根；然而，因：
 $ -27a^2 Delta = -256 cos^2 phi <= 0 $
 
-根式涉及复数表达式。通过代换化为简化三次方程：
+#h(2em)根式涉及复数表达式。通过代换化为简化三次方程：
 $ p = (3a c - b^2) / (3a^2) = (-9 pi R^2) / 4 $
 $ q = (2b^3 - 9a b c + 27a^2 d) / (27a^3) = (R^3 sin phi (3 pi)^(3/2)) / 4 $
 
 
-并应用韦达方法，对于 $k = 0, 1, 2$，根为：
+#h(2em)并应用韦达方法，对于 $k = 0, 1, 2$，根为：
 
 $ t_k = 2 sqrt((-p)/3) cos( (arccos( (3q)/(2p) sqrt(-3/p) ))/3 - (2k pi)/3 ) $
 
-因为：
+#h(2em)因为：
 $ p < 0 $
 $ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
 
@@ -537,7 +537,7 @@ $ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
   columns: (2fr, 1fr),
   column-gutter: 2em,
   [
-    三个根均为实数，且 $t_2 <= t_1 <= t_0$。
+    #h(2em)三个根均为实数，且 $t_2 <= t_1 <= t_0$。
 
     通过分析 $S(y)$ 的函数图像可知，所需的最小正根为中间根 $t_1$：
 
@@ -553,7 +553,7 @@ $ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
 
 
 
-对于 $-pi/2 <= alpha <= pi/2$，有 $arccos(-sin alpha) = alpha + pi/2$，因此：
+#h(2em)对于 $-pi/2 <= alpha <= pi/2$，有 $arccos(-sin alpha) = alpha + pi/2$，因此：
 
 $ t_1 &= sqrt(3 pi) R cos( (phi + pi/2)/3 - (2 pi)/3 ) \
      &= sqrt(3 pi) R cos( phi/3 - pi/2 ) \
@@ -572,11 +572,11 @@ $ x &= lambda / pi x_b \
   columns: (1fr, 1fr),
   column-gutter: 2em,
   [ 
-    利用恒等式 $sin^2 alpha = (1 - cos 2 alpha) / 2$，得最终方程：
+    #h(2em)利用恒等式 $sin^2 alpha = (1 - cos 2 alpha) / 2$，得最终方程：
     $ x = sqrt(3 / pi) R lambda ( 2 cos (2 phi / 3) - 1 ) \
       y = sqrt(3 pi) R sin (phi / 3) $
 
-    以上即为克拉斯特所提出的投影中最广为人知的一种。 
+    #h(2em)以上即为克拉斯特所提出的投影中最广为人知的一种。 
     ],
 
   figure(
@@ -607,6 +607,109 @@ $ x &= lambda / pi x_b \
         supplement: [图],
       )
 )
+
+== 摩尔魏特投影的推导
+
+尽管前述正弦投影（桑逊-弗兰斯蒂德投影）具有等积性、数学形式简单且纬线等距的优点，但由于高纬度区域剪切变形过甚且经线过于密集，其表现尚未臻完善。克拉斯特抛物线投影的经线曲率稍大，但极点仍呈尖角形态。通过稍复杂的分析可导出摩尔魏特投影。
+
+
+
+#grid(
+  columns: (1fr, 180pt),
+  column-gutter: 2em,
+  align: top,
+  [ 
+    假设存在一种赤道方位的等积投影，其具备以下特性：
+    - 世界地图的边界为一个椭圆，其长轴长度为短轴的两倍；
+    - 纬线映射为具有均匀比例尺的平行直线；
+    - 中央经线为直线标准线；其余所有经线均为半椭圆弧，关于赤道与中央经线对称。
+    
+    #h(2em)由于该投影为预设经线形状的伪圆柱投影，可采用与抛物线投影方程确定相似的方法：对任意纬线，求取使地图与地球对应面积相等的纵坐标。 ],
+  figure(
+    image("../../img/image_1623587264731_0.png", width: 100%),
+    caption: [摩尔魏特投影的几何图示],
+  )
+)
+
+#h(2em)考虑一个以原点为中心、长轴 $a$ 位于 $x$ 轴上的椭圆：
+$ x^2 / a^2 + y^2 / b^2 = 1 $
+
+#h(2em)由此得：
+$ x^2 = a^2 (1 - y^2 / b^2) $
+
+#h(2em)对于 $-b <= y <= b$，有：
+$ x = a sqrt(b^2 - y^2) / b $
+
+#h(2em)$x$ 轴与映射至 $y = Y$ 的纬线之间区域的面积为：
+$ S_m &= 2 integral_0^Y x d y \
+      &= 2 a / b integral_0^Y sqrt(b^2 - y^2) d y $
+
+#h(2em)对于 $0 <= y <= b$，令 $y = b sin theta$（其中 $0 <= theta <= pi / 2$，$d y = b cos theta d theta$）：
+$ integral sqrt(b^2 - y^2) d y &= integral sqrt(b^2 (1 - sin^2 theta)) d y \
+  &= integral b cos theta dot b cos theta d theta \
+  &= b^2 integral cos^2 theta d theta $
+
+#h(2em)由于：
+$ cases(
+  display(cos^2 alpha) &= display((1 + cos 2 alpha) / 2),
+  display(integral cos n beta d beta) &= display(1/n sin n beta + C)
+) $
+
+
+
+#h(2em)可得：
+$ b^2 integral cos^2 theta d theta &= b^2 / 2 ( integral d theta + integral cos 2 theta d theta ) \
+  &= b^2 / 2 ( theta + (sin 2 theta) / 2 ) + C $
+
+#h(2em)因此：
+$ S_m &= (2 a b) / 2 (2 theta + sin 2 theta) / 2 + C \
+      &= (a b (2 theta + sin 2 theta)) / 2 $
+
+#h(2em)对某一 $0 <= theta <= pi / 2$ 成立。
+
+#grid(
+  columns: (1fr, 180pt),
+  column-gutter: 2em,
+  align: top,
+  [
+    #h(2em)因 $a = 2b$，整个椭圆的面积为 $a b pi = a^2 pi / 2$。
+    地球球面总面积为 $4 pi R^2$，故有：
+    $ a = R sqrt(8) $
+    $ y = (R sqrt(8) sin theta) / 2 $
+    $ S_m = 2 R^2 (2 theta + sin 2 theta) $
+
+    #h(2em)由正弦投影的推导可知，球面上赤道与纬线 $phi$ 所界定的球带面积为：
+    $ S_s = 2 pi R^2 sin phi $
+
+    #h(2em)令 $S_m = S_s$，得：
+    $ 2 theta + sin 2 theta = pi sin phi $
+  ],
+  figure(
+    image("../../img/image_1623589324617_0.png", width: 100%),
+    caption: [赤道与另一纬线所界定的区域面积示意图],
+  )
+)
+
+#grid(
+  columns: (1fr, 1.5fr),
+  column-gutter: 2em,
+  align: top,
+  [
+    #h(2em)与克拉斯特投影不同，此方程不存在将 $phi$（通过 $theta$）直接转换为 $y$ 的闭合代数解，必须借助数值求根方法。该方法本质上是通过反复“猜测” $theta$ 的近似值并评估逐次差值直至达到所需精度。此任务非常适合电子计算机执行。尽管如此，若初始猜测值取 $phi$ 本身，迭代算法仍能较快收敛。
+  ],
+  figure(
+    image("../../img/mp_combined.png", width: 100%),
+    caption: [摩尔魏特投影全图],
+  )
+)
+
+#h(2em)最后，由椭圆方程可得东侧边界经线的横坐标 $x_b$：
+$ x_b = 2 sqrt(2 R^2 - y^2) = 2 sqrt(2 R^2 - 2 R^2 sin^2 theta) = 2 sqrt(2) sqrt(1 - sin^2 theta) $
+
+#h(2em)与所有伪圆柱投影相同，$x = lambda x_b / pi$，因此摩尔魏特投影的方程为：
+$ x = 2 sqrt(2) R (lambda / pi) cos theta $
+$ y = sqrt(2) R sin theta $
+
 
 #pagebreak(weak: true)
 
