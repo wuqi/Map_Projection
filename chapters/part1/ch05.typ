@@ -1,5 +1,6 @@
 #show math.equation.where(block: true): set align(left)
 #show math.equation.where(block: true): it => pad(left: 4em, it)
+#set par(first-line-indent: (amount: 2em, all: true))
 = 投影的工作原理
 
 == 投影的实质
@@ -31,7 +32,7 @@
   columns: (1fr, 2fr),
   gutter: 20pt,
   [
-    #h(2em)此类关系通常并非函数，因球面上同一点可能对应地图上多个位置。除笛卡尔坐标外，亦可使用平面极坐标（半径 $rho$、角度 $theta$），这对许多投影的表达更为简便。
+    此类关系通常并非函数，因球面上同一点可能对应地图上多个位置。除笛卡尔坐标外，亦可使用平面极坐标（半径 $rho$、角度 $theta$），这对许多投影的表达更为简便。
   ],
   figure(
     image("../../img/image_1623467215794_0.png", width: 100%),
@@ -39,7 +40,7 @@
   )
 )
 
-#h(2em)尽管本文未全面展开，逆向映射使得根据地图点位或航摄/卫星影像推算地理位置成为可能。因此，它在多种应用中至关重要，例如交互式地图系统（用户点击地图时，系统依据该处地理参照信息作出响应）。同时，逆向映射对重投影（将已投影地图转换为其他投影）以及不同地理数据库间的转换亦不可缺。
+尽管本文未全面展开，逆向映射使得根据地图点位或航摄/卫星影像推算地理位置成为可能。因此，它在多种应用中至关重要，例如交互式地图系统（用户点击地图时，系统依据该处地理参照信息作出响应）。同时，逆向映射对重投影（将已投影地图转换为其他投影）以及不同地理数据库间的转换亦不可缺。
 
 === 投影公式的推导
 
@@ -86,7 +87,7 @@
 )
 
     
-#h(2em)亦可设想观察者位于该轴线的无限远处。地球表面发出的平行光线照射在垂直于光线的平面上，形成影像。由于所有光线平行（即透视方式为“圆柱投影”），无论该平面是否与球面相切，结果均不受影响。但需注意，任意时刻仅能观测到一个半球。
+亦可设想观察者位于该轴线的无限远处。地球表面发出的平行光线照射在垂直于光线的平面上，形成影像。由于所有光线平行（即透视方式为“圆柱投影”），无论该平面是否与球面相切，结果均不受影响。但需注意，任意时刻仅能观测到一个半球。
 
 通过调整光源位置，可生成其他类型的透视方位投影。在实际制图中，可于玻璃地球仪或球面容器上绘制海岸线等地理要素，借助反射日光或特定距离的强光源，将地球影像直接投射至墙面，从而获得正射、球面等多种方位投影。
 
@@ -120,7 +121,7 @@
   )
 )
 
-#h(2em)转换为笛卡尔坐标形式：
+转换为笛卡尔坐标形式：
 
 $ x = R cos(phi) sin(lambda) $
 $ y = R cos(phi) cos(lambda) $
@@ -193,7 +194,7 @@ $ y = R cos(phi) cos(lambda) $
   ]
 )
 
-#h(2em)需指出，类似的圆柱投影构建方法虽存在，但并非所有圆柱投影均基于此类简单模型。事实上，墨卡托投影与等距圆柱投影等经典投影是通过特定数学约束定义，而非基于透视过程。
+需指出，类似的圆柱投影构建方法虽存在，但并非所有圆柱投影均基于此类简单模型。事实上，墨卡托投影与等距圆柱投影等经典投影是通过特定数学约束定义，而非基于透视过程。
 
 === 正轴方位映射方程推导
 
@@ -391,7 +392,7 @@ $ y = (R (k + cos phi_0) sin phi) / (k + cos phi) $
   - 所有纬线均为标准线
   - 中央经线为直线标准线
 
-  #h(2em)设地球表面一点 $P$。该点至赤道的距离为 $m = phi R$（此简洁表达式展现了以弧度表示角度坐标的优势），该距离即为投影点的纵坐标。通过点 $P$ 的纬线半径为 $r = R cos phi$，其周长为 $p = 2 pi r$。根据伪圆柱投影的特性，该点的横坐标与此周长的一半成正比，比例系数为 $lambda / pi$。因此，
+  设地球表面一点 $P$。该点至赤道的距离为 $m = phi R$（此简洁表达式展现了以弧度表示角度坐标的优势），该距离即为投影点的纵坐标。通过点 $P$ 的纬线半径为 $r = R cos phi$，其周长为 $p = 2 pi r$。根据伪圆柱投影的特性，该点的横坐标与此周长的一半成正比，比例系数为 $lambda / pi$。因此，
 
   $ x = R lambda cos phi $
   $ y = R phi $
@@ -408,7 +409,7 @@ $ y = (R (k + cos phi_0) sin phi) / (k + cos phi) $
   column-gutter: 1.5em,
   align: horizon,
   [
-    #h(2em)由此得到一种经典的投影，历史上其发明常被归于多位学者，尤以墨卡托、桑逊与弗兰斯蒂德最为著称。如今，因其经线呈现 $x = k sin(y + pi / 2)$ 的形式（其中 $-1 <= k <= 1$），该投影更普遍地被称为*正弦投影*。
+    由此得到一种经典的投影，历史上其发明常被归于多位学者，尤以墨卡托、桑逊与弗兰斯蒂德最为著称。如今，因其经线呈现 $x = k sin(y + pi / 2)$ 的形式（其中 $-1 <= k <= 1$），该投影更普遍地被称为*正弦投影*。
 
     尽管该投影历史悠久，但其*等积性质*似乎长期未被认识或受到忽略。此现象颇为令人意外，因为正弦投影与球面之间的面积对应关系，可通过卡瓦列里原理或类比于一系列等距圆柱投影地图获得直观理解。以下提供一个基于微积分的非形式化证明。],
   [
@@ -419,7 +420,7 @@ $ y = (R (k + cos phi_0) sin phi) / (k + cos phi) $
   ]
 )
 
-#h(2em)定义球面上一个位于纬度 $phi$ 处的薄环带作为面积微元。已知该环带半径为 $R cos phi$；其厚度（同样因角度采用弧度制表示）为 $R d phi$，故其面积为 $2 pi R^2 cos phi d phi$。令 $S_s$ 表示赤道与纬线 $Phi$ 之间的区域面积：
+定义球面上一个位于纬度 $phi$ 处的薄环带作为面积微元。已知该环带半径为 $R cos phi$；其厚度（同样因角度采用弧度制表示）为 $R d phi$，故其面积为 $2 pi R^2 cos phi d phi$。令 $S_s$ 表示赤道与纬线 $Phi$ 之间的区域面积：
 
 #block(
   fill: luma(248),
@@ -454,11 +455,11 @@ $ S_s &= integral_0^Phi 2 pi R^2 cos phi d phi \
 
 
 
-#h(2em)在地图上，对应的面积微元为一个水平条带，其宽度由 $lambda = pi$ 确定为：$2 R pi cos(phi)$。其高度为 $d y = R d phi$，其面积为 $2 R^2 pi cos phi d phi$。地图上赤道与纬线 $Phi$ 之间的区域面积 $S_m$ 为：
+在地图上，对应的面积微元为一个水平条带，其宽度由 $lambda = pi$ 确定为：$2 R pi cos(phi)$。其高度为 $d y = R d phi$，其面积为 $2 R^2 pi cos phi d phi$。地图上赤道与纬线 $Phi$ 之间的区域面积 $S_m$ 为：
 
 $ S_m = integral_0^Phi 2 R^2 pi cos phi d phi = 2 pi R^2 sin Phi = S_s $
 
-#h(2em)任意两条纬线所界定“条带”的面积，仅需改变积分限即可计算，且在地球与地图上保持相同。此外，对于给定的条带，其在任意两条经线之间的面积，由于沿所有纬线的比例尺恒定，在地球与地图上也保持相等。因此，由任意两对纬线与经线所界定的对应“网格单元”面积相等。最终，通过组合可知，地球与地图上任何对应区域的面积均保持相等。
+任意两条纬线所界定“条带”的面积，仅需改变积分限即可计算，且在地球与地图上保持相同。此外，对于给定的条带，其在任意两条经线之间的面积，由于沿所有纬线的比例尺恒定，在地球与地图上也保持相等。因此，由任意两对纬线与经线所界定的对应“网格单元”面积相等。最终，通过组合可知，地球与地图上任何对应区域的面积均保持相等。
 
 == 克拉斯特抛物线投影的推导
 
@@ -472,13 +473,13 @@ $ S_m = integral_0^Phi 2 R^2 pi cos phi d phi = 2 pi R^2 sin Phi = S_s $
   align: top,
   [
 
-    #h(2em)由于该投影属于伪圆柱投影，故有：
+    由于该投影属于伪圆柱投影，故有：
     $ (partial y) / (partial lambda) = 0 $
 
-    #h(2em)换言之：
+    换言之：
     $ y = f(phi) $
 
-    #h(2em)根据对称性，不失一般性地仅考虑东北象限，其中 $0 <= phi <= pi/2, 0 <= lambda <= pi$。对于 $H > 0$，存在以下约束：
+    根据对称性，不失一般性地仅考虑东北象限，其中 $0 <= phi <= pi/2, 0 <= lambda <= pi$。对于 $H > 0$，存在以下约束：
     $ 0 <= x' = k y^2 <= 2H $
     $ 0 <= y <= H $
     $ x_b = 2H - x' $
@@ -491,23 +492,23 @@ $ S_m = integral_0^Phi 2 R^2 pi cos phi d phi = 2 pi R^2 sin Phi = S_s $
   )
 )
 
-#h(2em)当 $x_b = 0$ 时，$y = H$，因此 $k = 2/H$，边界经线由下式定义：
+当 $x_b = 0$ 时，$y = H$，因此 $k = 2/H$，边界经线由下式定义：
 $ x_b = 2H - (2y^2) / H $
 
-#h(2em)如正弦投影推导所示，赤道与纬线 $phi$ 之间地球表面面积的一半为 $pi R^2 sin phi$。但此处我们将该等积特性作为约束条件以计算纵坐标 $y$。地图上赤道与任一给定纵坐标 $Y$ 之间区域的一半面积为：
+如正弦投影推导所示，赤道与纬线 $phi$ 之间地球表面面积的一半为 $pi R^2 sin phi$。但此处我们将该等积特性作为约束条件以计算纵坐标 $y$。地图上赤道与任一给定纵坐标 $Y$ 之间区域的一半面积为：
 
 $ S(Y) = integral_0^Y x_b d y = integral_0^Y 2H - (2y^2)/H d y = (2H y - (2y^3)/(3H)) |_0^Y = 2 H Y - (2Y^3) / (3H) $
 
-#h(2em)当 $phi = pi/2$ 时，$Y = H$，且：
+当 $phi = pi/2$ 时，$Y = H$，且：
 $ S = pi R^2 = 2H^2 - (2H^2)/3 = (4H^2)/3 $
 
-#h(2em)因此：$H = (sqrt(3 pi) / 2) R$ 且：
+因此：$H = (sqrt(3 pi) / 2) R$ 且：
 $ x_b = sqrt(3 pi) R - (4 y^2) / (sqrt(3 pi) R) $
 
-#h(2em)故：
+故：
 $ S(y) = -4 / (3 sqrt(3 pi) R) y^3 + sqrt(3 pi) R y $
 
-#h(2em)求解三次方程 $S(y) - pi R^2 sin phi = 0$：
+求解三次方程 $S(y) - pi R^2 sin phi = 0$：
 $ a = -4 / (3 sqrt(3 pi) R) , quad b = 0 , quad c = sqrt(3 pi) R , quad d = -pi R^2 sin phi $
 
 $ Delta &= 18 a b c d - 4 b^3 d + b^2 c^2 - 3 a c^3 - 27 a^2 d^2 \
@@ -515,19 +516,19 @@ $ Delta &= 18 a b c d - 4 b^3 d + b^2 c^2 - 3 a c^3 - 27 a^2 d^2 \
   &= 16 pi R^2 (1 - sin^2 phi) \
   &= 16 pi R^2 cos^2 phi $
 
-#h(2em)由于 $Delta >= 0$，存在三个实根；然而，因：
+由于 $Delta >= 0$，存在三个实根；然而，因：
 $ -27a^2 Delta = -256 cos^2 phi <= 0 $
 
-#h(2em)根式涉及复数表达式。通过代换化为简化三次方程：
+根式涉及复数表达式。通过代换化为简化三次方程：
 $ p = (3a c - b^2) / (3a^2) = (-9 pi R^2) / 4 $
 $ q = (2b^3 - 9a b c + 27a^2 d) / (27a^3) = (R^3 sin phi (3 pi)^(3/2)) / 4 $
 
 
-#h(2em)并应用韦达方法，对于 $k = 0, 1, 2$，根为：
+并应用韦达方法，对于 $k = 0, 1, 2$，根为：
 
 $ t_k = 2 sqrt((-p)/3) cos( (arccos( (3q)/(2p) sqrt(-3/p) ))/3 - (2k pi)/3 ) $
 
-#h(2em)因为：
+因为：
 $ p < 0 $
 $ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
 
@@ -537,7 +538,7 @@ $ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
   columns: (2fr, 1fr),
   column-gutter: 2em,
   [
-    #h(2em)三个根均为实数，且 $t_2 <= t_1 <= t_0$。
+    三个根均为实数，且 $t_2 <= t_1 <= t_0$。
 
     通过分析 $S(y)$ 的函数图像可知，所需的最小正根为中间根 $t_1$：
 
@@ -553,7 +554,7 @@ $ 4p^3 + 27q^2 = 729/16 pi^3 R^6 (sin^2 phi - 1) <= 0 $
 
 
 
-#h(2em)对于 $-pi/2 <= alpha <= pi/2$，有 $arccos(-sin alpha) = alpha + pi/2$，因此：
+对于 $-pi/2 <= alpha <= pi/2$，有 $arccos(-sin alpha) = alpha + pi/2$，因此：
 
 $ t_1 &= sqrt(3 pi) R cos( (phi + pi/2)/3 - (2 pi)/3 ) \
      &= sqrt(3 pi) R cos( phi/3 - pi/2 ) \
@@ -572,11 +573,11 @@ $ x &= lambda / pi x_b \
   columns: (1fr, 1fr),
   column-gutter: 2em,
   [ 
-    #h(2em)利用恒等式 $sin^2 alpha = (1 - cos 2 alpha) / 2$，得最终方程：
+    利用恒等式 $sin^2 alpha = (1 - cos 2 alpha) / 2$，得最终方程：
     $ x = sqrt(3 / pi) R lambda ( 2 cos (2 phi / 3) - 1 ) \
       y = sqrt(3 pi) R sin (phi / 3) $
 
-    #h(2em)以上即为克拉斯特所提出的投影中最广为人知的一种。 
+    以上即为克拉斯特所提出的投影中最广为人知的一种。 
     ],
 
   figure(
@@ -624,32 +625,32 @@ $ x &= lambda / pi x_b \
     - 纬线映射为具有均匀比例尺的平行直线；
     - 中央经线为直线标准线；其余所有经线均为半椭圆弧，关于赤道与中央经线对称。
     
-    #h(2em)由于该投影为预设经线形状的伪圆柱投影，可采用与抛物线投影方程确定相似的方法：对任意纬线，求取使地图与地球对应面积相等的纵坐标。 ],
+    由于该投影为预设经线形状的伪圆柱投影，可采用与抛物线投影方程确定相似的方法：对任意纬线，求取使地图与地球对应面积相等的纵坐标。 ],
   figure(
     image("../../img/image_1623587264731_0.png", width: 100%),
     caption: [摩尔魏特投影的几何图示],
   )
 )
 
-#h(2em)考虑一个以原点为中心、长轴 $a$ 位于 $x$ 轴上的椭圆：
+考虑一个以原点为中心、长轴 $a$ 位于 $x$ 轴上的椭圆：
 $ x^2 / a^2 + y^2 / b^2 = 1 $
 
-#h(2em)由此得：
+由此得：
 $ x^2 = a^2 (1 - y^2 / b^2) $
 
-#h(2em)对于 $-b <= y <= b$，有：
+对于 $-b <= y <= b$，有：
 $ x = a sqrt(b^2 - y^2) / b $
 
-#h(2em)$x$ 轴与映射至 $y = Y$ 的纬线之间区域的面积为：
+$x$ 轴与映射至 $y = Y$ 的纬线之间区域的面积为：
 $ S_m &= 2 integral_0^Y x d y \
       &= 2 a / b integral_0^Y sqrt(b^2 - y^2) d y $
 
-#h(2em)对于 $0 <= y <= b$，令 $y = b sin theta$（其中 $0 <= theta <= pi / 2$，$d y = b cos theta d theta$）：
+对于 $0 <= y <= b$，令 $y = b sin theta$（其中 $0 <= theta <= pi / 2$，$d y = b cos theta d theta$）：
 $ integral sqrt(b^2 - y^2) d y &= integral sqrt(b^2 (1 - sin^2 theta)) d y \
   &= integral b cos theta dot b cos theta d theta \
   &= b^2 integral cos^2 theta d theta $
 
-#h(2em)由于：
+由于：
 $ cases(
   display(cos^2 alpha) &= display((1 + cos 2 alpha) / 2),
   display(integral cos n beta d beta) &= display(1/n sin n beta + C)
@@ -657,31 +658,31 @@ $ cases(
 
 
 
-#h(2em)可得：
+可得：
 $ b^2 integral cos^2 theta d theta &= b^2 / 2 ( integral d theta + integral cos 2 theta d theta ) \
   &= b^2 / 2 ( theta + (sin 2 theta) / 2 ) + C $
 
-#h(2em)因此：
+因此：
 $ S_m &= (2 a b) / 2 (2 theta + sin 2 theta) / 2 + C \
       &= (a b (2 theta + sin 2 theta)) / 2 $
 
-#h(2em)对某一 $0 <= theta <= pi / 2$ 成立。
+对某一 $0 <= theta <= pi / 2$ 成立。
 
 #grid(
   columns: (1fr, 180pt),
   column-gutter: 2em,
   align: top,
   [
-    #h(2em)因 $a = 2b$，整个椭圆的面积为 $a b pi = a^2 pi / 2$。
+    因 $a = 2b$，整个椭圆的面积为 $a b pi = a^2 pi / 2$。
     地球球面总面积为 $4 pi R^2$，故有：
     $ a = R sqrt(8) $
     $ y = (R sqrt(8) sin theta) / 2 $
     $ S_m = 2 R^2 (2 theta + sin 2 theta) $
 
-    #h(2em)由正弦投影的推导可知，球面上赤道与纬线 $phi$ 所界定的球带面积为：
+    由正弦投影的推导可知，球面上赤道与纬线 $phi$ 所界定的球带面积为：
     $ S_s = 2 pi R^2 sin phi $
 
-    #h(2em)令 $S_m = S_s$，得：
+    令 $S_m = S_s$，得：
     $ 2 theta + sin 2 theta = pi sin phi $
   ],
   figure(
@@ -695,7 +696,7 @@ $ S_m &= (2 a b) / 2 (2 theta + sin 2 theta) / 2 + C \
   column-gutter: 2em,
   align: top,
   [
-    #h(2em)与克拉斯特投影不同，此方程不存在将 $phi$（通过 $theta$）直接转换为 $y$ 的闭合代数解，必须借助数值求根方法。该方法本质上是通过反复“猜测” $theta$ 的近似值并评估逐次差值直至达到所需精度。此任务非常适合电子计算机执行。尽管如此，若初始猜测值取 $phi$ 本身，迭代算法仍能较快收敛。
+    与克拉斯特投影不同，此方程不存在将 $phi$（通过 $theta$）直接转换为 $y$ 的闭合代数解，必须借助数值求根方法。该方法本质上是通过反复“猜测” $theta$ 的近似值并评估逐次差值直至达到所需精度。此任务非常适合电子计算机执行。尽管如此，若初始猜测值取 $phi$ 本身，迭代算法仍能较快收敛。
   ],
   figure(
     image("../../img/mp_combined.png", width: 100%),
@@ -703,13 +704,377 @@ $ S_m &= (2 a b) / 2 (2 theta + sin 2 theta) / 2 + C \
   )
 )
 
-#h(2em)最后，由椭圆方程可得东侧边界经线的横坐标 $x_b$：
-$ x_b = 2 sqrt(2 R^2 - y^2) = 2 sqrt(2 R^2 - 2 R^2 sin^2 theta) = 2 sqrt(2) sqrt(1 - sin^2 theta) $
+最后，由椭圆方程可得东侧边界经线的横坐标 $x_b$：
 
-#h(2em)与所有伪圆柱投影相同，$x = lambda x_b / pi$，因此摩尔魏特投影的方程为：
+$ x_b &= 2 sqrt(2 R^2 - y^2) \
+&= 2 sqrt(2 R^2 - 2 R^2 sin^2 theta) \
+&= 2 sqrt(2) sqrt(1 - sin^2 theta) $
+
+与所有伪圆柱投影相同，$x = lambda x_b / pi$，因此摩尔魏特投影的方程为：
 $ x = 2 sqrt(2) R (lambda / pi) cos theta $
 $ y = sqrt(2) R sin theta $
 
+== 两种任意方位投影的两种方位推导
+
+=== 一般极地方位投影
+
+#grid(
+  columns: (1fr, 2fr),
+  gutter: 15pt,
+  align: horizon,
+  [
+
+    方位正射投影的数学推导完全是几何性的。尽管若干方位投影——例如这里要说明的两种——并不遵循此类透视过程，但所有方位投影都可以简化为一个通用模式。
+
+    在球面上，两个角度决定任意点 $P$ 相对于投影中心 $T$ 的距离和位置：对于北极方位，$mu$ 等于经度 $lambda$，而 $psi$ 等于余纬度 $Phi$，即 $pi/2 - phi$。
+    在地图上，由于方位投影的特性：
+
+
+  ],
+  figure(
+    grid(
+      columns: 2,
+      gutter: 5pt,
+      image("../../img/image_1623590568077_0.png", width: 100%),
+      image("../../img/image_1623590573515_0.png", width: 100%)
+    ),
+    caption: [方位投影的一般情况主要取决于一个函数，该函数将距离从投影中心 $T$ 进行变换。],
+  )
+)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 15pt,
+  figure(
+    image("../../img/image_1623594533434_0.png", width: 100%),
+    caption: [若干方位投影的距离定义函数],
+  ),
+    [
+    $ theta = mu $
+
+    方位投影的基本特征是一个函数，该函数将距离从地图中心进行变换，从而决定极地方位中纬线的间距：
+    $ rho = f(R psi) $
+
+    且：
+    $ x = rho cos theta $
+    $ y = rho sin theta $
+  ]
+)
+
+
+=== 等距方位投影
+
+对于等距方位投影（一种重要的导航用投影），地图中心到任意其他点的距离 $rho$ 与其真实径向距离成正比。在北极方位下：
+$ rho = (pi/2 - phi) R $
+
+南极方位同样简单，有：
+$ rho = (pi/2 + phi) R $
+$ quad theta = -lambda $
+
+
+=== 兰伯特等积方位投影
+在唯一的兼具方位和等积特性的投影（由兰伯特创建，适用于世界地图）中，地图上各点相对于中心的距离被逐渐压缩以保持面积等效。公式由基础积分学导出；首先我们定义地球和地图上的一个面积微元。
+
+#grid(
+  columns: (120pt, 1fr, 120pt),
+  gutter: 10pt,
+  align: horizon,
+  image("../../img/image_1623594940536_0.png", width: 100%),
+  [
+    #show math.equation.where(block: true): set align(left)
+    #show math.equation.where(block: true): it => pad(left: -8em, it)
+    给定一个薄球带作为微元，其由余纬度 $Phi$ 决定：
+    $ d s = 2 pi R sin Phi dot R d Phi = 2 pi R^2 sin Phi d Phi $
+    在极地方位地图上，对应的微元是一个圆环，其面积为：
+    $ d s = 2 pi rho d rho $
+  ],
+  image("../../img/image_1623594955508_0.png", width: 100%)
+)
+
+对于任意给定的余纬度 $Phi_1$，我们希望确定 $rho_1$，使得以 $Phi_1$ 为界的球冠与以 $rho_1$ 为界的地图圆盘具有相同的面积。这足以保持面积，因为由于方位投影的特性，球带和圆环沿圆周的比例尺虽然不同，但都是恒定的。
+
+如果目标是南极方位，则应用类似的符号变化。
+
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 15pt,
+  figure(
+    image("../../img/image_1623595865579_0.png", width: 100%),
+    caption: [组合式北极等距方位投影（上图）与等积方位投影（下图）地图。],
+  ),
+    [
+      #show math.equation.where(block: true): set align(left)
+      #show math.equation.where(block: true): it => pad(left: -8em, it)
+
+      $ integral_0^(phi_1) 2 pi R^2 sin phi d phi = integral_0^(rho_1) 2 pi rho d rho $
+
+      $ 2 pi R^2 integral_0^(phi_1) sin phi d phi = 2 pi integral_0^(rho_1) rho d rho $
+
+      $ -R^2 cos phi |_0^(phi_1) = rho^2 / 2 |_0^(rho_1) $
+
+      $ -2 R^2 (cos phi_1 - 1) = rho_1^2 $
+
+      $ rho_1 &= R sqrt(2) sqrt(1 - cos phi_1)  \
+              &= 2 R sqrt((1 - cos phi_1) / 2) \
+              &= 2 R sin(phi_1 / 2) $
+
+      $ rho = 2 R sin((pi/2 - phi) / 2) $
+  ]
+)
+
+组合地图(见下)显示，两种投影在北纬 60° 以北几乎相同（如图表预测：$Phi = 0.534$）。超过此范围，纬线在兰伯特部分越来越近，而在等距方位投影部分保持等距。由此产生的面积差异在南极洲清晰可见。
+
+=== 方位地图的一般赤道方位
+通过引入空间中的坐标变换和旋转，可以计算方位地图的其他方位。然而，重要的赤道方位可以用更直接的方式获得，利用球面三角形的两个性质。
+
+#block(
+  stroke: 0.5pt + gray,
+  inset: 10pt,
+  radius: 4pt,
+  fill: gray.lighten(90%),
+  [
+    *球面三角形的正弦与余弦定律* \
+    #grid(
+      columns: (1fr, 0.5fr),
+      gutter: 10pt,
+      [
+        给定球面三角形顶点上的角度 $A, B, C$，以及连接三角形顶点与球心 $O$ 的边之间对应的角度 $alpha, beta, gamma$： 
+#v(2em)
+        正弦定律$(sin A) / alpha = (sin B) / beta = (sin C) / gamma$  
+
+        余弦定律 $cos gamma = cos alpha cos beta + sin alpha sin beta cos C$
+      ],
+      image("../../img/image_1623595909307_0.png", width: 100%)
+    )
+  ]
+)
+
+在赤道方位中，投影中心 $T$ 位于赤道和任意中央经线的交点。它是一个球面三角形的一个顶点；第二个顶点是投影点 $P$，第三个顶点位于赤道上与 $P$ 相同经度处。球心对应的角度分别为 $phi, lambda$ 和 $alpha$，而我们想要的是 $theta$，即对应于第一张图中 $mu$ 的 $T$ 点处的角度。
+
+#grid(
+  columns: (1fr, 200pt),
+  gutter: 15pt,
+  align: horizon,
+  [
+    #show math.equation.where(block: true): set align(left)
+    #show math.equation.where(block: true): it => pad(left: -8em, it)
+    $ sin theta / sin phi = sin(pi/2) / sin alpha $
+    $ cos alpha = cos phi cos lambda + sin phi sin lambda cos(pi/2); $
+    $ alpha = arccos(cos phi cos lambda) $
+    $ cos phi = cos alpha cos lambda + sin alpha sin lambda cos theta $
+    $ cos theta = (cos phi - cos alpha cos lambda) / (sin alpha sin lambda) = cos phi (1 - cos^2 lambda) / (sin alpha sin lambda) $
+    $ sin theta = sin phi / sin alpha $
+    $ cos theta = cos phi sin lambda / sin alpha $
+  ],
+  figure(
+    image("../../img/image_1623596663364_0.png", width: 100%),
+    caption: [球面上的三角形由投影中心 $T$、待投影点 $P$ 以及一个同经度的赤道点定义。],
+  )
+)
+
+=== 赤道等距方位投影
+只需代入 $cos theta$ 和 $sin theta$ 的表达式，且 $rho = r = alpha R$：
+
+$ alpha = arccos(cos phi cos lambda); $
+$ x = (alpha R cos phi sin lambda) / (sin alpha) $
+$ y = (alpha R sin phi) / (sin alpha) $
+
+如果 $lambda = phi = 0$，则 $sin alpha = 0$ 但 $x = y = 0$
+
+=== 赤道等积方位投影
+在兰伯特等积方位投影的方程中，用 $alpha$ 替换 $Phi_1$：
+
+$ x = rho cos theta = rho / (sin alpha) cos phi sin lambda $
+$ y = rho sin theta = rho / (sin alpha) sin phi $
+
+现在使用两个三角恒等式，
+
+$ sin(a + b) = sin a cos b + cos a sin b $
+
+$ sin 2a = 2 sin a cos a $
+
+$ cos(a + b) = cos a cos b - sin a sin b $
+
+$ cos 2a = cos^2 a - sin^2 a = 2 cos^2 a - 1 $
+
+$ (cos 2a + 1) / 2 = cos^2 a $
+
+
+#grid(
+  columns: (1fr, 1.5fr),
+  gutter: 15pt,
+  align: horizon,
+  [
+    #show math.equation.where(block: true): set align(left)
+    #show math.equation.where(block: true): it => pad(left: -4em, it)
+    公共因子可以展开：
+
+    $ rho / (sin alpha)
+      &= (2 R sin(alpha / 2)) / (sin alpha) \
+      &= (2 R sin(alpha / 2)) / (2 sin(alpha / 2) cos(alpha / 2)) \
+      &= R / (cos(alpha / 2)) \
+      &= R / sqrt((cos alpha + 1) / 2) \
+      &= (R sqrt(2)) / sqrt(cos phi cos lambda + 1) $
+
+
+  ],
+  [
+    #figure(
+      image("../../img/image_1623598580880_0.png", width: 100%),
+      caption: [组合式等距方位投影与等积方位投影赤道方位地图。]
+    ) <fig-combine> 
+  ]
+
+)
+
+最终，
+
+$ x = sqrt(2 / (1 + cos phi cos lambda)) R cos phi sin lambda $
+
+$ y = sqrt(2 / (1 + cos phi cos lambda)) R sin phi $
+
+
+如 @fig-combine 所示，再次地，两种投影在投影中心附近非常相似：非洲的北部和南部部分几乎无缝连接。
+
+== 一种基础投影及其两种派生投影的推导
+
+=== 等距圆柱投影的推导
+
+考虑一种任意的赤道方位投影，其具备以下特征：
+- 所有经线均为等间距的垂直标准线
+- 所有纬线均为等间距的水平等长直线
+
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 2em,
+  align: top,
+  [
+    由此得到的矩形投影即为极简形式的*等距圆柱投影*（“等距”特性仅体现在经线及一两条选定的标准纬线上），该投影拥有多种不同名称。它既非等角投影亦非等积投影，尽管其外观与球面圆柱投影相似，但并非通过透视方法实际生成。
+
+    由于沿所有经线的比例尺恒定，$y$ 坐标可简化为 $R phi$；两条标准纬线位于 $plus.minus phi_0$ 位置，其周长为 $R cos phi_0$。沿任意纬线的恒定比例尺意味着：
+
+    $ x = R lambda cos phi_0, quad y = R phi $
+
+    不同的标准纬线仅影响地图的宽高比例。在以赤道为标准纬线的常见特例中（通常称为*普拉特卡雷投影*,法语意为平面方形），$cos phi_0 = 1$，经度和纬度分别线性映射为 $x$ 和 $y$ 坐标，从而将世界地图表现为 2:1 的矩形。这种极其高效的计算特性使其成为计算机图形学中球体贴图以及数字摄影中全景场景存储的首选格式，尽管其细节密度分布和形状变形程度在极地区域远高于赤道附近。
+  ],
+  [
+    #figure(
+      image("../../img/image_1623636159109_0.png", width: 100%),
+      caption: [等距圆柱投影中改变标准纬度（高亮显示纬线）对地图形态的影响]
+    ) <fig-equirect-2>
+    #figure(
+      image("../../img/image_1623636104530_0.png", width: 100%),
+      caption: [等距圆柱投影（普拉特卡雷投影实例）]
+    ) <fig-equirect-1>
+
+  ]
+)
+
+=== 温克尔 I 型与埃克特 V 型投影的推导
+
+等距圆柱投影计算迅速，且具备若干实用特性，例如可直接根据两点坐标计算角距离和线性距离。然而该投影在极地区域存在无限的水平拉伸缺陷。另一方面，正弦投影在高纬度区域因强烈剪切变形而影响判读。这两种投影的共同特点是每条纬线上的比例尺保持恒定，且所有纬线呈均匀分布。
+
+#grid(
+  columns: (1fr, 180pt),
+  column-gutter: 2em,
+  align: top,
+  [
+    温克尔 I 型投影是正弦投影与等距圆柱投影的算术平均值。该投影既不等积也不等角，其定义为：
+    $ x = R lambda (cos phi_0 + cos phi) / 2, quad y = R phi $
+    *埃克特 V 型投影*是 $phi_0 = 0$ 时的特殊情形。温克尔则通过选择特定的标准纬线，使地图总面积与地图宽度保持比例关系。
+
+    考虑地图的东北象限：其边界经线由以下方程确定：
+$ x = pi R (cos phi_0 + cos phi) / 2 $
+
+该象限的面积为：
+$ S = integral_0^((pi R) / 2) pi R / 2 (cos phi_0 + cos phi) d y $
+
+由于 
+$ y = phi R, quad 0 <= y <= (pi R) / 2 $
+
+$ d y = R d phi, quad 0 <= phi <= pi / 2 $
+
+$ S &= (pi R) / 2 integral_0^(pi / 2) (cos phi_0 + cos phi) R d phi \
+    &= (pi R^2) / 2 ( cos phi_0 integral_0^(pi / 2) d phi + integral_0^(pi / 2) cos phi d phi ) \
+    &= (pi R^2) / 2 ( pi / 2 cos phi_0 + 1 ) $
+
+
+  ],
+  [
+
+
+    #figure(
+      image("../../img/image_1623637055635_0.png", width: 100%),
+      caption: [温克尔第一方案及其基础投影的边界经线对比]
+    ) <fig-w1-boundary>
+  ]
+)
+
+
+
+#grid(
+  columns: (1fr, 180pt),
+  column-gutter: 2em,
+  [
+    若地球球面总面积 $4 pi R^2 = 4 S$，则：
+
+$ pi R^2 = (pi R^2) / 2 ( pi / 2 cos phi_0 + 1 ) $
+
+$ 1 = pi / 2 cos phi_0 $
+
+$ phi_0 = arccos(2 / pi) $
+
+    因此标准纬线约为 $plus.minus 50 degree 27' 35''$。
+  ],
+  [
+    #figure(
+      image("../../img/mp_w1C.png", width: 100%),
+      caption: [温克尔 I 型投影地图]
+    ) <fig-w1-map>
+  ]
+)
+
+=== 阿皮安第二球状投影与温克尔 II 型投影的推导
+
+温克尔在其第二项提案中采用了另一种辅助性伪圆柱投影作为基础，该投影的赤道方位特征为：
+- 纬线为等间距水平线
+- 经线为等间距椭圆弧线
+- 整个地图内切于 2:1 椭圆
+
+这种中间椭圆投影形态类似摩尔魏特投影但不等积，本质上是阿皮安第二球状投影设计的全球扩展版本。考虑中心在原点的椭圆方程，其水平长轴为 $a$，短轴为 $a/2$：
+
+$ x^2 / a^2 + (4 y^2) / a^2 = 1 $
+
+在东北象限中，边界经线表达式为 
+
+$ x_b = sqrt(a^2 - 4 y^2) $
+
+纬线等间距特性意味着
+ 
+ $ y = R phi $
+ 
+ 因此 $a = pi R$。由于经线同样等间距分布，水平比例尺保持恒定，故 $x = lambda x_b / pi$，该辅助投影方程为：
+
+$ x = lambda R sqrt(pi^2 - 4 phi^2) $
+$ y = R phi $
+
+#grid(
+  columns: (1fr, 180pt),
+  column-gutter: 2em,
+  align: top,
+  [
+    *温克尔 II 型投影*是该椭圆投影与等距圆柱投影的简单算术平均：
+$ x = R / 2 lambda ( cos phi_0 + sqrt(pi^2 - 4 phi^2) / pi ) $
+
+$ y = R phi $
+    同样地，该投影既不等角也不等积，原作者推荐采用北纬和南纬 $50 degree 27' 35''$ 作为标准纬度。
+  ],
+  figure(
+    image("../../img/image_1623640079205_0.png", width: 100%),
+    caption: [温克尔 II 型投影地图]
+  ) 
+)
 
 #pagebreak(weak: true)
 

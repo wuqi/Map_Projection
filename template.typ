@@ -10,7 +10,12 @@
   set document(title: title, author: author)
   set text(font: ("LXGW Neo ZhiSong Plus", "SimSun"), size: 10.5pt, lang: "zh")
   set par(first-line-indent: 2em, justify: true, leading: 1.0em, spacing: 1.2em)
-  
+  // 设置无序列表 (Unordered List) 向内缩进 3em
+  set list(indent: 1em)
+
+// 设置有序列表 (Ordered List) 向内缩进 3em
+  set enum(indent: 1em)
+
   // 页面设置
   set page(
     paper: "a4",
