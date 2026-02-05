@@ -16,6 +16,9 @@
 // 设置有序列表 (Ordered List) 向内缩进 3em
   set enum(indent: 1em)
 
+  show math.equation.where(block: true): set align(left)
+  show math.equation.where(block: true): it => pad(left: 4em, it)
+  set par(first-line-indent: (amount: 2em, all: true))
   // 页面设置
   set page(
     paper: "a4",

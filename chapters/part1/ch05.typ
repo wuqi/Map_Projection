@@ -1,6 +1,4 @@
-#show math.equation.where(block: true): set align(left)
-#show math.equation.where(block: true): it => pad(left: 4em, it)
-#set par(first-line-indent: (amount: 2em, all: true))
+
 = 投影的工作原理
 
 == 投影的实质
@@ -1074,6 +1072,206 @@ $ y = R phi $
     image("../../img/image_1623640079205_0.png", width: 100%),
     caption: [温克尔 II 型投影地图]
   ) 
+)
+
+== 方位投影的三种变体
+
+=== 艾托夫投影的推导
+
+方位等距投影的赤道方位呈现了人们熟悉的“横向”世界地图形态，但地图边缘区域存在显著的面积夸大现象。
+
+
+#grid(
+  columns: (0.5fr, 1fr), // 左侧文字，右侧图片大包围块
+  column-gutter: 2em,
+  align: top,
+  [
+    注意到方位等距地图将“内部”半球包含在一个圆盘内，该圆盘半径是整个地图半径的一半，艾托夫提出了一种非常简单却富有吸引力的修改方案：
+    1. 使用加倍后的经度坐标进行投影，实质上将所有区域压缩到内部半球内
+    2. 将水平比例尺加倍，使圆盘拉伸为 2:1 的椭圆
+
+    方位投影的这种变体通过两步简单的几何拉伸，有效地缓解了边缘面积变形问题。这种演变逻辑在投影学中具有代表性。
+  ],
+  // 右侧复杂的 2x4 图片矩阵
+  block(
+    fill: luma(248),
+    stroke: 0.5pt + gray,
+    inset: 12pt,
+    radius: 4pt,
+    width: 100%,
+    [
+      #set align(center)
+      #text(font: ("LXGW Neo XiHei Plus", "SimHei"), size: 12pt, weight: "bold")[从方位等距投影到艾托夫投影及其发展]
+      #v(0.8em)
+      
+      #grid(
+        columns: (1fr, 1fr, 1fr, 1fr), // 划分为四列
+        rows: (auto, auto),
+        gutter: 6pt,
+        // 图1：占据前两行、前两列 (2x2)
+        grid.cell(colspan: 2, rowspan: 2, align: horizon)[
+          #figure(
+            image("../../img/image_1623641217220_0.png", width: 100%),
+            caption: [普通赤道方位等距投影地图，内部半球已高亮标示],
+          )
+        ],
+        // 图2：第一行第三列
+        grid.cell(colspan: 1, rowspan: 1)[
+          #figure(
+            image("../../img/image_1623641256600_0.png", width: 100%),
+            caption: [内部半球],
+          )
+        ],
+        // 图3：第一行第四列
+        grid.cell(colspan: 1, rowspan: 1)[
+          #figure(
+            image("../../img/image_1623641271026_0.png", width: 100%),
+            caption: [经度加倍],
+          )
+        ],
+        // 图4：第二行第三、四列 (1x2)
+        grid.cell(colspan: 2, rowspan: 1)[
+          #figure(
+            image("../../img/image_1623641307078_0.png", width: 100%),
+            caption: [水平比例尺加倍：艾托夫投影],
+          )
+        ]
+      )
+    ]
+  )
+)
+
+所得投影不再具有方位特性，仅沿赤道和中央经线保持等距性。
+
+正向投影方程可直接由赤道方位等距投影公式推导，将 $lambda$ 替换为 $lambda / 2$ 并在横坐标上乘以系数 2：
+
+$ alpha = arccos( cos phi cos lambda / 2 ) $
+
+$ k = cases(
+  0 & "if" alpha = 0,
+  (alpha R) / (sin alpha) & "otherwise"
+) $
+
+$ x = 2 k cos phi sin lambda / 2 $
+
+$ y = k sin phi $
+
+艾托夫的方法其实由约翰·兰伯特首创，其通过对方位球面投影进行压缩得到了“拉格朗日”投影。
+
+=== 哈默投影与埃克特-格里芬多夫投影的推导
+
+#grid(
+  columns: (2fr, 1fr),
+  column-gutter: 2em,
+  align: horizon,
+  // 左侧装饰块
+  block(fill: luma(248), stroke: 0.5pt + gray, inset: 12pt, radius: 4pt)[
+    #set align(center)
+    #text(font: ("LXGW Neo XiHei Plus", "SimHei"), size: 12pt, weight: "bold")[压缩经度效果]
+    #v(0.5em)
+    #figure(
+      image("../../img/image_1623641721428_0.png", width: 100%),
+      caption: [这一系列修改后的赤道方位等距投影地图展示了将经度压缩 1 至 2 倍后，如何使整个世界容纳在原先仅单个半球所占的空间内。]
+    ) <fig-comp-lon>
+  ],
+  [
+
+    哈默对艾托夫的方案进行了进一步改进，其投影应用了相同的思路，但改为基于兰伯特的方位等积投影。其结果是：
+    - 整体比例尺小于艾托夫投影
+    - 投影后的内部半球宽度并非整个地图的一半，而是占据其一半面积
+    - 最终的加倍操作恢复了比例关系，且最终地图仍保持等积特性
+    - 沿主轴的比例尺不再恒定
+  ]
+)
+
+同样，公式可通过在兰伯特方程中将 $lambda$ 替换为 $lambda / 2$ 推导得出：
+
+$ x = 2 R sqrt(2 / (1 + cos phi cos lambda / 2)) cos phi sin lambda / 2 $
+
+$ y = R sqrt(2 / (1 + cos phi cos lambda / 2)) sin phi $
+
+#grid(
+  columns: (1fr, 200pt),
+  column-gutter: 2em,
+  align: top,
+  [
+    艾托夫与哈默投影的比例尺不同，但整体轮廓线相当相似。坐标网间距的差异在内部半球几乎不可见，导致这两种投影常被错误标识。
+
+    哈默的设计又被埃克特-格里芬多夫进一步修改，其投影应用了进一步的 2:1 重新缩放。因此方程基本相同，仅需将 $lambda / 2$ 替换为 $lambda / 4$，并将 $x$ 系数从 2 改为 4。
+
+    对于基于压缩经度并按倒数因子扩展横坐标、同时保持中央经线比例尺恒定的等积投影，其极限情况是四次等积投影——一种伪圆柱投影。
+  ],
+  [
+    #figure(
+      image("../../img/image_1623642603615_0.png", width: 100%),
+      caption: [等比例尺下的艾托夫投影地图（上半）与哈默投影地图（下半）]
+    ) <fig-aitoff-hammer>
+  ]
+)
+
+=== 温克尔三重投影
+
+温克尔提出了艾托夫投影的另一种变体。与其第一、第二混合投影类似，他的三重投影对等距圆柱投影与艾托夫投影的 $x$、$y$ 坐标进行平均。同样地，
+
+$ phi_0 = plus.minus arccos(2 / pi) $
+
+
+#grid(
+  columns: (2fr, 1fr),
+  column-gutter: 2em,
+  [
+    #set align(center)
+    #text(font: ("LXGW Neo XiHei Plus", "SimHei"), size: 12pt, weight: "bold")[纬线展平效果]
+    #v(1em)
+    #figure(
+      image("../../img/image_1623643193272_0.png", width: 100%),
+      caption: [经过经度压缩/水平扩展的互逆因子调整后的赤道方位等积投影地图。]
+    ) <fig-lat-flat>
+  ],
+  [
+
+    温克尔三重投影通过这种复杂的平均算法，在维持世界全图轮廓的同时，极大地改善了高纬度地区的面积与形状变形，是目前最常用的世界地图投影之一。
+
+    通常被选作圆柱基投影的标准纬线（尽管最终投影并无标准纬线）。
+
+    方程可直接由艾托夫投影和等距圆柱投影公式导出：
+  ]
+)
+
+#grid(
+  columns: (1fr, 1.6fr),
+  column-gutter: 2em,
+  align: top,
+  [
+    #show math.equation.where(block: true): set align(left)
+    #show math.equation.where(block: true): it => pad(left: -8em, it)
+
+    $ alpha = arccos(cos phi cos lambda/2) $
+
+    $ w = cases(
+      0 & "if" alpha = 0,
+      1 / (sin alpha) & "otherwise"
+    ) $
+
+    $ x = R / 2 (lambda cos phi_0 + 2 w alpha cos phi sin lambda/2) $
+
+    $ y = R / 2 (phi + w alpha sin phi) $
+
+  ],
+  // 右侧装饰块
+  block(
+    fill: luma(248),
+    stroke: 0.5pt + gray,
+    inset: 12pt,
+    radius: 4pt,
+    width: 100%,
+    [
+      #figure(
+        image("../../img/image_1623643273981_0.png", width: 100%),
+        caption: [采用常规标准纬线（上半）与 40° 参考纬线的温克尔三重投影地图]
+      ) <fig-winkel-tripel>
+    ]
+  )
 )
 
 #pagebreak(weak: true)
