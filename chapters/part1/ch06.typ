@@ -113,7 +113,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     #align(center)[
@@ -162,7 +162,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     // 第一部分：左文右双图
@@ -235,7 +235,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     #align(center)[
@@ -288,7 +288,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     #align(center)[
@@ -318,7 +318,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     #align(center)[
@@ -370,7 +370,7 @@
     radius: 4pt,
     width: 100%,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
 
       #align(center)[
@@ -435,7 +435,7 @@
   ]
 )
 #align(center)[
-  #text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)[
+  #text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)[
     等距圆柱投影在赤道方位下的两种特例，其区别仅在于水平比例尺。第一幅地图通常称为普拉特卡雷投影，其标准纬线为 0°；第二幅地图为高尔正形投影，其标准纬线位于北纬 45° 和南纬 45°。
   ]
 ]
@@ -484,7 +484,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -510,7 +510,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -544,7 +544,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -569,7 +569,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -605,7 +605,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     #align(center)[
@@ -670,7 +670,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -697,7 +697,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -725,7 +725,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -757,7 +757,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -799,7 +799,7 @@
     radius: 4pt,
     width: 100%,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
 
       #align(center)[
@@ -853,7 +853,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -888,7 +888,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -927,7 +927,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -955,7 +955,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -999,7 +999,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -1022,7 +1022,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -1064,7 +1064,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -1087,7 +1087,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #figure(
@@ -1151,7 +1151,7 @@
     )
   ]
 )
-#align(center)[#text(size: 9pt, font: "LXGW WenKai Mono")[埃克特 III 型（上左）与 IV 型（上右）投影地图]]
+#align(center)[#text(size: 9pt, font: "LXGW WenKai Mono GB")[埃克特 III 型（上左）与 IV 型（上右）投影地图]]
 
 #v(1em)
 
@@ -1355,7 +1355,7 @@ HEALPix 定义了一系列从天球面到平面的混合分瓣伪圆柱投影。
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     // 1. 标题居中

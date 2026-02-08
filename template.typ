@@ -85,7 +85,7 @@
 
   // 强调与图表字体
   show strong: set text(font: ("LXGW Neo XiHei Plus", "SimHei"), weight: "bold")
-  show figure: set text(size: 9pt, font: ("LXGW WenKai Mono", "KaiTi"))
+  show figure: set text(size: 9pt, font: ("LXGW WenKai Mono GB", "KaiTi"))
 
   body
 }

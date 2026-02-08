@@ -2,6 +2,7 @@
 // 1. O'Reilly 风格封面
 #orly(
     font: ("LXGW Neo XiHei Plus", "SimSun"),
+    publisher-font: ("LXGW Neo XiHei Plus", "SimSun"),
     color: rgb("#1c81e0"),
     title: "地图投影理论与实践",
     top-text: "Theory and Practice of Map Projections",

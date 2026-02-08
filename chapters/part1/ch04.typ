@@ -62,7 +62,7 @@
     
     #set align(left)
     #set par(first-line-indent: 0pt, leading: 0.65em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"),size: 9pt) // 确保容器内文字紧凑
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt) // 确保容器内文字紧凑
     
     以下几幅使用墨卡托投影的地图表明，投影的基本特性（如局部保形）并不会随比例尺、方位或制图区域选择等次要特性的改变而改变。所有墨卡托地图的共同点是：距离参考线（可能水平，也可能不水平）越远，比例尺变化越快；但沿平行于该参考线的方向，比例尺保持不变。这确保了所有区域的形状在局部得以保持，但代价是牺牲了面积比例的正确性。
 
@@ -142,7 +142,7 @@
         [
           #image("../../img/image_1623334532137_0.png", width: 100%)
           #v(0.5em)
-          #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+          #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
           正射投影（代表原始地球仪）与范德格林Ⅲ型投影在相同比例尺下的坐标网对照。
         ],
         [
@@ -154,7 +154,7 @@
       
       // 下方描述文字
       #set par(first-line-indent: 0pt)
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       被称为范德格林第三型的投影，违反了坐标网的全部五项理想特性：
 
       - 紫色经线在极点附近被大幅拉长；绿色纬线在远离垂直中轴线处更长（纬线间的等距间隔具有误导性）
@@ -189,7 +189,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt)
       #image("../../img/eqdcylLines.png", width: 100%)
       #v(0.5em)
@@ -212,7 +212,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt)
       #grid(
         columns: (2fr, 1fr),
@@ -253,7 +253,7 @@
     
     #set align(left)
     #set par(first-line-indent: 0pt, leading: 0.6em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
 
     #grid(
       columns: (1fr, 1fr, 1fr),
@@ -334,7 +334,7 @@
     inset: 15pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #image("../../img/image_1623380121581_0.png", width: 80%)
@@ -373,7 +373,7 @@
       image("../../img/image_1623380953441_0.png", width: 100%),
     )
     #v(0.5em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #align(center)[同一条大圆在三种不同的斜轴正射方位视图中均非直线，因为它并未通过中心点。]
   ]
 )
@@ -390,17 +390,17 @@
     gutter: 15pt,
     [
       #image("../../img/image_1623380795609_0.png", width: 100%)
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #strong[球面投影地图]：包括大圆在内的所有圆均被映射为圆；通过投影中心的大圆则成为直线。
     ],
     [
       #image("../../img/image_1623380850039_0.png", width: 100%)
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #strong[球心投影地图]：即使不通过中心，大圆仍呈现为直线，但任何覆盖超过小范围地球区域的地图，其外部区域均会被极度拉伸。
     ],
     [
       #image("../../img/image_1623380870228_0.png", width: 100%)
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #strong[等距方位投影地图]可以展现整个世界。
     ]
   )
@@ -420,7 +420,7 @@
       image("../../img/image_1623381002785_0.png", width: 100%),
     )
     #v(0.5em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt)
     若有人计划从坎皮纳斯飞往东京，实际商业航班过去常从邻近的圣保罗起飞，经停秘鲁利马，再转往旧金山或洛杉矶。若仅在等距圆柱投影地图上用一条绿色直线连接坎皮纳斯和东京，可能会让人天真地以为夏威夷比加利福尼亚是更合理的中停点。
   ]
@@ -458,7 +458,7 @@
   inset: 15pt,
   radius: 4pt,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
     
     // 第一组图片
@@ -503,7 +503,7 @@
   inset: 12pt,
   radius: 4pt,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
     #grid(
       columns: (1fr, 1fr),
@@ -536,7 +536,7 @@
   inset: 12pt,
   radius: 4pt,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
     #grid(
       columns: (1.3fr, 2fr),
@@ -578,7 +578,7 @@
       image("../../img/image_1623388451358_0.png", width: 100%)
     )
     #v(0.5em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt)
     两张等方位投影地图，其中央经线分别在坎皮纳斯附近（上图）和挪威特罗姆瑟附近（右图）与参考纬线相交。同一条 $292.5^degree$ 的恒向线经过这两个地点，但仅在其通过交点的段落呈直线，其均匀的比例尺由间距为 $10^degree$ 的红色圆圈所标示。
   ]
@@ -672,7 +672,7 @@
     
     #set align(left)
     #set par(first-line-indent: 0pt, leading: 0.6em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
 
     假设地球表面有一组以巴西坎皮纳斯为中心的同心圆，每个圆半径比前一个大 1500 公里。这些都是真实存在的圆形，可以用来表示信号、飞机或导弹的覆盖范围。图中所有蓝色圆圈都代表这组真实的圆，它们在每个地图子图中形状一致。
 
@@ -814,7 +814,7 @@
     #v(0.8em)
     #set align(left)
     #set par(first-line-indent: 0pt, leading: 0.6em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     上图采用墨卡托等角投影的赤道方位，下图采用摩尔魏特等积投影的赤道方位，二者比例尺相同。两行图像分别展示了小比例尺世界图、格陵兰和非洲。通过 $10^degree$ 经纬网格可清晰看出：墨卡托投影在极点附近比例尺拉伸显著，而摩尔魏特投影则在赤道附近明显夸大了垂直方向的比例尺。
     
     #v(0.8em)
@@ -849,7 +849,7 @@
     inset: 10pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       #grid(
         columns: (1fr, 1fr),
@@ -872,7 +872,7 @@
   radius: 4pt,
   width: 100%,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt)
     #grid(
       columns: (1.5fr, 1fr),
@@ -930,7 +930,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       #image("../../img/image_1623421600703_0.png", width: 90%)
@@ -957,7 +957,7 @@
     radius: 4pt,
     height: auto,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       // 内部 Grid：手动使用 align 包装每一项确保居中
@@ -998,7 +998,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       #image("../../img/image_1623422656069_0.png", width: 100%)
       #v(0.5em)
@@ -1013,7 +1013,7 @@
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       // 内部图片布局：左侧两图竖排，右侧一大图
@@ -1053,7 +1053,7 @@
   inset: 10pt,
   radius: 4pt,
   [
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt)
     #image("../../img/image_1623423336046_0.png", width: 100%)
     #v(0.5em)
@@ -1086,7 +1086,7 @@
       image("../../img/image_1623423939143_0.png", width: 100%),
     )
     #v(0.8em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
     三种圆形边界的投影：范德格林Ⅰ型（既不等角也不等积，较本页其他地图缩小 61.5%）、范德格林Ⅱ型（同上）、“拉格朗日”投影（除极点外等角，较本页其他地图缩小 48.2%）。
   ]
@@ -1121,7 +1121,7 @@
 
     #set align(left)
     #set par(first-line-indent: 0pt, leading: 0.6em)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
 
     #grid(
       columns: (1fr, 1fr),

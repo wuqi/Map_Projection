@@ -158,7 +158,7 @@
     // 【左栏】：图片 + 你指定的特定段落
     [
       #set par(first-line-indent: 0pt)
-      #set text(size: 9pt, font: ("LXGW WenKai Mono", "KaiTi"))
+      #set text(size: 9pt, font: ("LXGW WenKai Mono GB", "KaiTi"))
       #image("../../img/image_1623331851071_0.png", width: 100%)
       
       #v(0.8em)
@@ -166,7 +166,7 @@
     ],
     // 【右栏】：剩余的所有描述文字
     [
-      #set text(size: 10pt, font: ("LXGW WenKai Mono", "KaiTi"))
+      #set text(size: 10pt, font: ("LXGW WenKai Mono GB", "KaiTi"))
       #set par(first-line-indent: 0pt)
       选取这几种投影旨在说明，同一份球面数据如何能以拉伸、压缩、扭曲等不同方式发生变形。
 
@@ -207,7 +207,7 @@
     radius: 4pt,          // 圆角
     [
       #set par(first-line-indent: 0pt)
-      #set text(size: 10pt, font: ("LXGW WenKai Mono", "KaiTi"))
+      #set text(size: 10pt, font: ("LXGW WenKai Mono GB", "KaiTi"))
       #image("../../img/Snipaste_2021-06-10_21-35-44_1623332158020_0.png", width: 100%)
       
       #v(0.5em)

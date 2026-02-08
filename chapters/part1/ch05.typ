@@ -162,7 +162,7 @@ $ y = R cos(phi) cos(lambda) $
     inset: 12pt,
     radius: 4pt,
     [
-      #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
       #set par(first-line-indent: 0pt, leading: 0.6em)
       
       // 内部 Grid：两张图及其描述水平排列
@@ -263,7 +263,7 @@ $ y = (R (k + cos phi_0) sin phi) / (k + cos phi) $
     #v(0.8em)
     
     #set align(left)
-    #set text(font: ("LXGW WenKai Mono", "KaiTi"), size: 9pt)
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"), size: 9pt)
     #set par(first-line-indent: 0pt, leading: 0.6em)
 
     所有圆柱投影的核心区别在于垂直比例尺，在赤道方位下表现为纬线间距的分布。多数此类投影（如布劳恩与高尔球面投影）的设计均使纬线间距向两极递增。其原因何在？

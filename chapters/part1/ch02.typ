@@ -14,7 +14,7 @@
     但遗憾的是，可以证明，这种完美的投影并不存在，也永远不可能存在：每一种投影都注定会扭曲所描绘区域的至少一部分。因此，制图学是一门权衡的艺术与科学，它为我们提供设计准则，帮助我们为不同用途选择最不“错误”的投影。
   ],
   [
-    #set text(size: 9pt, font: ("LXGW WenKai Mono", "KaiTi"))
+    #set text(size: 9pt, font: ("LXGW WenKai Mono GB", "KaiTi"))
     #set par(first-line-indent: 0pt, leading: 0.5em)
     #image("../../img/image_1623304504434_0-165236617751643.png", width: 100%)
     #v(0.5em)
@@ -38,7 +38,7 @@
     该投影的数学推导过程刊载于《一种等积地图投影》一文中（葡萄牙语，格式为 gzipped PostScript 及 PDF）。我曾编写了一个简单的应用程序来绘制地图；它功能有限但很有效（幸运的是，如今只需数秒，而非数小时）。
   ],
   [
-    #set text(size: 9pt, font: ("LXGW WenKai Mono", "KaiTi"))
+    #set text(size: 9pt, font: ("LXGW WenKai Mono GB", "KaiTi"))
     #set par(first-line-indent: 0pt, leading: 0.5em)
     #image("../../img/image_1623304840872_0-165236627520445.png", width: 100%)
     #v(0.5em)
