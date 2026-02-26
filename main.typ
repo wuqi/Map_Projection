@@ -28,6 +28,7 @@
 #include "chapters/part1/ch04.typ"
 #include "chapters/part1/ch05.typ"
 #include "chapters/part1/ch06.typ"
+#include "chapters/part1/ch07.typ"
 
 // 5. 正文 - 第二部分
 #part_divider("第二部分：应用实践")
