@@ -755,3 +755,97 @@
 )
 
 复合世界投影基于兰伯特等积方位投影的局部斜轴形态，以优先考虑大陆区域为原则进行松散拼接：瓣区边界尽可能避免切割海岸线，而中间的海域部分则通过任意拉伸以保持接缝平滑，这在视觉上明显偏离了理想的等积特性。
+
+
+#grid(
+  columns: (1fr, 1.3fr),
+  column-gutter: 20pt, 
+  row-gutter: 10pt,
+  [
+
+    === 分瓣处理技巧
+
+    分瓣地图的主要目的是将重要区域移至变形较小的位置，通常靠近每个瓣区的中心。几种制图技巧可增强分瓣的实用性。
+
+    ==== 重定中央与裁剪
+
+    尤其是在伪圆柱投影中，分瓣地图的每个瓣区可以方便地使用各自任意选定的中央经线进行投影，而不必与整体中央经线相同。这会引入不对称的角变形，使靠近直线中央经线的区域受益，同时牺牲其他区域。中央经线甚至可能随纬度变化，如菲尔布里克的 Sinu-Mollweide 投影和博格斯等形地图的欧亚瓣区。
+
+    重定中央也是未分瓣的大陆或区域地图的有效手段。将感兴趣的区域居中，以最小化变形，然后裁剪掉其余投影区域。重定中央可能采用不同的投影方向，甚至斜轴地图。
+
+
+  ],
+  grid(
+    columns: (1fr, 1fr),   // 左右等宽
+    column-gutter: 10pt,   // 两图之间的间距
+    row-gutter: 10pt,
+    image("../../img/image_1625406397946_0.png", width: 90%),
+    image("../../img/image_1625406411796_0.png", width: 90%),
+    grid.cell(colspan: 2, 
+      image("../../img/image_1625406426855_0.png", width: 100%)
+    ),
+    [
+
+      #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt)
+      左上：未分瓣的埃克特 IV 地图；右上：分瓣版本保留了投影的特性（包括等积性），同时降低了大陆等优先区域的角变形。
+    ],
+    image("../../img/image_1625406434418_0.png", width: 90%),
+        grid.cell(colspan: 2, 
+      [
+        #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt)
+        上图及右图，同一投影采用分瓣且重定中央经线的处理：每个瓣区中只有一条经线（不一定是中间的那条）被映射为直线——如变形模式所示，这再次改变了优先区域，例如西欧和澳大利亚。
+      ]
+    ),
+    
+  )
+)
+
+#block(
+  fill: luma(248),
+  stroke: 0.5pt + gray,
+  inset: 12pt,
+  radius: 4pt,
+  width: 100%,
+  [
+    #align(center)[
+      #set text(font: ("LXGW Neo XiHei Plus", "SimHei"))
+      *利用低变形区域的重定中央*]
+    #v(0.5em)
+
+    #grid(
+      columns: (1fr, 1fr,1fr),   // 左右等宽
+      column-gutter: 10pt,   // 两图之间的间距
+      row-gutter: 10pt,
+      image("../../img/image_1625406563702_0.png", width: 90%),
+      image("../../img/image_1625406568547_0.png", width: 90%),
+      image("../../img/image_1625406573707_0.png", width: 90%),
+
+      image("../../img/image_1625406579496_0.png", width: 90%),
+      image("../../img/image_1625406583281_0.png", width: 90%),
+      image("../../img/image_1625406588112_0.png", width: 90%),
+
+      [
+        #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt)
+        普通赤道地图，以0°经线为中心
+      ],
+      [
+        #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt)
+        赤道投影，经线重定于137°E：最佳选择
+      ],
+      [
+        #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt)
+        斜轴投影，完全以日本为中心
+      ],
+    )
+
+    #v(1em)
+
+    #set text(font: ("LXGW WenKai Mono GB", "KaiTi"),size: 9pt)
+    这三幅区域地图使用相同的埃克特 IV 投影展示日本列岛。
+
+    对该投影角变形模式的分析表明，尽管其处处保持面积不变，但仅有中央经线与标准纬线40°30′N 和 S（在赤道投影中）相交的两个小“最佳点”无角变形。三幅地图覆盖相同区域但范围略有不同，第二版中的区域更接近最佳点——东京位于约35°N、139°E。第三幅地图中的斜轴版本实际上变形更大，同时失去了赤道投影中纬线为直线的有用特性。
+  ]
+)
+
+==== 压缩与插图
+
