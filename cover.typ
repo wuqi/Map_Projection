@@ -9,7 +9,7 @@
     subtitle: "从基础到实践的全面指南",
     pic: move(
         dy: 1cm, // 将图片向下移动 2 厘米，您可以根据预览效果调整这个数值
-        image("img/cover.jpeg", width: 100%, fit: "contain")
+        image("img/cover.png", width: 100%, fit: "contain")
     ),
     signature: "Carlos A. Furuti 著 / wuqi 译"
 )

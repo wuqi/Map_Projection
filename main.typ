@@ -1,5 +1,36 @@
 #import "template.typ": *
 
+#let part_divider(title) = {
+  // 关键：为这一页单独设置 header 为 none
+  set page(header: none) 
+  
+  pagebreak(to: "odd", weak: true)
+  
+  show heading: it => {
+    set align(center + horizon)
+    set text(font: ("LXGW Neo XiHei Plus", "SimHei"),size: 2.5em, weight: "bold")
+    block[
+      #it.body
+      #v(0.5em)
+      #line(length: 100%)
+    ]
+  }
+
+  heading(level: 1, numbering: none, outlined: true)[#title]
+  
+  pagebreak(weak: true)
+  // 离开函数后，全局的 page 样式会自动恢复
+}
+
+#show outline.entry.where(level: 1): it => {
+  if it.element.numbering == none {
+    strong(it) // 加粗显示“部分”
+  } else {
+    it // 其他正常的 1.1 标题保持原样
+  }
+}
+
+
 #show: project.with(title: "地图投影理论与实践", author: "Carlos A. Furuti")
 
 // 1. 封面 (不计页码)
@@ -29,11 +60,15 @@
 #include "chapters/part1/ch05.typ"
 #include "chapters/part1/ch06.typ"
 #include "chapters/part1/ch07.typ"
+#include "chapters/part1/ch08.typ"
+#include "chapters/part1/ch09.typ"
 
 // 5. 正文 - 第二部分
 #part_divider("第二部分：应用实践")
-//#include "chapters/part2/ch01.typ"
+#set heading(numbering: "1.1")
+
 // ... 后续 include
+#include "chapters/part2/ch01.typ"
 
 // 6. 封底
 //#include "back.typ"
