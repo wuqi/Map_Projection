@@ -71,4 +71,4 @@
 #include "chapters/part2/ch01.typ"
 
 // 6. 封底
-//#include "back.typ"
+#include "back.typ"
