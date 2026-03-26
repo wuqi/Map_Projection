@@ -1,0 +1,31 @@
+# .github/workflows/release.yml 示例
+name: Build and Release from typst branch
+
+on:
+  push:
+    tags:
+      - 'v*'          # 当推送 v1.0.0 等格式的标签时触发
+    branches:
+      - typst         # 明确指定分支（可选，便于区分）
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: typst    # 确保签出 typst 分支
+
+      - uses: typst-community/setup-typst@v4
+        with:
+          typst-version: latest
+
+      - run: typst compile --font-path fonts main.typ map_projection.pdf
+
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: map_projection.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
